@@ -118,11 +118,11 @@ public class Main extends Application {
 		pane.add(password, 0, 1);
 		pane.add(passwordField, 1, 1 ,2 ,1 );
 		
-		pane.add(submit, 1, 2);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		pane.add(clear, 2, 2);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		pane.add(submit, 1, 2);
+		pane.add(clear, 2, 2);
 		
 		
-		pane.setAlignment(Pos.CENTER);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		pane.setAlignment(Pos.CENTER);
 		
 		
 		
