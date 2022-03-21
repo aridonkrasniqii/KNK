@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -25,7 +26,7 @@ public class Main extends Application {
 	
 	
 	TextField usernameField;
-	TextField passwordField;
+	PasswordField passwordField;
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -66,7 +67,7 @@ public class Main extends Application {
 		
 		usernameField = new TextField();
 		usernameField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 20));
-		passwordField = new TextField();
+		passwordField = new PasswordField();
 		passwordField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 20));
 		
 		usernameField.setPromptText("Username..");
@@ -153,39 +154,10 @@ public class Main extends Application {
 	
 	public void clear() {
 		
-		passwordField.setText(" ");
-		usernameField.setText(" ");
+		passwordField.setText("");
+		usernameField.setText("");
 	}
 	
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
