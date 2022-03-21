@@ -8,9 +8,9 @@ This is a project created to manage hotel system and make reservations etc.
 We have used programming language Java and we connected it with MySQL for database system.
 
 ## Authors
-./AridonKrasniqii
+./AridonKrasniqii../
 
-./LorentSinani
+./LorentSinani../
 
 @EraKadiri
 
