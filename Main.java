@@ -6,8 +6,17 @@ import javafx.geometry.*;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.text.*;
+
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class LoginRegisterForm extends Application {
@@ -52,15 +61,15 @@ class LoginForm extends GridPane {
 		
 		try {
 
-			Label username = new Label("Username: ");
-			username.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 18));
-			Label password = new Label("Password: ");
-			password.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 18));
+			Label usernameLabel = new Label("Username: ");
+			usernameLabel.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 16));
+			Label passwordLabel = new Label("Password: ");
+			passwordLabel.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 16));
 			
 			usernameField = new TextField();
-			usernameField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 18));
+			usernameField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 16));
 			passwordField = new PasswordField();
-			passwordField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 18));
+			passwordField.setFont(Font.font("Arial",FontWeight.SEMI_BOLD, 16));
 			usernameField.setPromptText("Username..");
 			passwordField.setPromptText("Password..");
 			
@@ -77,22 +86,22 @@ class LoginForm extends GridPane {
 			
 			HBox buttonPane = new HBox(10);
 			buttonPane.getChildren().addAll(login,clear);
+		
 			
-			// TODO:		
 			login.setOnAction(e -> {
-
+				submitAction();
 			});
 			
-			// TODO:
+			
 			clear.setOnAction(e -> {
-
+				clearAction();
 			});
 			
 			super.setVgap(10);
 			super.setHgap(10);
-			super.add(username, 0, 0);
+			super.add(usernameLabel, 0, 0);
 			super.add(usernameField,1, 0, 2 ,1 );
-			super.add(password, 0, 1);
+			super.add(passwordLabel, 0, 1);
 			super.add(passwordField, 1, 1 ,2 ,1 );
 			super.add(buttonPane,1,2);
 			super.setAlignment(Pos.CENTER);
@@ -103,12 +112,29 @@ class LoginForm extends GridPane {
 		return this;
 		
 	}
-	
-	// TODO: Validation .... 
-	
-	public void validate() {
-		
+	public void clearAction( ) {
+		usernameField.setText("");
+		passwordField.setText("");
 	}
+	
+	// Validation .... 
+	
+	public void submitAction() {
+		
+		
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		
+		LoginUser loginUser = new LoginUser(username,password);
+		Boolean result = loginUser.validate();
+		
+		Alert alert = new Alert(result ? AlertType.INFORMATION : AlertType.ERROR);
+		
+		alert.setHeaderText(result ? "Information" : "Error");
+		alert.setContentText(result ? "Successfully logged in " : "Wrong password or username ");
+		alert.showAndWait();
+		
+	}	
 }
 
 class RegisterForm extends GridPane {
@@ -121,8 +147,9 @@ class RegisterForm extends GridPane {
 	private ToggleGroup genderGroup;
 	private RadioButton female;
 	private RadioButton male;
-	private ComboBox<String>locationView;
+	private ComboBox<String>locationCombo;
 	private Button registerButton;
+	private DatePicker birthdayPicker;
 	
 	public RegisterForm() {
 		super();
@@ -148,7 +175,7 @@ class RegisterForm extends GridPane {
 			passwordField = new PasswordField();
 			confirmPasswordField = new PasswordField();
 			
-			DatePicker birthdayPicker = new DatePicker();
+			birthdayPicker = new DatePicker();
 			
 			female = new RadioButton("Female");
 			male = new RadioButton("Male");
@@ -159,15 +186,26 @@ class RegisterForm extends GridPane {
 			HBox genderPane = new HBox(10);
 			genderPane.getChildren().addAll(female,male);
 			
-			locationView = new ComboBox<String>();
+			locationCombo = new ComboBox<String>();
 			ObservableList<String> locationList = FXCollections.observableArrayList("Albania","Kosovo","Germany","France","Hungary");
-			locationView.getItems().addAll(locationList);
+			locationCombo.getItems().addAll(locationList);
 			
 			registerButton = new Button("Register");
 			registerButton.setAlignment(Pos.BOTTOM_CENTER);
 			
 			HBox registerPane = new HBox();
 			registerPane.getChildren().addAll(registerButton);
+			
+			
+			
+			
+			registerButton.setOnAction(e -> {
+				
+				submitAction();
+				
+			});
+			
+			
 			
 			super.add(nameLabel, 0, 0);
 			super.add(nameField,1,0,3,1);
@@ -184,7 +222,7 @@ class RegisterForm extends GridPane {
 			super.add(genderLabel, 0, 6);
 			super.add(genderPane, 2, 6);
 			super.add(locationLabel, 0, 7);
-			super.add(locationView, 1, 7, 3, 1);
+			super.add(locationCombo, 1, 7, 3, 1);
 			super.add(registerPane, 3, 8);
 			super.setHgap(10);
 			super.setVgap(15);
@@ -192,12 +230,6 @@ class RegisterForm extends GridPane {
 			
 		
 			
-			// TODO: Validation 
-			String name = nameField.getText();
-			String username = usernameField.getText();
-			String password = passwordField.getText();
-			String confirmPassword = confirmPasswordField.getText();
-			String email = emailField.getText();
 				
 		}catch(Exception e ) {
 			
@@ -208,14 +240,157 @@ class RegisterForm extends GridPane {
 		return this;
 	}
 	
-	public boolean validate(String name,String username,String password, String email) {
+	public void submitAction( ) {
 	
-		return true;
+		// TODO: Validation 
+		String name = nameField.getText();
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		String confirmPassword = confirmPasswordField.getText();
+		String email = emailField.getText();
+		Date date = new Date();
+		DateFormat date_format = new SimpleDateFormat("yyyy-mm-dd");
+		String date_string = "";
+		try {
+			
+			date = birthdayPicker.getValue() != null ? new Date(birthdayPicker.getValue().toEpochDay()) : null;
+
+			// 
+			date_string = date_format.format(date);
+			
+		}catch(Exception e ) {
+			
+			Alert dateAlert = new Alert(AlertType.ERROR);
+			dateAlert.setHeaderText("Error");
+			dateAlert.setContentText("Invalid data");
+			dateAlert.showAndWait();
+			
+			return;
+		}
+        
+		String gender = null;
+		if(female.isSelected()) {
+			gender = "Female";
+		}
+		if(male.isSelected()) {
+			gender  = "Male";
+		}
+		
+		String location = locationCombo.getSelectionModel().getSelectedItem();
+		
+		RegisterUser registerUser = new RegisterUser(name,username,password,confirmPassword,email,date_string,gender,location);
+		
+		Boolean result = registerUser.validate();
+		
+		Alert alert = new Alert(result  ? AlertType.INFORMATION : AlertType.ERROR);
+		alert.setHeaderText(result  ? "Great work" : "Error");
+		alert.setContentText(result ? "Successfully registered " : "Invalid data ");
+		alert.showAndWait();
+		
 	}
 	
 	
+	
 }
-
+class LoginUser {
+	
+	private String username; // OR EMAIL 
+	private String password;
+	
+	
+	public LoginUser(String username,String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
+	
+	public boolean validate() {
+		
+		if(username.equals("") || username.equals(" ") || password.equals("") || password.equals(" ")) {
+			return false;
+		}
+		if(username == null || password == null) {
+			return false;
+		}
+			
+		return true;
+	}
+	
+}
+class RegisterUser {
+	private String userId = "1"; // AUTO_INCREMENT
+	private String name;
+	private String username;
+	private String email;
+	private String password;
+	private String confirmPassword;
+	private String birthday;
+	private String gender;
+	private String location;
+	private ArrayList<String> data;
+	
+	
+	public RegisterUser(String name,String username, 
+						String confirmPassword,String password, 
+						String email,String birthday, 
+						String gender, String location ) {
+		
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.confirmPassword = confirmPassword;
+		this.birthday = birthday;
+		this.gender = gender;
+		this.location = location;
+	
+	
+		
+		this.data = new ArrayList<String>() {
+			{
+				add(name);
+				add(username);
+				add(password);
+				add(confirmPassword);
+				add(email);
+				add(gender);
+				add(location);
+				add(new String(birthday));
+			}
+		};
+		
+	}
+	
+	
+	
+	
+	public boolean validate() {
+		
+		
+		for(int i = 0 ;i < this.data.size();i ++) {
+			
+			String value = data.get(i);
+			
+			if(value == null || value.equals("") || value.equals(" ") || value.length() == 0)
+			{			
+				return false;
+			}
+			
+		}
+		
+		
+		if(!password.equals(confirmPassword) || password.length() < 8) {
+			return false;
+		}
+		if(email.indexOf("@") < 0 || email.indexOf(".") < 0) {
+			return false;
+		}
+		
+		return true;
+	}
+		
+	
+}
 
 
 
