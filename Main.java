@@ -8,8 +8,8 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.*;
-
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+//import java.util.stream.Stream;
 
 public class LoginRegisterForm extends Application {
 	
@@ -135,6 +136,7 @@ class LoginForm extends GridPane {
 		alert.showAndWait();
 		
 	}	
+	
 }
 
 class RegisterForm extends GridPane {
@@ -149,6 +151,7 @@ class RegisterForm extends GridPane {
 	private RadioButton male;
 	private ComboBox<String>locationCombo;
 	private Button registerButton;
+	private Button clearButton;
 	private DatePicker birthdayPicker;
 	
 	public RegisterForm() {
@@ -201,7 +204,6 @@ class RegisterForm extends GridPane {
 			HBox registerPane = new HBox();
 			registerPane.getChildren().addAll(registerButton, clearButton);
 			registerPane.setSpacing(20);
-			
 			
 			registerButton.setOnAction(e -> {
 				
@@ -286,7 +288,7 @@ class RegisterForm extends GridPane {
 		
 		String location = locationCombo.getSelectionModel().getSelectedItem();
 		
-		RegisterUser registerUser = new RegisterUser(name,username,password,confirmPassword,email,date_string,gender,location);
+		RegisterUser registerUser = RegisterUser.fromValuesRegister(name,username,password,confirmPassword,email,date_string,gender,location);
 		
 		Boolean result = registerUser.validate();
 		
@@ -296,7 +298,6 @@ class RegisterForm extends GridPane {
 		alert.showAndWait();
 		
 	}
-	
 	
 	public void clearForm() {
 		this.nameField.setText("");
@@ -309,8 +310,6 @@ class RegisterForm extends GridPane {
 		this.locationCombo.setValue(null);
 		
 	}
-	
-	
 	
 }
 class LoginUser {
@@ -350,7 +349,6 @@ class RegisterUser {
 	private String location;
 	private ArrayList<String> data;
 	
-	
 	public static RegisterUser fromValuesRegister(String name,String username, 
 						String password,String confirmPassword, 
 						String email,String birthday, 
@@ -377,7 +375,7 @@ class RegisterUser {
 		this.data = new ArrayList<String>() {
 			
 			private static final long serialVersionUID = 1L; //a universal version identifier for a Serializable class
-			
+
 			{
 				add(name);
 				add(username);
@@ -422,28 +420,3 @@ class RegisterUser {
 		
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
