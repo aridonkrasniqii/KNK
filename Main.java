@@ -351,8 +351,15 @@ class RegisterUser {
 	private ArrayList<String> data;
 	
 	
-	public RegisterUser(String name,String username, 
-						String confirmPassword,String password, 
+	public static RegisterUser fromValuesRegister(String name,String username, 
+						String password,String confirmPassword, 
+						String email,String birthday, 
+						String gender, String location) {
+		return new RegisterUser(name, username, password, confirmPassword, email, birthday, gender, location);
+	}
+	
+	private RegisterUser(String name,String username, 
+						String password,String confirmPassword, 
 						String email,String birthday, 
 						String gender, String location ) {
 		
@@ -368,6 +375,9 @@ class RegisterUser {
 	
 		
 		this.data = new ArrayList<String>() {
+			
+			private static final long serialVersionUID = 1L; //a universal version identifier for a Serializable class
+			
 			{
 				add(name);
 				add(username);
