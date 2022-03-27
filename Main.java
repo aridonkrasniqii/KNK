@@ -176,6 +176,7 @@ class RegisterForm extends GridPane {
 			confirmPasswordField = new PasswordField();
 			
 			birthdayPicker = new DatePicker();
+			birthdayPicker.setValue(LocalDate.now());
 			
 			female = new RadioButton("Female");
 			male = new RadioButton("Male");
@@ -189,14 +190,17 @@ class RegisterForm extends GridPane {
 			locationCombo = new ComboBox<String>();
 			ObservableList<String> locationList = FXCollections.observableArrayList("Albania","Kosovo","Germany","France","Hungary");
 			locationCombo.getItems().addAll(locationList);
+			locationCombo.setPromptText("Select your Country...");
 			
 			registerButton = new Button("Register");
-			registerButton.setAlignment(Pos.BOTTOM_CENTER);
+			registerButton.setAlignment(Pos.BOTTOM_LEFT);
+			
+			clearButton = new Button("Clear");
+			clearButton.setAlignment(Pos.BOTTOM_RIGHT);
 			
 			HBox registerPane = new HBox();
-			registerPane.getChildren().addAll(registerButton);
-			
-			
+			registerPane.getChildren().addAll(registerButton, clearButton);
+			registerPane.setSpacing(20);
 			
 			
 			registerButton.setOnAction(e -> {
