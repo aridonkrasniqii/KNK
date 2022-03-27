@@ -209,6 +209,10 @@ class RegisterForm extends GridPane {
 				
 			});
 			
+			clearButton.setOnAction(e -> {
+				clearForm();
+			});
+			
 			
 			
 			super.add(nameLabel, 0, 0);
@@ -227,7 +231,7 @@ class RegisterForm extends GridPane {
 			super.add(genderPane, 2, 6);
 			super.add(locationLabel, 0, 7);
 			super.add(locationCombo, 1, 7, 3, 1);
-			super.add(registerPane, 3, 8);
+			super.add(registerPane, 2, 8);
 			super.setHgap(10);
 			super.setVgap(15);
 			super.setAlignment(Pos.CENTER);
@@ -290,6 +294,19 @@ class RegisterForm extends GridPane {
 		alert.setHeaderText(result  ? "Great work" : "Error");
 		alert.setContentText(result ? "Successfully registered " : "Invalid data ");
 		alert.showAndWait();
+		
+	}
+	
+	
+	public void clearForm() {
+		this.nameField.setText("");
+		this.usernameField.setText("");
+		this.emailField.setText("");
+		this.passwordField.setText("");
+		this.confirmPasswordField.setText("");
+		this.birthdayPicker.setValue(null);
+		this.genderGroup.selectToggle(null);
+		this.locationCombo.setValue(null);
 		
 	}
 	
