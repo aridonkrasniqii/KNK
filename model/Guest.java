@@ -5,17 +5,17 @@ public class Guest {
 	private String last_name;
 	private String first_name;
 	private int personal_number;
-	private String birthday;
+	private String birthdate;
 	private int phone_number;
 	private String registred_date;
 	private String gender;
 	
-	Guest(int id , String last_name , String first_name, int personal_number , String birthday, int phone_number, String registred_date, String gender){
+	Guest(int id , String last_name , String first_name, int personal_number , String birthdate, int phone_number, String registred_date, String gender){
 		this.id = id;
 		this.last_name = last_name;
 		this.first_name = first_name;
 		this.personal_number = personal_number;
-		this.birthday = birthday;
+		this.birthdate = birthdate;
 		this.phone_number = phone_number;
 		this.registred_date = registred_date;
 		this.gender = gender;
@@ -62,8 +62,8 @@ public class Guest {
 		return personal_number;
 	}
 
-	public String getBirthday() {
-		return birthday;
+	public String getBirthdate() {
+		return birthdate;
 	}
 
 	public String getRegistred_date() {
