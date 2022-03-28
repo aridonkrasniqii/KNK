@@ -1,12 +1,12 @@
 package model;
 
-public class services_type {
+public class Services_type {
 	private int id;
 	private String service_name;
 	private double price;
 	private int quantity;
 	
-	public services_type(int id, String service_name, double price, int quantity) {
+	public Services_type(int id, String service_name, double price, int quantity) {
 		this.id = id;
 		this.service_name = service_name;
 		this.price = price;
