@@ -1,13 +1,13 @@
 package model;
 
-public class services {
+public class Services {
 	private int id;
 	private int guest_id;
 	private int service_id;
 	private int quantity;
 	private int payment_id;
 
-	public services(int id, int guest_id, int service_id, int quantity, int payment_id) {
+	public Services(int id, int guest_id, int service_id, int quantity, int payment_id) {
 		this.id = id;
 		this.guest_id = guest_id;
 		this.service_id = service_id;
