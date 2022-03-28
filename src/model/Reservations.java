@@ -1,6 +1,6 @@
 package model;
 
-public class reservations {
+public class Reservations {
 	private int id;
 	private int guest_id;
 	private int room_id;
@@ -11,7 +11,7 @@ public class reservations {
 	private int children;
 	private int payment_id;
 	
-	reservations(int id, int guest_id, int room_id, Date reservation_date, Date checkin_date, Date checkout_date, int adults, int children, int payment_id){
+	Reservations(int id, int guest_id, int room_id, Date reservation_date, Date checkin_date, Date checkout_date, int adults, int children, int payment_id){
 		this.id = id;
 		this.guest_id = guest_id;
 		this.room_id = room_id;
