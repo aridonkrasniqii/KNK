@@ -1,6 +1,6 @@
 package model;
 
-public class staff {
+public class Staff {
 	private int id;
 	private String last_name;
 	private String first_name;
@@ -12,7 +12,7 @@ public class staff {
 	private double salary;
 	private String password;
 	private String gender;
-	public staff(int id, String last_name, String first_name, int personal_number, String position, String birthdate,
+	public Staff(int id, String last_name, String first_name, int personal_number, String position, String birthdate,
 			int phone_number, double salary, String password, String gender) {
 		super();
 		this.id = id;
