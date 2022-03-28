@@ -1,9 +1,9 @@
 package model;
 
-public class perdoruesit {
+public class Perdoruesit {
  private String username;
  private String hashedPassword;
-public perdoruesit(String username, String hashedPassword) {
+public Perdoruesit(String username, String hashedPassword) {
 	super();
 	this.username = username;
 	this.hashedPassword = hashedPassword;
