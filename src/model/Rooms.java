@@ -1,6 +1,6 @@
 package model;
 
-public class rooms {
+public class Rooms {
 	private int room_number;
 	private int floor_number;
 	private int capacity;
@@ -8,7 +8,7 @@ public class rooms {
 	private String room_type;
 	private double price;
 	
-	rooms(int room_number, int floor_number, int capacity, int bed_number, String room_type, double price){
+	Rooms(int room_number, int floor_number, int capacity, int bed_number, String room_type, double price){
 		this.room_number = room_number;
 		this.floor_number = floor_number;
 		this.capacity = capacity;
