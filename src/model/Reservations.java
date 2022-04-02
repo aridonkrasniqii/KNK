@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 public class Reservations {
 	private int id;
 	private int guest_id;
