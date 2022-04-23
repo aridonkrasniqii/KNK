@@ -41,11 +41,11 @@ public class RegisterGuestsRepository {
         .add("location", guest.getLocation(), "s");
 
     int lastInsertedId = this.connection.execute(query);
-    RegisterGuests createdStudent = this.findById(lastInsertedId);
+    RegisterGuests createGuest = this.findById(lastInsertedId);
 
-    if (createdStudent != null) {
+    if (createGuest != null) {
       System.out.println("Guest was created successfully ");
-      return createdStudent;
+      return createGuest;
     }
 
     throw new Exception("Guest failed to create!");
