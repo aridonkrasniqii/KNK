@@ -8,14 +8,14 @@ This is a project created to manage hotel system and make reservations etc.
 We have used programming language Java and we connected it with MySQL for database system.
 
 ## Authors
-- AridonKrasniqii
+- [AridonKrasniqi](https://github.com/aridonkrasniqii)
 
-- LorentSinani
+- [LorentSinani](https://github.com/lorentsinani)
 
-- EraKadiri
+- [EraKadiri](https://github.com/EraKadiri)
 
-- LorikMustafa
+- [LorikMustafa](https://github.com/lorikmustafa)
   
-- MeritonKryeziu
+- [MeritonKryeziu](https://github.com/meritonkryeziu0)
   
-- AndiAhmeti
+- [AndiAhmeti](https://github.com/Andi-A)
