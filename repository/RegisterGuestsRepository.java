@@ -44,10 +44,11 @@ public class RegisterGuestsRepository {
     RegisterGuests createdStudent = this.findById(lastInsertedId);
 
     if (createdStudent != null) {
+      System.out.println("Guest was created successfully ");
       return createdStudent;
     }
 
-    throw new Exception("Student failed to create!");
+    throw new Exception("Guest failed to create!");
   }
 
   public RegisterGuests findByUsernamePassword(String username, String password) throws Exception {
@@ -66,10 +67,13 @@ public class RegisterGuestsRepository {
   }
 
   public RegisterGuests findById(int id) throws SQLException {
-    String query = "SELECT * FROM registerGuests WHERE ID = " + id;
+    String query = "SELECT * FROM registerGuests WHERE id = " + id;
     ResultSet res = this.connection.executeQuery(query);
+
+    RegisterGuests guest = RegisterGuests.fromResultSet(res);
     res.next();
-    return RegisterGuests.fromResultSet(res);
+    return guest;
+
   }
 
   public RegisterGuests update(RegisterGuests guest) throws Exception {

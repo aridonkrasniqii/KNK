@@ -57,8 +57,8 @@ public class DBConnection {
     try {
       PreparedStatement pst = this.connection.prepareStatement(queryBuilder.getQuery(),
           Statement.RETURN_GENERATED_KEYS);
-      System.out.println(queryBuilder.getQuery());
-      System.out.println(queryBuilder.getTypes());
+      // System.out.println("Query Builder getQuery: " + queryBuilder.getQuery());
+      // System.out.println("Query Builder getTypes: " + queryBuilder.getTypes());
 
       Object[] values = (Object[]) queryBuilder.getValues();
       char[] types = queryBuilder.getTypes().toCharArray();
