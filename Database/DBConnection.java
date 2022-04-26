@@ -20,6 +20,7 @@ public class DBConnection {
     return new DBConnection();
   }
 
+  
   private DBConnection() {
     this.connection = this.initConnection();
   }
@@ -44,7 +45,6 @@ public class DBConnection {
     try {
       PreparedStatement sq = this.connection.prepareStatement(query);
       return sq.executeQuery(query);
-
     } catch (SQLException e) {
       System.out.println("Execute query error : " + e.getMessage());
       return null;
@@ -57,8 +57,6 @@ public class DBConnection {
     try {
       PreparedStatement pst = this.connection.prepareStatement(queryBuilder.getQuery(),
           Statement.RETURN_GENERATED_KEYS);
-      // System.out.println("Query Builder getQuery: " + queryBuilder.getQuery());
-      // System.out.println("Query Builder getTypes: " + queryBuilder.getTypes());
 
       Object[] values = (Object[]) queryBuilder.getValues();
       char[] types = queryBuilder.getTypes().toCharArray();

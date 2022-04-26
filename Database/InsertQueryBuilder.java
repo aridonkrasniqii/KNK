@@ -9,6 +9,7 @@ public class InsertQueryBuilder extends AbstractQueryBuilder {
   private InsertQueryBuilder(String tableName) {
     super.tableName = tableName;
   }
+  
 
   @Override
   public String getQuery() {

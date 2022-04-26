@@ -10,16 +10,18 @@ public class RegisterGuests {
   private String email;
   private String password;
   private String birthdate;
+  private String registeredDate;
   private String gender;
   private String location;
 
-  private RegisterGuests(int id, String first_name, String username, String email, String password, String birthdate,
+  private RegisterGuests(int id, String first_name, String username, String email, String password, String birthdate,String registeredDate,
       String gender, String location) {
     this.id = id;
     this.first_name = first_name;
     this.username = username;
     this.email = email;
     this.password = password;
+    this.registeredDate = registeredDate;
     this.birthdate = birthdate;
     this.gender = gender;
     this.location = location;
@@ -36,8 +38,10 @@ public class RegisterGuests {
         String password = res.getString("password");
         String birthdate = res.getString("birthdate");
         String gender = res.getString("gender");
+        String registeredDate = res.getString("registered_date");
         String location = res.getString("location");
-        return new RegisterGuests(id, first_name, username, email, password, birthdate, gender, location);
+        return new RegisterGuests(id, first_name, username, email, password, birthdate,
+            registeredDate ,gender, location);
       } catch (SQLException e) {
         System.out.println("RegisterGuests class exception method: fromResultSet : " + e);
         return null;
@@ -47,9 +51,10 @@ public class RegisterGuests {
     }
   }
 
-  public static RegisterGuests createGuest(String first_name, String username, String email, String password,
-      String birthdate, String gender, String location) {
-    return new RegisterGuests(0, first_name, username, email, password, birthdate, gender, location);
+  public static RegisterGuests createGuest(int id, String first_name, String username, String email, String password,
+      String birthdate, String registeredDate, String gender, String location) {
+        // change id to 0
+    return new RegisterGuests(id, first_name, username, email, password, birthdate, registeredDate ,gender, location);
   }
 
   public int getId() {
@@ -78,6 +83,9 @@ public class RegisterGuests {
 
   public String getBirthdate() {
     return birthdate;
+  }
+  public String getRegisteredDate() {
+    return registeredDate;
   }
 
   public String getLocation() {

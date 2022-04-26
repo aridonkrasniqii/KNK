@@ -1,32 +1,28 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.LoginUser;
 import application.RegisterUser;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import javafx.application.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.*;
-import javafx.stage.*;
 import model.RegisterGuests;
 import repository.RegisterGuestsRepository;
-import javafx.scene.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.*;
-import javafx.scene.text.*;
+import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
 import java.util.Date;
 
 public class LoginRegisterController implements Initializable {
@@ -79,11 +75,8 @@ public class LoginRegisterController implements Initializable {
     birthdayPicker.setValue(LocalDate.now());
   }
 
-
-
-
-
-  // -------------------------- REGISTER FORM ACTIONS -------------------------------------\\
+  // -------------------------- REGISTER FORM ACTIONS
+  // -------------------------------------\\
   @FXML
   public void onRegisterAction(ActionEvent e) throws Exception {
 
@@ -125,7 +118,14 @@ public class LoginRegisterController implements Initializable {
     if (result) {
 
       RegisterGuestsRepository repository = new RegisterGuestsRepository();
-      RegisterGuests guest = RegisterGuests.createGuest(name, username, email, password, "2020-02-02", gender,
+      System.out.println("Name: " + name);
+      System.out.println("Username: " + username);
+      System.out.println("Password: " + password);
+      System.out.println("Birthdate: " + date_string);
+      System.out.println("Gender: " + gender);
+      System.out.println("Location : " + location);
+      RegisterGuests guest = RegisterGuests.createGuest(0,name, username, email, password, "2020-02-02",
+          date_string ,gender,
           location);
 
       repository.create(guest);
@@ -146,7 +146,8 @@ public class LoginRegisterController implements Initializable {
   @FXML
   public void onRegisterClearAction(ActionEvent e) {
 
-    // this try and catch because birthday has no value and you try to clear it , it throws Exception
+    // this try and catch because birthday has no value and you try to clear it , it
+    // throws Exception
     try {
       nameRegister.clear();
       usernameRegister.clear();
@@ -156,8 +157,8 @@ public class LoginRegisterController implements Initializable {
       birthdayPicker.setValue(null);
       genderGroup.selectToggle(null);
       locationCombo.setValue(null);
-    }catch(Exception except ) {
-        return;
+    } catch (Exception except) {
+      return;
     }
 
   }
@@ -207,16 +208,24 @@ public class LoginRegisterController implements Initializable {
 
   @FXML
   public void onLoginClearAction(ActionEvent e) {
-      usernameLogin.clear();
-      passwordLogin.clear();
+    usernameLogin.clear();
+    passwordLogin.clear();
   }
+
   @FXML
-  public void onLoginAdmin(ActionEvent e) {
+  public void onLoginAdmin(ActionEvent e) throws IOException {
 
     // -----------------------LOAD ADMIN PAGE DATABASE TABLE ----------------------------- \\
 
+
+    // this method loads primaryStage
+    Stage primaryStage = (Stage) (((Node) e.getSource()).getScene().getWindow());
+    Parent adminPage = FXMLLoader.load(getClass().getResource("../views/admin.fxml"));
+    Scene scene = new Scene(adminPage);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+
+
   }
-
-
 
 }

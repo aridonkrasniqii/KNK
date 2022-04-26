@@ -8,8 +8,8 @@ import java.io.IOException;
 public class LoginRegisterForm extends Application {
 
   @Override
-  public void start(Stage primaryStage) throws IOException {
-
+  public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
+   
     Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);

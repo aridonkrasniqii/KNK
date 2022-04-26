@@ -23,6 +23,7 @@ public class UpdateQueryBuilder extends AbstractQueryBuilder {
         updateQuery += ", ";
       }
     }
+    
 
     updateQuery += " WHERE ";
     lastElement = (String) this.whereValues.get(this.whereValues.size() - 1)[0];
