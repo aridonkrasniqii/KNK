@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.RegisterGuests;
-import repository.RegisterGuestsRepository;
 
 public class AdminController implements Initializable {
 
@@ -43,6 +42,9 @@ public class AdminController implements Initializable {
   private TableColumn<RegisterGuests, String> passwordColumn;
   @FXML
   private TableColumn<RegisterGuests, String> birthdateColumn;
+  @FXML
+  private TableColumn<RegisterGuests, String> registeredDateColumn;
+
   @FXML
   private TableColumn<RegisterGuests, String> genderColumn;
   @FXML
@@ -75,6 +77,7 @@ public class AdminController implements Initializable {
     this.emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     this.passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
     this.birthdateColumn.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+    this.registeredDateColumn.setCellValueFactory(new PropertyValueFactory<>("registeredDate"));
     this.genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
     this.locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
@@ -156,7 +159,10 @@ public class AdminController implements Initializable {
     emailField.clear();
     passwordField.clear();
     genderField.clear();
+    birthdateField.clear();
+    registerDateField.clear();
     locationField.clear();
+    tableView.getSelectionModel().clearSelection();
   }
 
   // when item is selected this method upadate text fields with data
@@ -174,33 +180,9 @@ public class AdminController implements Initializable {
 
 
 
-  // FIXME:
-  // TODO:
-  // @FXML
-  // private void onUpdateAction(ActionEvent e) {
-    // try {
-    //   Student selected = tableView.getSelectionModel().getSelectedItem();
-    //   Student changed = getStudentFromUI();
-
-    //   updateStudent(changed.getId(), changed.getName(), changed.getYear());
-
-    //   selected.setName(changed.getName());
-    //   selected.setYear(changed.getYear());
-    //   tableView.getSelectionModel().clearSelection();
-    //   tableView.refresh();
-    //   setStudentToUI(new RegisterGuestsRepository());
-    // } catch (Exception ex) {
-    //   System.out.println(ex);
-    // }
-  // }
-
-
 
   @FXML
-  public void onUpdateAction(ActionEvent e) throws Exception {
-
-    try{
-
+  private void onUpdateAction(ActionEvent e ) throws Exception{
     int id = Integer.parseInt(idField.getText());
     String name = nameField.getText();
     String username = usernameField.getText();
@@ -210,10 +192,9 @@ public class AdminController implements Initializable {
     String registered_date = registerDateField.getText();
     String gender = genderField.getText();
     String location = locationField.getText();
-    System.out.println("Update");
     String query = "UPDATE registerGuests SET first_name = ? , username = ? , email = ?, password = ? , birthdate = ? , registered_date = ? , gender = ? , location = ? WHERE id = ?";
 
-    PreparedStatement statement = connection.prepareStatement(query);
+    PreparedStatement statement = this.connection.prepareStatement(query);
     statement.setString(1, name);
     statement.setString(2, username);
     statement.setString(3, email);
@@ -225,20 +206,39 @@ public class AdminController implements Initializable {
     statement.setInt(9, id);
 
     int affectedRows = statement.executeUpdate();
+    if(affectedRows != 1)  throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
 
-    if (affectedRows <= 0) {
-      throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
-    }
+    RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
 
-    }catch(Exception except) {
-          System.out.println(except);
-    }
+    selected.setName(name);
+    selected.setUsername(username);
+    selected.setEmail(email);
+    selected.setRegisteredDate(registered_date);
+    selected.setBirthdate(birthdate);
+    selected.setGender(gender);
+    selected.setLocation(location);
+    tableView.refresh();
+    clearFields();
 
   }
 
+
+
   @FXML
-  public void onDeleteAction(ActionEvent e) {
-    System.out.println("Delete");
+  public void onDeleteAction(ActionEvent e) throws Exception{
+    int id = Integer.parseInt(idField.getText());
+
+    String query = "DELETE FROM registerGuests WHERE id = ?";
+    PreparedStatement statement = this.connection.prepareStatement(query);
+    statement.setInt(1, id);
+
+    if(statement.executeUpdate() != 1) throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
+
+    RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
+    tableView.getItems().remove(selected);
+    clearFields();
+    tableView.refresh();
+
   }
 
   private ArrayList<RegisterGuests> getGuests() throws SQLException {
@@ -265,4 +265,8 @@ public class AdminController implements Initializable {
 
     return guests;
   }
+
+
+
+
 }

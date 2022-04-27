@@ -80,16 +80,39 @@ public class RegisterGuests {
   public String getPassword() {
     return password;
   }
-
-  public String getBirthdate() {
-    return birthdate;
-  }
   public String getRegisteredDate() {
     return registeredDate;
   }
-
+  public String getBirthdate() {
+    return birthdate;
+  }
   public String getLocation() {
     return location;
   }
+
+  public void setName(String name){
+    this.first_name = name;
+  }
+  public void setUsername(String username){
+    this.username = username;
+  }
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setRegisteredDate(String date){
+    this.registeredDate = date;
+  }
+
+  public void setBirthdate(String date){
+    this.birthdate = date;
+  }
+  public void setGender(String g){
+    this.gender = g;
+  }
+  public void setLocation(String l){
+    this.location = l;
+  }
+
 
 }

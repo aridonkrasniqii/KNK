@@ -23,7 +23,7 @@
             <TableColumn fx:id="emailColumn" prefWidth="75.0" text="Email" />
             <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
             <TableColumn fx:id="birthdateColumn" prefWidth="75.0" text="Birthdate" />
-            <TableColumn prefWidth="130.5" text="RegisteredDate" />
+            <TableColumn fx:id="registeredDateColumn" prefWidth="130.5" text="RegisteredDate" />
             <TableColumn fx:id="genderColumn" prefWidth="70.5" text="Gender" />
             <TableColumn fx:id="locationColumn" prefWidth="75.0" text="Location" />
         </columns>
@@ -76,9 +76,9 @@
                   <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="usernameField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <TextField fx:id="passwordField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <TextField fx:id="passwordField" disable="true" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                   <TextField fx:id="birthdateField" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <TextField fx:id="registerDateField" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <TextField fx:id="registerDateField" disable="true" editable="false" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                   <TextField fx:id="genderField" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                   <TextField fx:id="locationField" GridPane.columnIndex="8" GridPane.rowIndex="1" />
                </children>

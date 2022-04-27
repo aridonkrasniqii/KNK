@@ -19,37 +19,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class LoginRegisterController implements Initializable {
 
   @FXML
   private TextField usernameLogin;
-
   @FXML
   private TextField passwordLogin;
-
   @FXML
   private TextField nameRegister;
   @FXML
   private TextField usernameRegister;
-
   @FXML
   private TextField emailRegister;
-
   @FXML
   private PasswordField passwordRegister;
-
   @FXML
   private PasswordField confirmPasswordRegister;
+  @FXML
+  private DatePicker birthdayPicker;
 
-  // TODO:
   private ToggleGroup genderGroup;
-
   @FXML
   private RadioButton female;
   @FXML
@@ -60,8 +51,6 @@ public class LoginRegisterController implements Initializable {
   private Button registerButton;
   @FXML
   private Button clearButton;
-  @FXML
-  private DatePicker birthdayPicker;
 
   @Override
   public void initialize(URL locaiton, ResourceBundle resources) {
@@ -85,13 +74,9 @@ public class LoginRegisterController implements Initializable {
     String password = passwordRegister.getText();
     String confirmPassword = confirmPasswordRegister.getText();
     String email = emailRegister.getText();
-    Date date = new Date();
-    DateFormat date_format = new SimpleDateFormat("yyyy-mm-dd");
     String date_string = "";
     try {
-      date = birthdayPicker.getValue() != null ? new Date(birthdayPicker.getValue().toEpochDay()) : null;
-      date_string = date_format.format(date);
-
+      date_string = birthdayPicker.getValue().toString();
     } catch (Exception except) {
 
       Alert dateAlert = new Alert(AlertType.ERROR);
@@ -124,16 +109,18 @@ public class LoginRegisterController implements Initializable {
       System.out.println("Birthdate: " + date_string);
       System.out.println("Gender: " + gender);
       System.out.println("Location : " + location);
-      RegisterGuests guest = RegisterGuests.createGuest(0,name, username, email, password, "2020-02-02",
-          date_string ,gender,
+
+      RegisterGuests guest = RegisterGuests.createGuest(0, name, username, email, password, date_string,
+          "", gender,
           location);
 
       repository.create(guest);
-
+      System.out.println("Successfully registerd");
       Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setContentText(result ? "Successfully registered " : "Invalid data ");
+      alert.setContentText("Successfully registered ");
       alert.setHeaderText("Great work");
       alert.showAndWait();
+
     } else {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setContentText("Invalid data");
@@ -217,14 +204,12 @@ public class LoginRegisterController implements Initializable {
 
     // -----------------------LOAD ADMIN PAGE DATABASE TABLE ----------------------------- \\
 
-
     // this method loads primaryStage
     Stage primaryStage = (Stage) (((Node) e.getSource()).getScene().getWindow());
     Parent adminPage = FXMLLoader.load(getClass().getResource("../views/admin.fxml"));
     Scene scene = new Scene(adminPage);
     primaryStage.setScene(scene);
     primaryStage.show();
-
 
   }
 
