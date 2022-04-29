@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="controllers.LoginRegisterController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginRegisterController">
   <tabs>
     <Tab text="Login">
       <content>
@@ -56,7 +56,6 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <Button layoutX="675.0" layoutY="550.0" mnemonicParsing="false" onAction="#onLoginAdmin" text="Login as admin" />
                </children></AnchorPane>
       </content>
     </Tab>

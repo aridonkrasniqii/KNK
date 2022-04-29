@@ -11,7 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
+import model.Admin;
 import model.RegisterGuests;
+import repository.AdminRepository;
 import repository.RegisterGuestsRepository;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -52,6 +54,9 @@ public class LoginRegisterController implements Initializable {
   @FXML
   private Button clearButton;
 
+  
+
+
   @Override
   public void initialize(URL locaiton, ResourceBundle resources) {
     genderGroup = new ToggleGroup();
@@ -62,6 +67,11 @@ public class LoginRegisterController implements Initializable {
     locationCombo.getItems().addAll(locationList);
     locationCombo.setPromptText("Select your Country...");
     birthdayPicker.setValue(LocalDate.now());
+
+
+
+
+
   }
 
   // -------------------------- REGISTER FORM ACTIONS
@@ -163,27 +173,46 @@ public class LoginRegisterController implements Initializable {
     Boolean result = loginUser.validate();
 
     if (result) {
+
+      // check first for admin
+      AdminRepository adminRepository = new AdminRepository();
+      Admin admin = adminRepository.findByUsernamePassword(username, password);
+      // then check if user is guest
       RegisterGuestsRepository repository = new RegisterGuestsRepository();
       RegisterGuests guest = repository.findByUsernamePassword(username, password);
-      if (guest != null) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Information");
-        alert.setContentText("Successfully logged in ");
-        alert.showAndWait();
-        System.out.println("Username: " + guest.getUsername());
-        System.out.println("Password: " + guest.getPassword());
 
-        // TODO:
-        // FIXME:
-        // ----------------------- LOAD MAIN PAGE -----------------------
-        // Stage stage = (Stage) ((Node)e.getSource()) .getScene().getWindow();
 
-      } else {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Error");
-        alert.setContentText("Wrong username or password");
-        alert.showAndWait();
+      if(admin != null) {
+          Stage primaryStage = (Stage) (((Node) e.getSource()).getScene().getWindow());
+          Parent adminPage = FXMLLoader.load(getClass().getResource("../views/admin.fxml"));
+          Scene scene = new Scene(adminPage);
+          primaryStage.setScene(scene);
+          primaryStage.show();
       }
+      else
+      {
+        if (guest != null) {
+          Alert alert = new Alert(AlertType.INFORMATION);
+          alert.setHeaderText("Information");
+          alert.setContentText("Successfully logged in ");
+          alert.showAndWait();
+          System.out.println("Username: " + guest.getUsername());
+          System.out.println("Password: " + guest.getPassword());
+
+          // TODO:
+          // FIXME:
+          // ----------------------- LOAD MAIN PAGE -----------------------
+          // Stage stage = (Stage) ((Node)e.getSource()) .getScene().getWindow();
+
+        } else {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setHeaderText("Error");
+          alert.setContentText("Wrong username or password");
+          alert.showAndWait();
+
+        }
+      }
+
 
     } else {
       Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -199,18 +228,7 @@ public class LoginRegisterController implements Initializable {
     passwordLogin.clear();
   }
 
-  @FXML
-  public void onLoginAdmin(ActionEvent e) throws IOException {
 
-    // -----------------------LOAD ADMIN PAGE DATABASE TABLE ----------------------------- \\
 
-    // this method loads primaryStage
-    Stage primaryStage = (Stage) (((Node) e.getSource()).getScene().getWindow());
-    Parent adminPage = FXMLLoader.load(getClass().getResource("../views/admin.fxml"));
-    Scene scene = new Scene(adminPage);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-
-  }
 
 }

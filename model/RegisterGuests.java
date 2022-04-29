@@ -14,7 +14,7 @@ public class RegisterGuests {
   private String gender;
   private String location;
 
-  private RegisterGuests(int id, String first_name, String username, String email, String password, String birthdate,String registeredDate,
+  protected RegisterGuests(int id, String first_name, String username, String email, String password, String birthdate,String registeredDate,
       String gender, String location) {
     this.id = id;
     this.first_name = first_name;
@@ -57,6 +57,9 @@ public class RegisterGuests {
     return new RegisterGuests(id, first_name, username, email, password, birthdate, registeredDate ,gender, location);
   }
 
+  public RegisterGuests(){
+    this(0, "first_name", "username", "email", "password", "birthdate", "registeredDate", "gender", "location");
+  }
   public int getId() {
     return id;
   }
@@ -114,5 +117,5 @@ public class RegisterGuests {
     this.location = l;
   }
 
-
 }
+

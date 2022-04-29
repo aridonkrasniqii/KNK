@@ -1,13 +1,40 @@
 -- create database era1;
 -- use era1;
 
+
+
+-- CREATE TABLE `admin` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT primary key,
+--   `first_name` varchar(30) NOT NULL,
+--   `username` varchar(30) NOT NULL,
+--   `email` varchar(100),
+--   `password` date NOT NULL,
+--    `birthdate` date,
+--   `registred_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `gender` varchar(10) DEFAULT NULL,
+--    `location` varchar(100)
+-- ) ;
+
+
+-- CREATE TABLE `admin` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `first_name` varchar(30) NOT NULL,
+--   `username` varchar(30) NOT NULL,
+--   `email` varchar(100),
+--   `password` date NOT NULL,
+--    `birthdate` date,
+--   `registred_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `gender` varchar(10) DEFAULT NULL,
+--    `location` varchar(100)
+--   PRIMARY KEY (`id`)
+-- ) ;
+
 -- CREATE TABLE `guests` (
 --   `id` int(11) NOT NULL AUTO_INCREMENT,
 --   `first_name` varchar(20) NOT NULL,
 --   `last_name` varchar(20) NOT NULL,
 --   `personal_number` bigint(20) DEFAULT NULL,
 --   `birthdate` date NOT NULL,
---   `phone_number` varchar(20) NOT NULL,
 --   `registred_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --   `gender` varchar(10) DEFAULT NULL,
 --   PRIMARY KEY (`id`)

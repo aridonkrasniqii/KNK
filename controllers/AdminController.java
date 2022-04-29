@@ -2,10 +2,15 @@ package controllers;
 
 import java.sql.*;
 import java.net.URL;
+import java.nio.file.ProviderNotFoundException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.RegisterGuests;
+import repository.RegisterGuestsRepository;
 
 public class AdminController implements Initializable {
 
@@ -69,6 +75,9 @@ public class AdminController implements Initializable {
   @FXML
   private TextField locationField;
 
+  @FXML
+  private TextField searchField;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -85,6 +94,45 @@ public class AdminController implements Initializable {
       this.connection = initConnection();
       ObservableList<RegisterGuests> guests = FXCollections.observableArrayList(getGuests());
       tableView.setItems(guests);
+
+      // Filtering the guests
+      FilteredList<RegisterGuests> filteredData = new FilteredList<>(guests);
+
+      searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(registerGuests -> {
+          // FIXME:
+
+          // if no search value then display all records or whatever record
+          if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+            return true;
+          }
+
+          String searchKeyword = newValue.toLowerCase();
+
+          if (registerGuests.getFirst_name().toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a match name in firstName
+          } else if (registerGuests.getUsername().toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a username in the search bar
+          } else if (registerGuests.getEmail().toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a user with an email
+          } else if (Integer.toString(registerGuests.getId()).toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a user with id
+          } else if (registerGuests.getLocation().toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a user using location
+          } else if (registerGuests.getRegisteredDate().toLowerCase().indexOf(searchKeyword) > -1) {
+            return true; // we found a user using registered data
+          }
+
+          return false;
+
+        });
+      });
+
+      SortedList<RegisterGuests> sortedData = new SortedList<>(filteredData);
+      sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+      tableView.setItems(sortedData);
+
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -96,6 +144,7 @@ public class AdminController implements Initializable {
         renderGuests(_new);
       }
     });
+
   }
 
   public Connection initConnection() throws SQLException {
@@ -178,11 +227,8 @@ public class AdminController implements Initializable {
     locationField.setText(guest.getLocation());
   }
 
-
-
-
   @FXML
-  private void onUpdateAction(ActionEvent e ) throws Exception{
+  private void onUpdateAction(ActionEvent e) throws Exception {
     int id = Integer.parseInt(idField.getText());
     String name = nameField.getText();
     String username = usernameField.getText();
@@ -206,7 +252,8 @@ public class AdminController implements Initializable {
     statement.setInt(9, id);
 
     int affectedRows = statement.executeUpdate();
-    if(affectedRows != 1)  throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
+    if (affectedRows != 1)
+      throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
 
     RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
 
@@ -222,17 +269,16 @@ public class AdminController implements Initializable {
 
   }
 
-
-
   @FXML
-  public void onDeleteAction(ActionEvent e) throws Exception{
+  public void onDeleteAction(ActionEvent e) throws Exception {
     int id = Integer.parseInt(idField.getText());
 
     String query = "DELETE FROM registerGuests WHERE id = ?";
     PreparedStatement statement = this.connection.prepareStatement(query);
     statement.setInt(1, id);
 
-    if(statement.executeUpdate() != 1) throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
+    if (statement.executeUpdate() != 1)
+      throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
 
     RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
     tableView.getItems().remove(selected);
@@ -265,8 +311,5 @@ public class AdminController implements Initializable {
 
     return guests;
   }
-
-
-
 
 }
