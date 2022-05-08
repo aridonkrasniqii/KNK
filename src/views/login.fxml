@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginRegisterController">
+<TabPane minHeight="500.0" minWidth="500.0" prefHeight="620.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginRegisterController">
   <tabs>
     <Tab text="Login">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="500.0" minWidth="500.0">
                <children>
                   <GridPane layoutX="151.0" layoutY="221.0" prefHeight="117.0" prefWidth="413.0">
                     <columnConstraints>
@@ -61,7 +61,7 @@
     </Tab>
     <Tab text="Register">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="500.0" minWidth="500.0">
                <children>
                   <GridPane layoutX="239.0" layoutY="108.0" prefHeight="373.0" prefWidth="312.0">
                     <columnConstraints>
