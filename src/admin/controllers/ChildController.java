@@ -5,10 +5,11 @@ import javafx.fxml.Initializable;
 
 public abstract class ChildController implements Initializable {
 
-  private MainController parentController;
+	@SuppressWarnings("unused")
+	private MainController parentController;
 
-  public void setParentController(MainController parentController) {
-    this.parentController = parentController;
-  }
+	public void setParentController(MainController parentController) {
+		this.parentController = parentController;
+	}
 
 }

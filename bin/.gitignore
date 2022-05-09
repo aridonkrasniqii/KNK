@@ -1,4 +1,11 @@
-/Helpers/
+/admin/
+/application/
 /controllers/
-/utils/
-/partials/
+/database/
+/helpers/
+/models/
+/repositories/
+/views/
+/StyleSheet.css
+/uplogo.png
+/style/
