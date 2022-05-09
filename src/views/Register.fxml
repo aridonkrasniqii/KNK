@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
    <children>
-      <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="46.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="63.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../style/Window_Hotel_logo.jpg" />
          </image>

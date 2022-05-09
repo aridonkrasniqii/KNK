@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane blendMode="EXCLUSION" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #1D1F25;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane blendMode="EXCLUSION" prefHeight="500.0" prefWidth="481.0" style="-fx-background-color: #1D1F25;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="507.0" layoutX="100.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="500.0" fitWidth="498.0" layoutX="-18.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../style/Window_Hotel_logo.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="login" layoutX="270.0" layoutY="357.0" mnemonicParsing="false" onAction="#changeScreen" text="LOGIN">
+      <Button fx:id="login" layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#changeScreen" text="LOGIN">
          <font>
             <Font name="Britannic Bold" size="15.0" />
          </font>
