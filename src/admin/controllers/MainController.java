@@ -31,13 +31,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-
-import javax.swing.Action;
-
 import database.*;
 import helpers.Rooms;
 import helpers.Service_Type;
-import helpers.Staff;;
+import helpers.Staff;
 
 public class MainController implements Initializable {
 
@@ -98,8 +95,8 @@ public class MainController implements Initializable {
 
       // FIXME:
       try {
-        ChildController controller = loader.getController();
-        controller.setParentController(this);
+        // ChildController controller = loader.getController();
+        // controller.setParentController(this);
       } catch (Exception ex) {
         System.out.println("Error in setView method: " + ex);
       }

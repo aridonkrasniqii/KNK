@@ -1,12 +1,12 @@
 package admin.controllers;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import components.ErrorPopupComponent;
 import database.DBConnection;
+import helpers.DateHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,31 +17,34 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.RegisterGuests;
-import repositories.RegisterGuestsRepository;
+import models.User;
+import models.UserRole;
+import repositories.UserRepository;
 
-public class GuestController implements Initializable{
+public class GuestController implements Initializable {
   private DBConnection connection;
   @FXML
-  private TableView<RegisterGuests> tableView;
+  private TableView<User> tableView;
   @FXML
-  private TableColumn<RegisterGuests, Integer> idColumn;
+  private TableColumn<User, Integer> idColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> nameColumn;
+  private TableColumn<User, String> nameColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> usernameColumn;
+  private TableColumn<User, String> usernameColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> emailColumn;
+  private TableColumn<User, String> emailColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> passwordColumn;
+  private TableColumn<User, String> passwordColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> birthdateColumn;
+  private TableColumn<User, String> saltColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> registeredDateColumn;
+  private TableColumn<User, UserRole> roleColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> genderColumn;
+  private TableColumn<User, Integer> isActiveColumn;
   @FXML
-  private TableColumn<RegisterGuests, String> locationColumn;
+  private TableColumn<User, String> createdAtColumn;
+  @FXML
+  private TableColumn<User, String> updatedAtColumn;
   @FXML
   private TextField idField;
   @FXML
@@ -53,46 +56,52 @@ public class GuestController implements Initializable{
   @FXML
   private TextField passwordField;
   @FXML
-  private TextField registerDateField;
+  private TextField saltField;
   @FXML
-  private TextField birthdateField;
+  private TextField roleField;
   @FXML
-  private TextField genderField;
+  private TextField isActiveField;
   @FXML
-  private TextField locationField;
+  private TextField createdAtField;
+  @FXML
+  private TextField updatedAtField;
   @FXML
   private TextField searchField;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    try{
+    try {
       this.connection = DBConnection.getConnection();
       initializeGuests();
-      ObservableList<RegisterGuests> guests = FXCollections.observableArrayList(loadGuests());
-      tableView.setItems(guests);
+      ObservableList<User> users = FXCollections.observableArrayList(loadGuests());
 
+      tableView.setItems(users);
 
       tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
       tableView.getSelectionModel().selectedItemProperty().addListener((observe, old, _new) -> {
         if (_new != null) {
-          renderGuests(_new);
+          try {
+            renderGuests(_new);
+          } catch (Exception e) {
+            ErrorPopupComponent.show(e);
+          }
         }
       });
-
-    }catch(Exception ex) {
-      System.out.println(ex);
+    } catch (Exception ex) {
+      ErrorPopupComponent.show(ex);
     }
   }
 
-  private void renderGuests(RegisterGuests guest) {
-    idField.setText(Integer.toString(guest.getId()));
-    nameField.setText(guest.getFirst_name());
-    usernameField.setText(guest.getUsername());
-    emailField.setText(guest.getEmail());
-    passwordField.setText(guest.getPassword());
-    registerDateField.setText(guest.getRegisteredDate());
-    birthdateField.setText(guest.getBirthdate());
-    genderField.setText(guest.getGender());
-    locationField.setText(guest.getLocation());
+  private void renderGuests(User model) throws Exception {
+    idField.setText(Integer.toString(model.getId()));
+    nameField.setText(model.getName());
+    usernameField.setText(model.getUsername());
+    emailField.setText(model.getEmail());
+    passwordField.setText(model.getPassword());
+    saltColumn.setText(model.getSalt());
+    isActiveColumn.setText(Boolean.toString(model.getIsActive()));
+    createdAtColumn.setText(DateHelper.toSql(model.getCreatedAt()));
+    updatedAtColumn.setText(DateHelper.toSql(model.getUpdatedAt()));
   }
 
   public void clearGuestFields() {
@@ -101,53 +110,52 @@ public class GuestController implements Initializable{
     usernameField.clear();
     emailField.clear();
     passwordField.clear();
-    genderField.clear();
-    birthdateField.clear();
-    registerDateField.clear();
-    locationField.clear();
+    saltField.clear();
+    isActiveField.clear();
+    createdAtField.clear();
+    updatedAtField.clear();
     tableView.getSelectionModel().clearSelection();
   }
 
   @FXML
   public void onCreateAction(ActionEvent e) throws Exception {
-    RegisterGuests rGuests = RegisterGuests.createGuest(0,
-        nameField.getText(),
-        usernameField.getText(),
-        emailField.getText(),
-        passwordField.getText(),
-        birthdateField.getText(),
-        registerDateField.getText(),
-        genderField.getText(),
-        locationField.getText());
-    RegisterGuestsRepository repository = new RegisterGuestsRepository();
-    repository.create(rGuests);
-    tableView.getItems().add(rGuests);
+
+    User user = new User(Integer.parseInt(idField.getText()), nameColumn.getText(),
+        emailColumn.getText(), usernameColumn.getText(),
+        passwordColumn.getText(), saltColumn.getText(),
+        roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin,
+        Boolean.parseBoolean(isActiveColumn.getText()),
+        DateHelper.fromSql(createdAtColumn.getText()),
+        DateHelper.fromSql(updatedAtColumn.getText()));
+
+    UserRepository.create(user);
+    tableView.getItems().add(user);
     tableView.refresh();
     tableView.getSelectionModel().clearSelection();
   }
 
   @FXML
   private void onUpdateAction(ActionEvent e) throws Exception {
-    RegisterGuestsRepository repository = new RegisterGuestsRepository();
-    RegisterGuests rGuests = RegisterGuests.createGuest(Integer.parseInt(idField.getText()),
-        nameField.getText(),
-        usernameField.getText(),
-        emailField.getText(),
-        passwordField.getText(),
-        birthdateField.getText(),
-        registerDateField.getText(),
-        genderField.getText(),
-        locationField.getText());
-    repository.update(rGuests);
-    RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
+
+    User user = new User(Integer.parseInt(idField.getText()), nameColumn.getText(),
+        emailColumn.getText(), usernameColumn.getText(),
+        passwordColumn.getText(), saltColumn.getText(),
+        roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin,
+        Boolean.parseBoolean(isActiveColumn.getText()),
+        DateHelper.fromSql(createdAtColumn.getText()),
+        DateHelper.fromSql(updatedAtColumn.getText()));
+
+    UserRepository.update(user);
+    User selected = tableView.getSelectionModel().getSelectedItem();
     selected.setName(nameField.getText());
     selected.setUsername(usernameField.getText());
     selected.setEmail(emailField.getText());
     selected.setPassword(passwordField.getText());
-    selected.setBirthdate(birthdateField.getText());
-    selected.setRegisteredDate(passwordField.getText());
-    selected.setGender(genderField.getText());
-    selected.setLocation(locationField.getText());
+    selected.setSalt(saltField.getText());
+    selected.setRole(roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin);
+    selected.setIsActive(Integer.parseInt(isActiveField.getText()) == 1 ? true : false);
+    selected.setCreatedAt(DateHelper.fromSql(createdAtField.getText()));
+    selected.setUpdatedAt(DateHelper.fromSql(updatedAtField.getText()));
     tableView.refresh();
     clearGuestFields();
   }
@@ -155,39 +163,28 @@ public class GuestController implements Initializable{
   @FXML
   public void onDeleteAction(ActionEvent e) throws Exception {
     int id = Integer.parseInt(idField.getText());
-
-    String query = "DELETE FROM registerGuests WHERE id = ?";
-    PreparedStatement statement = this.connection.prepareStatement(query);
-    statement.setInt(1, id);
-
-    if (statement.executeUpdate() != 1)
-      throw new Exception("ERR_MULTIPLE_ROWS_AFFECTED");
-
-    RegisterGuests selected = tableView.getSelectionModel().getSelectedItem();
+    UserRepository.remove(id);
+    User selected = tableView.getSelectionModel().getSelectedItem();
     tableView.getItems().remove(selected);
     clearGuestFields();
     tableView.refresh();
   }
+
   public void initializeGuests() {
     this.idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-    this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+    this.nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     this.usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
     this.emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     this.passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-    this.birthdateColumn.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
-    this.registeredDateColumn.setCellValueFactory(new PropertyValueFactory<>("registeredDate"));
-    this.genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
-    this.locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    this.saltColumn.setCellValueFactory(new PropertyValueFactory<>("salt"));
+    this.roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+    this.isActiveColumn.setCellValueFactory(new PropertyValueFactory<>("isActive"));
+    this.createdAtColumn.setCellValueFactory(new PropertyValueFactory<>("createdAt"));
+    this.updatedAtColumn.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
   }
 
-  private ArrayList<RegisterGuests> loadGuests() throws SQLException {
-    RegisterGuestsRepository repository = new RegisterGuestsRepository();
-    return repository.findAll();
+  private ArrayList<User> loadGuests() throws Exception {
+    return UserRepository.getAll();
   }
-
-
-
-
-
 
 }

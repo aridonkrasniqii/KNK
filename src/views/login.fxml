@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: blue;">
          <children>
@@ -64,21 +64,27 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="goToRegister" layoutX="240.0" layoutY="555.0" onMouseClicked="#open_registration" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
+            <Label fx:id="goToRegister" layoutX="240.0" layoutY="555.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </Label>
             <Label layoutX="164.0" layoutY="555.0" stylesheets="@../style/StyleSheet.css" text="New user?" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </Label>
-            <TextField fx:id="usernameLogin" layoutX="62.0" layoutY="299.0" prefHeight="33.0" prefWidth="339.0" promptText="Username" />
-            <PasswordField fx:id="passwordLogin" layoutX="62.0" layoutY="350.0" prefHeight="33.0" prefWidth="339.0" promptText="Password" />
+            <TextField fx:id="emailField" layoutX="62.0" layoutY="299.0" prefHeight="33.0" prefWidth="339.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="62.0" layoutY="350.0" prefHeight="33.0" prefWidth="339.0" promptText="Password" />
          </children>
       </Pane>
    </children>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
    <children>
       <ImageView fitHeight="180.0" fitWidth="180.0" layoutX="46.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,14 +26,14 @@
             <Font name="Ebrima Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="70.0" layoutY="533.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="351.0" stylesheets="@../style/StyleSheet.css" text="REGISTER">
+      <Button layoutX="70.0" layoutY="533.0" mnemonicParsing="false" onAction="#onRegisterAction" prefHeight="57.0" prefWidth="351.0" stylesheets="@../style/StyleSheet.css" text="REGISTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="82.0" layoutY="313.0" prefHeight="25.0" prefWidth="326.0" promptText="Name" />
-      <TextField layoutX="82.0" layoutY="411.0" prefHeight="25.0" prefWidth="326.0" promptText="Email" />
-      <TextField layoutX="82.0" layoutY="362.0" prefHeight="25.0" prefWidth="326.0" promptText="Username" />
-      <PasswordField layoutX="82.0" layoutY="460.0" prefHeight="25.0" prefWidth="326.0" promptText="Password" />
+      <TextField fx:id="nameField" layoutX="82.0" layoutY="313.0" prefHeight="25.0" prefWidth="326.0" promptText="Name" />
+      <TextField fx:id="emailField" layoutX="82.0" layoutY="411.0" prefHeight="25.0" prefWidth="326.0" promptText="Email" />
+      <TextField fx:id="usernameField" layoutX="82.0" layoutY="362.0" prefHeight="25.0" prefWidth="326.0" promptText="Username" />
+      <PasswordField fx:id="passwordField" layoutX="82.0" layoutY="460.0" prefHeight="25.0" prefWidth="326.0" promptText="Password" />
    </children>
 </AnchorPane>

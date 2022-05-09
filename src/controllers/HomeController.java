@@ -19,24 +19,24 @@ import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
 
-	@FXML
-	private ImageView building;
-	@FXML
-	private Label sunhotel;
-	@FXML
-	private Button login_button;
+  @FXML
+  private ImageView building;
+  @FXML
+  private Label sunhotel;
+  @FXML
+  private Button login_button;
 
-	public void changeScreen(ActionEvent event) throws IOException {
-		Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
-		Scene loginscene = new Scene(loginParent);
+  public void changeScreen(ActionEvent event) throws IOException {
+    Parent loginParent = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
+    Scene loginscene = new Scene(loginParent);
 
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(loginscene);
-		window.show();
-	}
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    window.setScene(loginscene);
+    window.show();
+  }
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
 
-	}
+  }
 }
