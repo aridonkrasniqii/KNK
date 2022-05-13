@@ -45,7 +45,7 @@ public class UserRepository {
   }
 
   public static User find(int id) throws Exception {
-    connection = DBConnection.getConnection();
+
     PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE id = ? LIMIT 1");
     stmt.setInt(1, id);
 
@@ -57,7 +57,6 @@ public class UserRepository {
   }
 
   public static User find(String email) throws Exception {
-    connection = DBConnection.getConnection();
 
     PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE email = ? OR username = ? LIMIT 1");
 
@@ -120,10 +119,15 @@ public class UserRepository {
   }
 
   public static boolean remove(int id) throws Exception {
-    DBConnection connection = DBConnection.getConnection();
     String query = "DELETE FROM users WHERE id = ? ";
     PreparedStatement stmt = connection.prepareStatement(query);
     stmt.setInt(1, id);
-    return stmt.executeUpdate() == 1;
+
+    User user = find(id);
+    if(user == null) {
+      return true;
+    }
+    return false;
+
   }
 }

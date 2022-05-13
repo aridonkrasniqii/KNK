@@ -98,10 +98,11 @@ public class GuestController implements Initializable {
     usernameField.setText(model.getUsername());
     emailField.setText(model.getEmail());
     passwordField.setText(model.getPassword());
-    saltColumn.setText(model.getSalt());
-    isActiveColumn.setText(Boolean.toString(model.getIsActive()));
-    createdAtColumn.setText(DateHelper.toSql(model.getCreatedAt()));
-    updatedAtColumn.setText(DateHelper.toSql(model.getUpdatedAt()));
+    saltField.setText(model.getSalt());
+    roleField.setText(model.getRole() == UserRole.Guest ? "Guest" : "Admin");
+    isActiveField.setText(Boolean.toString(model.getIsActive()));
+    createdAtField.setText(DateHelper.toSql(model.getCreatedAt()));
+    updatedAtField.setText(DateHelper.toSql(model.getUpdatedAt()));
   }
 
   public void clearGuestFields() {

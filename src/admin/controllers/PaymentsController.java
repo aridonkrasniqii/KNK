@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -40,13 +41,13 @@ public class PaymentsController implements Initializable{
   private DatePicker paymentDtPickerFilter;
   @FXML
   private Button paymentFilterBtn;
-  public ObservableList<PaymentModel> paymentsObservableList = null;
+  ObservableList<PaymentModel> paymentsModel;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     try {
       initializePayments();
-      ObservableList<PaymentModel> paymentsModel = FXCollections.observableArrayList(loadPayments());
+      paymentsModel = FXCollections.observableArrayList(loadPayments());
       paymentsTableView.setItems(paymentsModel);
     } catch (Exception ex) {
       System.out.println(ex);
@@ -62,11 +63,32 @@ public class PaymentsController implements Initializable{
     this.isPayed.setCellValueFactory(new PropertyValueFactory<>("ispayed"));
   }
 
-  public ArrayList<PaymentModel> loadPayments() throws SQLException {
+  public ArrayList<PaymentModel> loadPayments() throws Exception {
     PaymentsRepository repository = new PaymentsRepository();
     return repository.findAll();
   }
 
+
+  @FXML
+  private void searchOnPayment(ActionEvent e ) throws Exception {
+
+    String date = paymentDtPickerFilter.getValue().toString();
+    if(paymentDtPickerFilter == null)
+      return;
+
+    System.out.println("Date : " + date);
+    ArrayList<PaymentModel> payments = PaymentsRepository.filterPayments(date);
+    paymentsModel = FXCollections.observableArrayList(payments);
+    paymentsTableView.setItems(paymentsModel);
+    paymentsTableView.refresh();
+  }
+
+  @FXML
+  private void onRefreshAction(ActionEvent e ) throws Exception {
+    paymentsModel = FXCollections.observableArrayList(loadPayments());
+    paymentsTableView.setItems(paymentsModel);
+    paymentsTableView.refresh();
+  }
 
 
 }

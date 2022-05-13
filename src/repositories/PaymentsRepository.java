@@ -16,26 +16,50 @@ import models.view.PaymentModel;
 
 public class PaymentsRepository {
 
-  // private static Connection connection;
-  // private static DBConnect dbConnection = new DBConnect();
 
-  private DBConnection conn;
+    private static DBConnection connection = DBConnection.getConnection();
 
-  public PaymentsRepository() {
-    this.conn = DBConnection.getConnection();
-  }
 
-  public ArrayList<PaymentModel> findAll() throws SQLException {
-    String query = "select * from paymentmodel";
-    ResultSet res = this.conn.executeQuery(query);
-    ArrayList<PaymentModel> paymentModel = new ArrayList<>();
+    public ArrayList<PaymentModel> findAll() throws Exception {
+        String query = "select * from paymentmodel";
+        ResultSet res = this.connection.executeQuery(query);
+        ArrayList<PaymentModel> paymentModel = new ArrayList<>();
 
-    while (res.next()) {
-      System.out.println("Room: " + res.getString("firstname"));
-      paymentModel.add(PaymentModel.fromResultSet(res));
+        while (res.next()) {
+            System.out.println("Room: " + res.getString("firstname"));
+            paymentModel.add(fromResultSet(res));
+        }
+        return paymentModel;
+
     }
-    return paymentModel;
 
-  }
+
+    public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
+        ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();
+
+        String query = "select * from paymentmodel where date like ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, date);
+
+
+        ResultSet result = stmt.executeQuery();
+        while (result.next()) {
+            payments.add(fromResultSet(result));
+        }
+        if (payments != null) return payments;
+
+        return null;
+    }
+
+    public static PaymentModel fromResultSet(ResultSet result) throws Exception {
+        int id = result.getInt("payment_id");
+        String fname = result.getString("firstname");
+        String lname = result.getString("lastname");
+        Date date = result.getDate("date");
+        double price = result.getDouble("price");
+        int isPayed = result.getInt("ispayed");
+
+        return new PaymentModel(id, fname, lname, date, price, isPayed);
+    }
 
 }

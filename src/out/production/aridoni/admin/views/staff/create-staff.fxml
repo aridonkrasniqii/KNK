@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="createStaffPane" prefHeight="661.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.staff.AddStaffController">
+    <children>
+        <GridPane layoutX="126.0" layoutY="90.0" prefHeight="482.0" prefWidth="794.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="90.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="lbl_fName" text="First Name:" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="fnameField" promptText="First Name" GridPane.columnIndex="2" GridPane.columnSpan="2" />
+                <Label fx:id="lbl_lName" text="Last Name:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="lnameField" promptText="Last Name" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                <TextField fx:id="personalNumberField" promptText="Personal Number" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                <Label fx:id="lbl_persNum" text="Personal Number:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lbl_phoneNum" text="Phone Number:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="phoneNumberField" promptText="Phone Number" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                <Label fx:id="lbl_bday" text="Birthdate:" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <DatePicker fx:id="birthdayField" promptText="Birthdate" style="-fx-background-color: #343742;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                <Label fx:id="lbl_position" text="Position:" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="position" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                <Label fx:id="lbl_salary" text="Salary:" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lbl_pw" text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+                <Button fx:id="createNewStaffMember" alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCreateAction" prefHeight="30.0" prefWidth="90.0" text="Create" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin>
+                </Button>
+                <Button fx:id="cancleCreation" alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" prefHeight="30.0" prefWidth="110.0" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin>
+                </Button>
+                <Label fx:id="lbl_gender" text="Gender:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <RadioButton fx:id="maleBtn" mnemonicParsing="false" text="Male" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <RadioButton fx:id="femaleBtn" mnemonicParsing="false" text="Female" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <TextField fx:id="salaryField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
