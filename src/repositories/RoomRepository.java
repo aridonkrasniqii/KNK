@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
+//import com.mysql.cj.x.protobuf.MysqlxCrud;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
 import database.DBConnection;
@@ -29,7 +29,8 @@ public class RoomRepository {
 
     public ArrayList<Rooms> findAll() throws SQLException {
         String query = "select * from rooms";
-        ResultSet res = this.connection.executeQuery(query);
+//        ResultSet res = this.connection.executeQuery(query);
+        ResultSet res = connection.executeQuery(query);
         ArrayList<Rooms> rooms = new ArrayList<>();
         while (res.next()) {
             System.out.println("Room: " + res.getString("room_number"));
@@ -172,29 +173,28 @@ public class RoomRepository {
     // }
 
 
-    // public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
-    //   Connection connection = DBConnect.getConnection();
-    //   String query;
+     public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
+        DBConnection connection = DBConnection.getConnection();
+        String query;
+        if (type == "All") {
+        	query = "select * from rooms r where r.room_number not in(\n" +
+             "select r.room_number \n" +
+             "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
+             "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
+             + "' and '" + checkout + "'))";
+       } else {
+    	   query = "select * from rooms r where r.room_type='" + type + "' and r.room_number not in(\n" +
+             "select r.room_number \n" +
+             "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
+             "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
+             + "' and '" + checkout + "'))";
+       }
 
-    //   if (type == "All") {
-    //     query = "select * from rooms r where r.room_number not in(\n" +
-    //         "select r.room_number \n" +
-    //         "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
-    //         "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
-    //         + "' and '" + checkout + "'))";
-    //   } else {
-    //     query = "select * from rooms r where r.room_type='" + type + "' and r.room_number not in(\n" +
-    //         "select r.room_number \n" +
-    //         "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
-    //         "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
-    //         + "' and '" + checkout + "'))";
-    //   }
+       Statement stmt = connection.createStatement();
+       ResultSet rs = stmt.executeQuery(query);
 
-    //   Statement stmt = connection.createStatement();
-    //   ResultSet rs = stmt.executeQuery(query);
-
-    //   return rs;
-    // }
+       return rs;
+     }
 
     // public static List<RoomChartModel> selectAllGroupByRoomType() throws Exception {
     //   ArrayList<RoomChartModel> list = new ArrayList<>();
