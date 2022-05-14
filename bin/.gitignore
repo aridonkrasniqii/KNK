@@ -1,12 +1,8 @@
 /admin/
-/application/
-/controllers/
-/database/
-/helpers/
-/models/
 /repositories/
 /views/
-/StyleSheet.css
-/uplogo.png
-/style/
-/utils/
+/controllers/
+/utilities/
+/helpers/
+/database/
+/resources/

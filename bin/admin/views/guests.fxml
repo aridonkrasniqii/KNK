@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="617.0" minWidth="1164.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.GuestController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.GuestController">
    <bottom>
       <VBox alignment="BOTTOM_RIGHT" maxWidth="900.0" prefHeight="200.0" prefWidth="894.0" BorderPane.alignment="CENTER">
          <children>
@@ -97,7 +97,7 @@
                   </TextField>
                </children>
             </HBox>
-            <TableView fx:id="tableView">
+            <TableView fx:id="tableView" minHeight="380.0" minWidth="600.0">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
                   <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />

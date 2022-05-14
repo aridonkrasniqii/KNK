@@ -16,23 +16,21 @@
    <children>
       <BorderPane prefHeight="700.0" prefWidth="942.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <HBox alignment="CENTER_RIGHT" cache="true" prefHeight="90.0" prefWidth="942.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" cache="true" prefWidth="942.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="createMemberBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" text="Add staff member">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
+                  <Button mnemonicParsing="false" onAction="#addStaffMemberBtn" text="Add Staff Member" />
+                  <Button mnemonicParsing="false" onAction="#editStaffMemberBtn" text="Edit Staff Member" />
+                  <Button mnemonicParsing="false" onAction="#cardUsersBtn" text="Card Users" />
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets left="15.0" right="15.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
             </HBox>
          </bottom>
          <center>
@@ -67,15 +65,27 @@
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="positionCB" prefWidth="150.0" />
-                        <Button fx:id="positionFilterBtn" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" text="Search">
+                        <ChoiceBox fx:id="staffPosition" prefWidth="150.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onPositionFilter" text="Search">
+                                 <padding>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </padding>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh">
+                                 <padding>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
+                        </HBox>
                      </children>
                      <opaqueInsets>
                         <Insets right="50.0" />
