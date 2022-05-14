@@ -15,7 +15,8 @@
     -fx-background-color:transparent;
 }
 .table-view .table-cell{
-    -fx-text-fill:#A38995;
+    /* -fx-text-fill:#A38995; */
+    -fx-text-fill:#e7dfcf;
     -fx-font-size:15px;
 }
 .table-view .table-row-cell{
@@ -41,7 +42,8 @@
     -fx-max-height: 0;
 }
 .label{
-    -fx-text-fill:#A38995;
+    /* -fx-text-fill:#A38995; */
+    -fx-text-fill:#f3f0e9;
     -fx-font-weight:bold;
 }
 .date-picker{
@@ -50,7 +52,8 @@
 }
 .date-picker > .text-field{
     -fx-background-color:#343742;
-    -fx-text-fill:white;
+    /* -fx-text-fill:white; */
+    -fx-text-fill:#f3f0e9;
 
 }
 .date-picker .arrow-button{
@@ -65,16 +68,18 @@
     -fx-text-fill:#A38995;
 }
 .date-picker-popup > * > .day-name-cell{
-    -fx-text-fill:#DA9100;
+    /* -fx-text-fill:#DA9100; */
+    -fx-text-fill:#f3f0e9;
     -fx-font-weight:bold;
 }
 .date-picker-popup > * > .selected{
-    -fx-background-color:#DA9100;
+    /* -fx-background-color:#f3f0e9; */
+
     -fx-text-fill:#1d1f2a;
     -fx-font-weight:bold;
 }
 .date-picker-popup > * > .day-cell:hover{
-    -fx-background-color:#DA9100;
+    /* -fx-background-color:#DA9100; */
     -fx-text-fill:#1d1f2a;
 }
 .date-picker > * > .previous-month,
@@ -137,4 +142,52 @@
 	-fx-text-fill: #2146ff;
 }
 
+.roomsBtn{
+    -fx-background-color:#4c525f;
+    -fx-text-fill:#f3f0e9;
+    -fx-cursor:hand;
+}
 
+#dark.roomsBtn{
+    -fx-background-color:#1d1f2a;
+    -fx-text-fill:#f3f0e9;
+    -fx-cursor:hand;
+}
+
+.roomsBtnMakeReservation{
+    -fx-background-color:#517c63;
+    -fx-text-fill:#f3f0e9;
+    -fx-cursor:hand;
+}
+.reservationRightSide{
+    -fx-background-color:#1d1f2a;
+}
+.reservationForm{
+
+}
+.reservationTitle{
+    -fx-font: 26px "Candara";
+    -fx-text-fill: #1d1f2a;
+}
+
+.roomDetails{
+    -fx-text-fill:#f3f0e9;
+    -fx-background-color:#1d1f2a;
+}
+
+#main-viewBtn{
+    /* -fx-background-color:#ab9c81; */
+    -fx-background-color:#e7dfcf;
+    -fx-text-fill:#1d1f2a;
+    -fx-cursor:hand;
+    -fx-padding:5 30 5 30;
+}
+
+.formsAndInput{
+    -fx-background-color:#4c525f;
+    -fx-text-color:#f3f0e9;
+}
+
+#textTable{
+    -fx-text-color:red;
+}

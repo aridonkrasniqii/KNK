@@ -137,4 +137,18 @@
 	-fx-text-fill: #2146ff;
 }
 
+.roomsBtn{
+    -fx-background-color:#4c525f;
+    -fx-text-fill:#f3f0e9;
+    -fx-cursor:hand;
+}
+.roomsBtnMakeReservation{
+    -fx-background-color:#517c63;
+    -fx-text-fill:#f3f0e9;
+    -fx-cursor:hand;
+}
+.reservationRightSide{
+    --fx-background-color:#4c525f;
+}
+
 

@@ -1,8 +1,8 @@
-/admin/
-/repositories/
-/views/
-/controllers/
-/utilities/
-/helpers/
 /database/
-/resources/
+/helpers/
+/models/
+/processor/
+/repositories/
+/utilities/
+/views/
+/style/

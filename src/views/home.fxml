@@ -8,12 +8,12 @@
 
 <AnchorPane blendMode="EXCLUSION" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #1D1F25;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="507.0" layoutX="100.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="271.0" fitWidth="216.0" layoutX="192.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../style/Window_Hotel_logo.jpg" />
+            <Image url="@../style/LogoBlack.png" />
          </image>
       </ImageView>
-      <Button fx:id="login" layoutX="270.0" layoutY="357.0" mnemonicParsing="false" onAction="#changeScreen" text="LOGIN">
+      <Button id="main-viewBtn" fx:id="login" layoutX="246.0" layoutY="355.0" mnemonicParsing="false" onAction="#changeScreen" stylesheets="@../style/StyleSheet.css" text="LOGIN">
          <font>
             <Font name="Britannic Bold" size="15.0" />
          </font>
