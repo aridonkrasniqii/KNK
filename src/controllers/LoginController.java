@@ -5,23 +5,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import admin.controllers.MainController;
-import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.*;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import models.User;
 import models.UserRole;
-import repositories.UserRepository;
+import processor.LoginProcessor;
 
 public class LoginController implements Initializable {
 
@@ -72,10 +70,10 @@ public class LoginController implements Initializable {
 				primaryStage.setScene(scene);
 			} else {
 				SuccessPopupComponent.show("Successfully logged in", "logged in");
-				Parent parent = FXMLLoader.load(getClass().getResource("../views/MainView.fxml"));
-				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-				Scene scene = new Scene(parent);
-				primaryStage.setScene(scene);
+				// Parent parent = FXMLLoader.load(getClass().getResource(" MAINNNNN PAGE "));
+				// Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				// Scene scene = new Scene(parent);
+				// primaryStage.setScene(scene);
 
 			}
 		} catch (Exception ex) {
@@ -85,15 +83,10 @@ public class LoginController implements Initializable {
 	}
 
 	private User login(String email, String password) throws Exception {
-		User user = UserRepository.find(email);
-		if (user == null)
-			return user;
+		LoginProcessor loginProcessor = new LoginProcessor();
+		User user = loginProcessor.login(email ,password);
 
-		String hashedPassword = SecurityHelper.computeHash(password, user.getSalt());
-		if (!user.getPassword().equals(hashedPassword))
-			return null;
 		return user;
-
 	}
 
 	@FXML
