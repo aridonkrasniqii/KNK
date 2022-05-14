@@ -103,7 +103,7 @@
     -fx-text-fill:#1d1f2a;
 }
 #pane > *{
-    -fx-background-color:#1d1f2a;
+    -fx-background-color:red;
 }
 .text-field{
     -fx-background-color:#343742;

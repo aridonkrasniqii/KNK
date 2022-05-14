@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane blendMode="EXCLUSION" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #1D1F25;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane blendMode="EXCLUSION" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <ImageView fitHeight="271.0" fitWidth="216.0" layoutX="192.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="440.0" fitWidth="437.0" layoutX="83.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../style/LogoBlack.png" />
          </image>
       </ImageView>
-      <Button id="main-viewBtn" fx:id="login" layoutX="246.0" layoutY="355.0" mnemonicParsing="false" onAction="#changeScreen" stylesheets="@../style/StyleSheet.css" text="LOGIN">
+      <Button fx:id="login" layoutX="246.0" layoutY="348.0" mnemonicParsing="false" onAction="#changeScreen" prefHeight="38.0" prefWidth="111.0" style="-fx-background-color: green;" text="LOGIN">
          <font>
-            <Font name="Britannic Bold" size="15.0" />
+            <Font name="Britannic Bold" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>
