@@ -10,7 +10,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
-    Parent root = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../views/home.fxml"));
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
