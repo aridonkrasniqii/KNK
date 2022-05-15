@@ -10,11 +10,9 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
-<<<<<<< Updated upstream
-    Parent root = FXMLLoader.load(getClass().getResource("../views/home.fxml"));
-=======
+
     Parent root = FXMLLoader.load(getClass().getResource("../views/main-view.fxml"));
->>>>>>> Stashed changes
+
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();

@@ -111,7 +111,7 @@ public class RoomsController extends LanguageController implements Initializable
             noRoomsSelected.showAndWait();
         }else{
             try {
-                URL url = new File("src/views/reservation.fxml").toURI().toURL();
+                URL url = new File("src/views/make-reservation-view.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(url);
                 Pane newScreen = loader.load();

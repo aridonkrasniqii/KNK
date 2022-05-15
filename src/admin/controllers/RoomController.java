@@ -75,7 +75,7 @@ public class RoomController implements Initializable {
         this.price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    public ArrayList<Rooms> loadRooms() throws SQLException {
+    public ArrayList<Rooms> loadRooms() throws Exception {
         RoomRepository repository = new RoomRepository();
         return repository.findAll();
     }

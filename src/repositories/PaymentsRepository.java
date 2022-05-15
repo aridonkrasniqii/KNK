@@ -62,4 +62,38 @@ public class PaymentsRepository {
         return new PaymentModel(id, fname, lname, date, price, isPayed);
     }
 
+
+    public static ArrayList<PaymentModel> filterPayment(String date) throws Exception {
+        String query = "select * from paymentmodel where date = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1 , date);
+        ArrayList<PaymentModel> payments = new ArrayList<>();
+        ResultSet result = stmt.executeQuery();
+
+        while (result.next()) {
+            payments.add(fromResultSet(result));
+        }
+        if (payments != null) return payments;
+        return null;
+    }
+
+    public static ArrayList<PaymentModel> findSpecificPayments(int userId) throws Exception {
+
+        ArrayList<PaymentModel> specificPayments = new ArrayList<>();
+        String query = "select pm.payment_id as payment_id, pm.firstname as firstname, pm.lastname as lastname ,\n" +
+                "                pm.date as date,pm.price as price,pm.ispayed as ispayed from paymentmodel pm inner join payments p on pm.payment_id = p.id\n" +
+                "                where p.guest_id = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, userId);
+
+        ResultSet result = stmt.executeQuery();
+
+        while (result.next()) {
+            specificPayments.add(fromResultSet(result));
+        }
+        if (specificPayments != null) return specificPayments;
+
+        return null;
+    }
 }

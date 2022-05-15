@@ -27,7 +27,7 @@ public class HomeController implements Initializable {
 	private Button login_button;
 
 	public void changeScreen(ActionEvent event) throws IOException {
-		Parent loginParent = FXMLLoader.load(getClass().getResource("../views/login.fxml"));
+		Parent loginParent = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
 		Scene loginscene = new Scene(loginParent);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

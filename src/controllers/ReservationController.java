@@ -189,17 +189,17 @@ public class ReservationController extends LanguageController implements Initial
     }
 
     private void returnToMain(ActionEvent actionEvent) throws Exception{
-        URL url=new File("src/sample/Views/main-manager.fxml").toURI().toURL();
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(url);
-        Pane pane=loader.load();
-        MainViewController mainController=loader.getController();
-        mainController.viewLoader("Reservations");
-
-        Scene scene=new Scene(pane);
-        Stage stage=(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+//        URL url=new File("src/sample/Views/main-manager.fxml").toURI().toURL();
+//        FXMLLoader loader=new FXMLLoader();
+//        loader.setLocation(url);
+//        Pane pane=loader.load();
+//        MainViewController mainController=loader.getController();
+//        mainController.viewLoader("Reservations");
+//
+//        Scene scene=new Scene(pane);
+//        Stage stage=(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     private long getDaysOfStaying(LocalDate firstDate,LocalDate lastDate){

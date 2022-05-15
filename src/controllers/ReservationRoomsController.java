@@ -1,7 +1,7 @@
 package controllers;
 
 import components.ErrorPopupComponent;
-import helpers.Reservation;
+
 import helpers.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,17 +18,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import repositories.ReservationRepository;
+
 import repositories.RoomRepository;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class RoomController implements Initializable {
+public class ReservationRoomsController implements Initializable {
 
-    private static final String RESERVATION_ROOM_VIEW = "reservation-rooms.fxml";
+    private static final String MAIN_VIEW = "main-view";
+    private static final String MAKE_RESERVATION_VIEW = "make-reservation-view";
 
     @FXML
     private DatePicker checkInDate;
@@ -50,15 +52,19 @@ public class RoomController implements Initializable {
     private TableColumn<Rooms, String> roomTypeCol;
     @FXML
     private TableColumn<Rooms, Double> priceCol;
-    //    ObservableList<String> roomTypesList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
+
     ObservableList<Rooms> rooms;
+
+    ObservableList<String> roomTypeSelectorList;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             initializeRooms();
             rooms = FXCollections.observableArrayList(loadRooms());
-
+            roomTypeSelector.setItems(roomTypeSelectorList);
+            tableView.setItems(rooms);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -74,37 +80,41 @@ public class RoomController implements Initializable {
         ArrayList<Rooms> filteredRooms = RoomRepository.filterAvailableRooms(checkIn, checkOut, roomType);
 
         rooms = FXCollections.observableArrayList(filteredRooms);
-        tableView.setItems(filteredRooms);
+        tableView.setItems(rooms);
         tableView.refresh();
     }
 
     @FXML
     private void onMakeReservationAction(ActionEvent e) throws Exception {
 
-        Rooms selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
-
-        Rooms available = RoomRepository.findAvailableRoom(selected.getRoom_number());
-
-        if (available != null) {
-            // make reservation
-
-        } else {
-            ErrorPopupComponent.show("Room is not available !");
-        }
-    }
-
-
-    @FXML
-    private void onCancleAction(ActionEvent e) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource(setPath(RESERVATION_ROOM_VIEW)));
+        //TODO:
+        //FIXME:
+        // we can make it for multiple rooms to be selected
+//        Rooms selected = tableView.getSelectionModel().getSelectedItem();
+//        if (selected == null) return;
+//        Rooms available = RoomRepository.findAvailableRoom(selected);
+//        if (available != null) {
+//        } else {
+//            ErrorPopupComponent.show("Room is not available !");
+//        }
+        Parent parent = FXMLLoader.load(getClass().getResource(setPath(MAKE_RESERVATION_VIEW)));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(scene);
     }
 
 
-    public void initializeRooms() {
+    @FXML
+    private void onCancleAction(ActionEvent e) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource(setPath(MAIN_VIEW)));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+    }
+
+
+    private void initializeRooms() {
+        roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
         this.roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         this.roomFloorCol.setCellValueFactory(new PropertyValueFactory<>("floor_number"));
         this.capacityCol.setCellValueFactory(new PropertyValueFactory<>("capacity"));
@@ -113,8 +123,10 @@ public class RoomController implements Initializable {
         this.priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    private ArrayList<Rooms> loadRooms() throws SQLException {
+    private ArrayList<Rooms> loadRooms() throws Exception {
         RoomRepository repository = new RoomRepository();
+        if (repository.findAll() == null) return null;
+
         return repository.findAll();
     }
 

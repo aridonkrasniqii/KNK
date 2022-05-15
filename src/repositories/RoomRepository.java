@@ -36,13 +36,13 @@ public class RoomRepository {
     }
 
 
-    public static Rooms findAvailableRoom(Rooms room ) throws Exception {
+    public static Rooms findAvailableRoom(Rooms room) throws Exception {
         String query = "select * from rooms ro inner join reservations re on ro_room_number = re.room_id " +
                 "where ro.room_number = " + room.getRoom_number() + " re.checkin_date is null and re.checkout_date is null";
 
         Statement stmt = connection.createStatement();
         ResultSet result = stmt.executeQuery(query);
-        if(result.next()){
+        if (result.next()) {
             return fromResultSet(result);
         }
         return null;
@@ -169,66 +169,65 @@ public class RoomRepository {
             query.append("capactiy = " + Integer.parseInt(capacity) + "");
         }
 
-<<<<<<< Updated upstream
-     public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
-        DBConnection connection = DBConnection.getConnection();
-        String query;
-        if (type == "All") {
-        	query = "select * from rooms r where r.room_number not in(\n" +
-             "select r.room_number \n" +
-             "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
-             "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
-             + "' and '" + checkout + "'))";
-       } else {
-    	   query = "select * from rooms r where r.room_type='" + type + "' and r.room_number not in(\n" +
-             "select r.room_number \n" +
-             "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
-             "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
-             + "' and '" + checkout + "'))";
-       }
-
-       Statement stmt = connection.createStatement();
-       ResultSet rs = stmt.executeQuery(query);
-
-       return rs;
-     }
-=======
         PreparedStatement stmt = connection.prepareStatement(query.toString());
         ResultSet result = stmt.executeQuery();
+
         while (result.next()) {
             rooms.add(fromResultSet(result));
         }
         if (rooms != null) return rooms;
         return null;
+
     }
 
+    public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
+        DBConnection connection = DBConnection.getConnection();
+        String query;
+        if (type == "All") {
+            query = "select * from rooms r where r.room_number not in(\n" +
+                    "select r.room_number \n" +
+                    "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
+                    "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
+                    + "' and '" + checkout + "'))";
+        } else {
+            query = "select * from rooms r where r.room_type='" + type + "' and r.room_number not in(\n" +
+                    "select r.room_number \n" +
+                    "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
+                    "where (checkin_date between '" + checkin + "' and '" + checkout + "') and (checkout_date between '" + checkin
+                    + "' and '" + checkout + "'))";
+        }
 
->>>>>>> Stashed changes
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
 
-    // public static List<RoomChartModel> selectAllGroupByRoomType() throws Exception {
-    //   ArrayList<RoomChartModel> list = new ArrayList<>();
-    //   Connection conn = DBConnect.getConnection();
-    //   PreparedStatement stmt = conn.prepareStatement("SELECT room_type, COUNT(*) FROM rooms GROUP BY room_type ");
-    //   ResultSet res = stmt.executeQuery();
-    //   while (res.next()) {
-    //     list.add(new RoomChartModel(res.getString("room_type"), res.getInt("COUNT(*)")));
-    //   }
-    //   return list;
-    // }
-
-
-    // public static List<RoomChartModel> selectAllGroupByFloorNum() throws Exception {
-    //   ArrayList<RoomChartModel> list = new ArrayList<>();
-    //   Connection conn = DBConnect.getConnection();
-    //   PreparedStatement stmt = conn.prepareStatement("SELECT rr.floor_number, COUNT(*) FROM reservations r \n" +
-    //       "INNER JOIN rooms rr ON r.room_id = rr.room_number\n" +
-    //       "GROUP BY rr.floor_number ");
-    //   ResultSet res = stmt.executeQuery();
-    //   while (res.next()) {
-    //     list.add(new RoomChartModel(res.getInt("floor_number"), res.getInt("COUNT(*)")));
-    //   }
-    //   return list;
-    // }
-
+        return rs;
+    }
 
 }
+
+
+// public static List<RoomChartModel> selectAllGroupByRoomType() throws Exception {
+//   ArrayList<RoomChartModel> list = new ArrayList<>();
+//   Connection conn = DBConnect.getConnection();
+//   PreparedStatement stmt = conn.prepareStatement("SELECT room_type, COUNT(*) FROM rooms GROUP BY room_type ");
+//   ResultSet res = stmt.executeQuery();
+//   while (res.next()) {
+//     list.add(new RoomChartModel(res.getString("room_type"), res.getInt("COUNT(*)")));
+//   }
+//   return list;
+// }
+
+
+// public static List<RoomChartModel> selectAllGroupByFloorNum() throws Exception {
+//   ArrayList<RoomChartModel> list = new ArrayList<>();
+//   Connection conn = DBConnect.getConnection();
+//   PreparedStatement stmt = conn.prepareStatement("SELECT rr.floor_number, COUNT(*) FROM reservations r \n" +
+//       "INNER JOIN rooms rr ON r.room_id = rr.room_number\n" +
+//       "GROUP BY rr.floor_number ");
+//   ResultSet res = stmt.executeQuery();
+//   while (res.next()) {
+//     list.add(new RoomChartModel(res.getInt("floor_number"), res.getInt("COUNT(*)")));
+//   }
+//   return list;
+// }
+
