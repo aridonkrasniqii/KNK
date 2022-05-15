@@ -69,12 +69,17 @@ public class LoginController implements Initializable {
 				Scene scene = new Scene(parent);
 				primaryStage.setScene(scene);
 			} else {
-				SuccessPopupComponent.show("Successfully logged in", "logged in");
-				// Parent parent = FXMLLoader.load(getClass().getResource(" MAINNNNN PAGE "));
-				// Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-				// Scene scene = new Scene(parent);
-				// primaryStage.setScene(scene);
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../views/main-view.fxml"));
+				Parent parent = loader.load();
 
+
+				MainViewController controller = loader.getController();
+				controller.setView(MainViewController.RESERVATION_ROOM_VIEW);
+
+				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				Scene scene = new Scene(parent);
+				primaryStage.setScene(scene);
 			}
 		} catch (Exception ex) {
 			System.out.println(ex);

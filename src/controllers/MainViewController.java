@@ -5,6 +5,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import helpers.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +24,8 @@ public class MainViewController implements Initializable {
 
     public static final String LOGOUT_VIEW = "login";
     public static final String RESERVATION_ROOM_VIEW = "reservation-rooms";
-
     public static final String PAYMENT_VIEW = "payments-view";
+
 
     @FXML
     private Button mainBtn;
@@ -44,11 +45,22 @@ public class MainViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
     }
 
 
+    @FXML
+    private void onOverviewAction(ActionEvent e ) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/room-details.fxml"));
+        Parent parent = loader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(parent);
+
+    }
     private void loadAllRooms() throws Exception {
+
 
 
     }
@@ -56,6 +68,9 @@ public class MainViewController implements Initializable {
 
     // TODO: about part
     // TODO: Insert Guest
+
+
+
 
 
     public void setView(String view) throws Exception {

@@ -163,3 +163,4 @@ CREATE TABLE `services` (
 create view paymentmodal(payment_id , firstname, lastname, date, price, ispayed) as
 	select p.id as 'payment_id', r.first_name, r.username ,p.pay_date as 'pay_date' , p.price  ,p.is_payed from registerGuests r
 	inner join payments p on p.guest_id = r.id;
+

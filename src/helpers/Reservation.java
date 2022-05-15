@@ -16,11 +16,12 @@ public class Reservation {
   public Reservation() {
   }
 
-  public Reservation(int id, int guest_id, int room_id, Date checkInDate, Date checkOutDate, int adults, int children,
+  public Reservation(int id, int guest_id, int room_id,Date reservation_date, Date checkInDate, Date checkOutDate, int adults, int children,
       int payment_id) {
     this.id = id;
     this.guest_id = guest_id;
     this.room_id = room_id;
+    this.reservation_date = reservation_date;
     this.checkInDate = checkInDate;
     this.checkOutDate = checkOutDate;
     this.adults = adults;

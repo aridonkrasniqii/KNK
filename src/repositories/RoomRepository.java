@@ -25,11 +25,9 @@ public class RoomRepository {
 
     public ArrayList<Rooms> findAll() throws Exception {
         String query = "select * from rooms";
-//        ResultSet res = this.connection.executeQuery(query);
         ResultSet res = connection.executeQuery(query);
         ArrayList<Rooms> rooms = new ArrayList<>();
         while (res.next()) {
-            System.out.println("Room: " + res.getString("room_number"));
             rooms.add(fromResultSet(res));
         }
         return rooms;
@@ -37,8 +35,8 @@ public class RoomRepository {
 
 
     public static Rooms findAvailableRoom(Rooms room) throws Exception {
-        String query = "select * from rooms ro inner join reservations re on ro_room_number = re.room_id " +
-                "where ro.room_number = " + room.getRoom_number() + " re.checkin_date is null and re.checkout_date is null";
+        String query = "select * from rooms ro inner join reservations re on ro.room_number = re.room_id " +
+                "where ro.room_number = " + room.getRoom_number() + " and re.checkin_date is null and re.checkout_date is null";
 
         Statement stmt = connection.createStatement();
         ResultSet result = stmt.executeQuery(query);
@@ -47,6 +45,8 @@ public class RoomRepository {
         }
         return null;
     }
+
+
 
     public static Rooms fromResultSet(ResultSet result) throws Exception {
         int id = result.getInt("room_number");
@@ -104,7 +104,6 @@ public class RoomRepository {
                     .add("price", (float) rooms.getPrice(), "f");
 
             int lastInsertedId = connection.execute(query);
-            System.out.println("Last insertedid : " + lastInsertedId);
             Rooms room = find(lastInsertedId);
 
             if (room != null) {

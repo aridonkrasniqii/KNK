@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -77,6 +76,7 @@ public class PaymentsController implements Initializable {
     @FXML
     private void onPayPaymentAction(ActionEvent e) throws Exception {
         // send data to pay payment controllerr
+
         Parent parent = FXMLLoader.load(getClass().getResource("../views/pay-payment-view.fxml"));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(new Scene(parent));

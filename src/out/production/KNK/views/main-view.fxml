@@ -47,6 +47,7 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
+            <Button mnemonicParsing="false" onAction="#onOverviewAction" text="Overview" />
          </children>
       </VBox>
    </left>

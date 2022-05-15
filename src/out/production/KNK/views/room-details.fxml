@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" minHeight="145.0" minWidth="300.0" prefHeight="298.0" prefWidth="442.0" styleClass="roomDetails" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.Partials.RoomDetailsController">
+<AnchorPane maxHeight="1.7976931348623157E308" minHeight="145.0" minWidth="300.0" prefHeight="298.0" prefWidth="442.0" styleClass="roomDetails" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="71.0" layoutY="55.0" prefHeight="298.0" prefWidth="508.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-66.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>

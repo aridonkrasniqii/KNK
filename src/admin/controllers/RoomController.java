@@ -52,12 +52,19 @@ public class RoomController implements Initializable {
     private ChoiceBox<String> roomTypeFilter;
     @FXML
     private Button findRooms;
+
+    private ObservableList roomNumberList;
+    private ObservableList roomTypeSelectorList;
+    private ObservableList roomBedNumberList;
     public ObservableList<Rooms> room = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             initializeRooms();
+            roomTypeFilter.setItems(roomTypeSelectorList);
+            roomNumberFilter.setItems(roomNumberList);
+            roomCapacityFilter.setItems(roomBedNumberList);
             ObservableList<Rooms> staffs = FXCollections.observableArrayList(loadRooms());
             roomsTableView.setItems(staffs);
         } catch (Exception ex) {
@@ -67,6 +74,9 @@ public class RoomController implements Initializable {
 
 
     public void initializeRooms() {
+        roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
+        roomBedNumberList = FXCollections.observableArrayList("1","2","3","4");
+        roomNumberList = FXCollections.observableArrayList("1", "2" ,"3", "4", "5","6","7", "8", "9", "10");
         this.roomNumber.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         this.floorNumber.setCellValueFactory(new PropertyValueFactory<>("floor_number"));
         this.capacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));

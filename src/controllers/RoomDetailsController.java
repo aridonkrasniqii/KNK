@@ -13,7 +13,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RoomDetailsController extends LanguageController {
+
+
     private Rooms room;
+
     @FXML
     private Label roomNumber;
     @FXML private Label roomFloor;
@@ -46,6 +49,17 @@ public class RoomDetailsController extends LanguageController {
     private String capitalize(String word){
         String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
         return cap;
+    }
+
+
+    public void setData(String roomNr, String floorNr,String bedNr,double price ) {
+        // load data to room details
+        //
+
+    }
+
+    private String setImagePath(int roomNr) {
+        return "../style/images/";
     }
 
     @Override

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,11 +11,10 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="438.0" prefWidth="908.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MakeReservationController">
    <children>
-      <GridPane layoutX="105.0" layoutY="166.0" prefHeight="260.0" prefWidth="350.0">
+      <GridPane hgap="5.0" layoutX="100.0" layoutY="126.0" prefHeight="300.0" prefWidth="355.0" vgap="5.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.6000244140625" minWidth="10.0" prefWidth="174.39996337890625" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.00002441406252" minWidth="10.0" prefWidth="175.20003662109377" />
@@ -23,28 +23,40 @@
           <RowConstraints maxHeight="117.60001220703126" minHeight="10.0" prefHeight="57.80559370597108" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="98.99998168945314" minHeight="10.0" prefHeight="45.85550431284061" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="89.7398298017586" minHeight="10.0" prefHeight="52.84492918242003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="89.7398298017586" minHeight="10.0" prefHeight="52.84492918242003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="89.7398298017586" minHeight="10.0" prefHeight="52.84492918242003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="89.7398298017586" minHeight="10.0" prefHeight="52.84492918242003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="89.7398298017586" minHeight="10.0" prefHeight="52.84492918242003" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="64.00001220703123" minHeight="10.0" prefHeight="55.837116528589576" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="66.80292084397706" minHeight="10.0" prefHeight="66.80292084397706" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lbl_persNum" text="Personal Number" />
+            <Label text="Personal Number" />
             <TextField fx:id="personalNumberField" GridPane.columnIndex="1" />
-            <Label fx:id="lbl_total" text="Total" GridPane.rowIndex="3" />
-            <Label fx:id="lbl_fName" text="First Name" GridPane.rowIndex="1" />
-            <Label fx:id="lbl_lName" text="Last Name" GridPane.rowIndex="2" />
-            <Button fx:id="reserveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReserveAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Reserve" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label text="Total" GridPane.rowIndex="7" />
+            <Label text="First Name" GridPane.rowIndex="1" />
+            <Label text="Last Name" GridPane.rowIndex="2" />
+            <Button fx:id="reserveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReserveAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Reserve" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
             <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text fx:id="" strokeType="OUTSIDE" strokeWidth="0.0" text="Ditet*Cmimi" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Check In" GridPane.rowIndex="5" />
+            <Label text="Check Out" GridPane.rowIndex="6" />
+            <TextField fx:id="checkInDate" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="checkOutDate" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="totalField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Number of Adults" GridPane.rowIndex="3" />
+            <Label text="Numbers of Childrens" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="adultsNumber" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <ChoiceBox fx:id="childrensNumber" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <AnchorPane layoutX="519.0" prefHeight="494.0" prefWidth="399.0" styleClass="reservationRightSide" stylesheets="@../style/StyleSheet.css">
@@ -56,6 +68,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="176.0" layoutY="92.0" styleClass="reservationTitle" stylesheets="@../style/StyleSheet.css" text="Reservations" />
+      <Label layoutX="177.0" layoutY="71.0" styleClass="reservationTitle" stylesheets="@../style/StyleSheet.css" text="Reservations" />
    </children>
 </AnchorPane>

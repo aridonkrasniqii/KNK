@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
+<BorderPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1d1f2a;" stylesheets="@../../Style/hotel-stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.RoomsController">
    <top>
       <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +25,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <DatePicker fx:id="checkInDate" style="-fx-background-color: #343742;" stylesheets="@../style/StyleSheet.css" />
+                  <DatePicker fx:id="firstDatePickerField" style="-fx-background-color: #343742;" stylesheets="@../style/StyleSheet.css" />
                   <Label text="Check out" textFill="#faf5f5">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -33,13 +33,13 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <DatePicker fx:id="checkOutDate" style="-fx-background-color: #343742;" stylesheets="@../style/StyleSheet.css" />
+                  <DatePicker fx:id="lastDatePickerField" style="-fx-background-color: #343742;" stylesheets="@../style/StyleSheet.css" />
                   <ChoiceBox fx:id="roomTypeSelector" prefWidth="100.0" stylesheets="@../style/StyleSheet.css">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button id="dark" fx:id="findButtonId" mnemonicParsing="false" onAction="#onFindAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Find" textFill="#f8f5f5">
+                  <Button id="dark" fx:id="findButtonId" mnemonicParsing="false" onAction="#findButtonClicked" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Find" textFill="#f8f5f5">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -58,7 +58,7 @@
         <TableView fx:id="tableView" fixedCellSize="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="451.0" prefWidth="705.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="capacityCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="87.76873779296875" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Capacity" />
-            <TableColumn fx:id="bedNumberCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="126.66626739501953" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Number of beds " />
+            <TableColumn fx:id="bedsCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="126.66626739501953" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Number of beds " />
                 <TableColumn fx:id="roomTypeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="93.75299072265625" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Type" />
             <TableColumn fx:id="priceCol" maxWidth="1.7976931348623157E308" prefWidth="58.844970703125" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Price" />
                 <TableColumn fx:id="roomNumberCol" maxWidth="1.7976931348623157E308" prefWidth="114.69775390625" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Number" />
@@ -75,12 +75,12 @@
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="451.0" prefWidth="154.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="makeReservation" mnemonicParsing="false" onAction="#onMakeReservationAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Make Reservation" textFill="#faf9f9">
+            <Button fx:id="makeReservation" mnemonicParsing="false" onAction="#onMakeReservationButtonClicked" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Make Reservation" textFill="#faf9f9">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Button>
-            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" prefHeight="37.0" prefWidth="116.0" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" textFill="#fdf9f9">
+            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancelButtonClicked" prefHeight="37.0" prefWidth="116.0" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" textFill="#fdf9f9">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -88,7 +88,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onPalidhjeAction" text="Palidhje" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
