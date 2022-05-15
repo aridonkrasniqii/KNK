@@ -12,18 +12,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import repositories.RoomRepository;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -76,6 +75,7 @@ public class ReservationRoomsController implements Initializable {
         String checkIn = checkInDate.getValue().toString();
         String checkOut = checkOutDate.getValue().toString();
         String roomType = roomTypeSelector.getValue().toString();
+        if (checkIn == null || checkOut == null || roomType == null) return;
 
         ArrayList<Rooms> filteredRooms = RoomRepository.filterAvailableRooms(checkIn, checkOut, roomType);
 
@@ -86,22 +86,43 @@ public class ReservationRoomsController implements Initializable {
 
     @FXML
     private void onMakeReservationAction(ActionEvent e) throws Exception {
+        Rooms selected = tableView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
 
-        //TODO:
-        //FIXME:
-        // we can make it for multiple rooms to be selected
-//        Rooms selected = tableView.getSelectionModel().getSelectedItem();
-//        if (selected == null) return;
-//        Rooms available = RoomRepository.findAvailableRoom(selected);
-//        if (available != null) {
-//        } else {
-//            ErrorPopupComponent.show("Room is not available !");
-//        }
-        Parent parent = FXMLLoader.load(getClass().getResource(setPath(MAKE_RESERVATION_VIEW)));
-        Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        stage.setScene(scene);
+        Rooms availableRoom = RoomRepository.findAvailableRoom(selected);
+
+        if (availableRoom == null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(setPath(MAKE_RESERVATION_VIEW)));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+
+            String checkIn = "";
+            String checkOut = "";
+            double price = selected.getPrice();
+            try {
+                //FIXME: controll if checkOut is before checkIn
+
+                checkIn = checkInDate.getValue().toString();
+                checkOut = checkOutDate.getValue().toString();
+
+            } catch (Exception ex) {
+                ErrorPopupComponent.show("Fill Check In and CheckOut ");
+                return;
+            }
+
+            MakeReservationController controller = loader.getController();
+            controller.setData(checkIn, checkOut, price);
+
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            return;
+        } else {
+            ErrorPopupComponent.show("Room is reserved");
+        }
+
     }
+
 
 
     @FXML
@@ -113,8 +134,25 @@ public class ReservationRoomsController implements Initializable {
     }
 
 
+    private void onDetailsAction(ActionEvent e) throws Exception {
+        Rooms selected = tableView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("path"));
+        Parent parent = loader.load();
+        RoomDetailsController controller = loader.getController();
+//        controller.setData(.. qetu i qon tdhanat si selected.getRoom_Number etj etj );
+
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(parent));
+
+    }
+
+
     private void initializeRooms() {
-        roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
+        roomTypeSelectorList = FXCollections.observableArrayList("All", "Single", "Double", "Triple", "Quad", "Suite");
         this.roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         this.roomFloorCol.setCellValueFactory(new PropertyValueFactory<>("floor_number"));
         this.capacityCol.setCellValueFactory(new PropertyValueFactory<>("capacity"));

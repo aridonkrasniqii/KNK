@@ -1,1 +1,17 @@
+/.idea/
+/.vscode/
+/KNK.iml
+/admin/
+/application/
+/components/
 /controllers/
+/database/
+/helpers/
+/models/
+/out/
+/processor/
+/repositories/
+/resources/
+/style/
+/utilities/
+/views/
