@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
    <left>
    <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
          <children>
@@ -26,21 +26,21 @@
                   <Insets left="25.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-               <Button fx:id="reservationsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onButtonClicked" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Reservations" textAlignment="CENTER" wrapText="true">
+               <Button fx:id="reservationsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservationAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Reservations" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
-               <Button fx:id="paymentsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onButtonClicked" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Payments" textAlignment="CENTER" wrapText="true">
+               <Button fx:id="paymentsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaymentsAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Payments" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
-               <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onButtonClicked" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Log out" textAlignment="CENTER" wrapText="true">
+               <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Log out" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -68,17 +68,17 @@
         <menus>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
             <items>
-              <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutMenuItemClicked" text="Log out" />
+              <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#onMenuLogoutAction" text="Log out" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Edit">
             <items>
-              <MenuItem fx:id="insertGuestMenu" mnemonicParsing="false" onAction="#insertGuestMenuClicked" text="Insert guest" />
+              <MenuItem fx:id="insertGuestMenu" mnemonicParsing="false" onAction="#onMenuInsertAction" text="Insert guest" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Help">
             <items>
-              <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#aboutMenuItemClicked" text="About" />
+              <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#onMenuAboutAction" text="About" />
             </items>
           </Menu>
         </menus>

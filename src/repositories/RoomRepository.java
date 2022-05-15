@@ -22,21 +22,30 @@ public class RoomRepository {
 
     static DBConnection connection = DBConnection.getConnection();
 
-    public RoomRepository() {
 
-
-    }
-
-    public ArrayList<Rooms> findAll() throws SQLException {
+    public ArrayList<Rooms> findAll() throws Exception {
         String query = "select * from rooms";
 //        ResultSet res = this.connection.executeQuery(query);
         ResultSet res = connection.executeQuery(query);
         ArrayList<Rooms> rooms = new ArrayList<>();
         while (res.next()) {
             System.out.println("Room: " + res.getString("room_number"));
-            rooms.add(Rooms.fromResultSet(res));
+            rooms.add(fromResultSet(res));
         }
         return rooms;
+    }
+
+
+    public static Rooms findAvailableRoom(Rooms room ) throws Exception {
+        String query = "select * from rooms ro inner join reservations re on ro_room_number = re.room_id " +
+                "where ro.room_number = " + room.getRoom_number() + " re.checkin_date is null and re.checkout_date is null";
+
+        Statement stmt = connection.createStatement();
+        ResultSet result = stmt.executeQuery(query);
+        if(result.next()){
+            return fromResultSet(result);
+        }
+        return null;
     }
 
     public static Rooms fromResultSet(ResultSet result) throws Exception {
@@ -71,7 +80,7 @@ public class RoomRepository {
                 .add("capacity", rooms.getCapacity(), "i")
                 .add("bed_number", rooms.getBed_number(), "i")
                 .add("room_type", rooms.getRoom_type(), "s")
-                .add("price", (float)rooms.getPrice(), "f");
+                .add("price", (float) rooms.getPrice(), "f");
 
         connection.execute(query);
 
@@ -108,71 +117,59 @@ public class RoomRepository {
         return null;
     }
 
+    public static ArrayList<Rooms> filterAvailableRooms(String checkIn, String checkOut, String roomType) throws Exception {
+
+        String query;
+
+        if (roomType.equals("All")) {
+            query = "select * from rooms r where r.room_number not in(" +
+                    "select r.room_number " +
+                    "from reservations res inner join rooms r on res.room_id=r.room_number" +
+                    "where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
+                    + "' and '" + checkOut + "'))";
+        } else {
+            query = "select * from rooms r where r.room_type='" + roomType + "' and r.room_number not in(\n" +
+                    "select r.room_number \n" +
+                    "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
+                    "where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
+                    + "' and '" + checkOut + "'))";
+        }
+
+        ArrayList<Rooms> rooms = new ArrayList<>();
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+        ResultSet result = stmt.executeQuery();
+
+        while (result.next()) {
+            rooms.add(fromResultSet(result));
+        }
+        if (rooms != null) return rooms;
+
+        return null;
+    }
 
 
+    public static ArrayList<Rooms> filterAllRooms(String type, String bedNumber, String capacity) throws Exception {
+        StringBuilder query = new StringBuilder();
+        boolean where = false;
+        ArrayList<Rooms> rooms = new ArrayList<>();
+        query.append("select * from rooms ");
 
-    // public static List<Rooms> selectAllRoomsByFilter(String type, String bedNr, String capacity) throws Exception {
-    //   ArrayList<Rooms> list = new ArrayList<>();
-    //   Connection conn = DBConnect.getConnection();
+        if (!type.equals("All")) {
+            query.append("where room_type = '" + type + "' ");
+            where = true;
+        }
+        if (!bedNumber.equals("All")) {
+            query.append(where ? "and" : "where");
+            query.append("bedNumber = " + Integer.parseInt(bedNumber) + " ");
+            where = true;
+        }
+        if (!capacity.equals("All")) {
+            query.append(where ? "and" : "where");
+            query.append("capactiy = " + Integer.parseInt(capacity) + "");
+        }
 
-    //   StringBuilder sb = new StringBuilder();
-    //   boolean hasWhere = false;
-    //   sb.append("SELECT * FROM rooms ");
-
-    //   if (!type.equals("All")) {
-    //     sb.append(hasWhere ? " AND " : " WHERE ");
-    //     sb.append("room_type = '" + type + "'");
-    //     hasWhere = true;
-    //   }
-    //   if (!bedNr.equals("All")) {
-    //     sb.append(hasWhere ? " AND " : " WHERE ");
-    //     sb.append("bed_number = " + Integer.parseInt(bedNr) + "");
-    //     hasWhere = true;
-    //   }
-    //   if (!capacity.equals("All")) {
-    //     sb.append(hasWhere ? " AND " : " WHERE ");
-    //     sb.append("capacity = " + Integer.parseInt(capacity) + "");
-    //     hasWhere = true;
-    //   }
-
-    //   Statement stmt = conn.createStatement();
-    //   ResultSet res = stmt.executeQuery(sb.toString());
-    //   while (res.next()) {
-    //     list.add(parseFromRes(res));
-    //   }
-    //   return list;
-    // }
-
-
-
-
-    // public static Rooms update(Rooms model, int roomNumber) throws Exception {
-    //   Connection conn = DBConnect.getConnection();
-
-    //   PreparedStatement stmt = conn
-    //       .prepareStatement(
-    //           "UPDATE rooms SET room_number = ?, floor_number = ?, bed_number = ?, room_type = ?, price = ? WHERE room_number = ?");
-
-    //   stmt.setInt(1, model.getRoom_number());
-    //   stmt.setInt(2, model.getFloor_number());
-    //   stmt.setInt(3, model.getBed_number());
-    //   stmt.setString(4, model.getRoom_type());
-    //   stmt.setDouble(5, model.getPrice());
-    //   stmt.setInt(6, roomNumber);
-    //   stmt.executeUpdate();
-
-    //   return find(model.getRoom_number());
-    // }
-
-    // public static boolean remove(int id) throws Exception {
-    //   Connection conn = DBConnect.getConnection();
-
-    //   PreparedStatement stmt = conn.prepareStatement("DELETE FROM rooms WHERE room_number = ?");
-    //   stmt.setInt(1, id);
-    //   return stmt.executeUpdate() >= 1;
-    // }
-
-
+<<<<<<< Updated upstream
      public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
         DBConnection connection = DBConnection.getConnection();
         String query;
@@ -195,6 +192,18 @@ public class RoomRepository {
 
        return rs;
      }
+=======
+        PreparedStatement stmt = connection.prepareStatement(query.toString());
+        ResultSet result = stmt.executeQuery();
+        while (result.next()) {
+            rooms.add(fromResultSet(result));
+        }
+        if (rooms != null) return rooms;
+        return null;
+    }
+
+
+>>>>>>> Stashed changes
 
     // public static List<RoomChartModel> selectAllGroupByRoomType() throws Exception {
     //   ArrayList<RoomChartModel> list = new ArrayList<>();
@@ -206,6 +215,7 @@ public class RoomRepository {
     //   }
     //   return list;
     // }
+
 
     // public static List<RoomChartModel> selectAllGroupByFloorNum() throws Exception {
     //   ArrayList<RoomChartModel> list = new ArrayList<>();

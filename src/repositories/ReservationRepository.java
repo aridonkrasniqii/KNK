@@ -1,5 +1,6 @@
 package repositories;
 
+<<<<<<< Updated upstream
 
 //import Connectivity.dbConnection;
 import database.DBConnection;
@@ -68,5 +69,15 @@ public class ReservationRepository {
       prep.setInt(5,paymentId);
       prep.executeUpdate();
   }
+=======
+import helpers.Reservation;
+
+public class ReservationRepository {
+
+
+
+
+
+>>>>>>> Stashed changes
 
 }
