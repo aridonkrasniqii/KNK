@@ -112,7 +112,7 @@ public class ReservationRoomsController implements Initializable {
             }
 
             MakeReservationController controller = loader.getController();
-            controller.setData(checkIn, checkOut, price);
+            controller.setData(checkIn, checkOut, price, selected.getRoom_number());
 
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.setScene(scene);

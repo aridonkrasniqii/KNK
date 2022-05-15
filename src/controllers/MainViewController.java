@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class MainViewController implements Initializable {
 
 
-    public static final String LOGOUT_VIEW = "login";
+    public static final String LOGOUT_VIEW = "login-view";
     public static final String RESERVATION_ROOM_VIEW = "reservation-rooms";
     public static final String PAYMENT_VIEW = "payments-view";
 

@@ -1,20 +1,15 @@
 package repositories;
 
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import database.DBConnection;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
+import models.Payments;
 import models.view.PaymentModel;
 
-public class PaymentsRepository {
+public class PaymentsModelRepository {
 
 
     private static DBConnection connection = DBConnection.getConnection();
@@ -26,13 +21,17 @@ public class PaymentsRepository {
         ArrayList<PaymentModel> paymentModel = new ArrayList<>();
 
         while (res.next()) {
-            System.out.println("Room: " + res.getString("firstname"));
             paymentModel.add(fromResultSet(res));
         }
         return paymentModel;
 
     }
 
+
+    public static Payments create(Payments model ) throws Exception {
+
+        return null;
+    }
 
     public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
         ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();

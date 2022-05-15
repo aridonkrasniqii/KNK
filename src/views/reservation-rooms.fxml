@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
+<BorderPane style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
    <top>
       <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,7 +55,7 @@
       </VBox>
    </top>
    <center>
-        <TableView fx:id="tableView" fixedCellSize="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="451.0" prefWidth="705.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
+        <TableView fx:id="tableView" fixedCellSize="0.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="capacityCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="87.76873779296875" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Capacity" />
             <TableColumn fx:id="bedNumberCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="126.66626739501953" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Number of beds " />
@@ -88,7 +88,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onPalidhjeAction" text="Palidhje" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

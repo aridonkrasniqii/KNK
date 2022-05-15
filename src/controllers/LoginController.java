@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import admin.controllers.MainController;
 import components.SuccessPopupComponent;
+import helpers.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
@@ -73,6 +74,7 @@ public class LoginController implements Initializable {
 				loader.setLocation(getClass().getResource("../views/main-view.fxml"));
 				Parent parent = loader.load();
 
+				SessionManager.user = user;
 
 				MainViewController controller = loader.getController();
 				controller.setView(MainViewController.RESERVATION_ROOM_VIEW);

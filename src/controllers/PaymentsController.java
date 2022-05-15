@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.view.PaymentModel;
-import repositories.PaymentsRepository;
+import repositories.PaymentsModelRepository;
 
 import java.net.URL;
 import java.sql.Date;
@@ -56,7 +56,7 @@ public class PaymentsController implements Initializable {
         String date = dateFilter.getValue().toString();
         if(date == null) return;
 
-        ArrayList<PaymentModel> filteredPayment = PaymentsRepository.filterPayment(date);
+        ArrayList<PaymentModel> filteredPayment = PaymentsModelRepository.filterPayment(date);
         if(filteredPayment == null) return;
 
         paymentsModel = FXCollections.observableArrayList(filteredPayment);
@@ -98,7 +98,7 @@ public class PaymentsController implements Initializable {
     }
 
     public ArrayList<PaymentModel> loadGuestPayments() throws Exception {
-        PaymentsRepository repository = new PaymentsRepository();
+        PaymentsModelRepository repository = new PaymentsModelRepository();
         //                              User logged in Id
         return repository.findSpecificPayments(1);
     }

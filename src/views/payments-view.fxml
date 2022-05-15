@@ -11,9 +11,9 @@
 
 <AnchorPane fx:id="anchor" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
     <children>
-        <BorderPane prefHeight="527.0" prefWidth="750.0">
+        <BorderPane>
             <top>
-                <AnchorPane prefHeight="96.0" prefWidth="942.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="50.0" prefWidth="942.0" BorderPane.alignment="CENTER">
                     <children>
                         <DatePicker fx:id="dateFilter" layoutX="56.0" layoutY="34.0" style="-fx-background-color: #343742;" />
                   <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
@@ -29,7 +29,7 @@
                 </AnchorPane>
             </top>
             <center>
-                <TableView fx:id="paymentsTableView" prefHeight="395.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="paymentsTableView" prefHeight="500.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="paymentIdCol" prefWidth="116.79998475313187" text="Payment Id" />
                         <TableColumn fx:id="firstNameCol" prefWidth="148.80003356933594" text="FirstName" />

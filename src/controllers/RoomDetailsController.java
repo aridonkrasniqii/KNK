@@ -1,65 +1,89 @@
 package controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import helpers.Rooms;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import controllers.LanguageController;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 public class RoomDetailsController extends LanguageController {
 
+    @FXML
+    private Label beds;
 
-    private Rooms room;
+    @FXML
+    private Button bookButton;
+
+    @FXML
+    private Label floor;
+
+    @FXML
+    private Label id;
+
+    @FXML
+    private Label nrOfBeds;
+
+    @FXML
+    private Label price;
+
+    @FXML
+    private Label roomFloor;
 
     @FXML
     private Label roomNumber;
-    @FXML private Label roomFloor;
-    @FXML private Label price;
-    @FXML private Label roomType;
-    @FXML private Label nrOfBeds;
-    @FXML private Button removeButton;
-    @FXML private Label id;
-    @FXML private Label floor;
-    @FXML private Label beds;
-    @FXML private Label toPay;
+
+    @FXML
+    private Label roomType;
+
+    @FXML
+    void onActionBook(ActionEvent event) throws IOException {
+//        Parent parent = FXMLLoader.load(getClass().getResource("../views/reservation.fxml"));
+//        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(parent);
+//        primaryStage.setScene(scene);
+//        primaryStage.setTitle("LAMALE Hotel");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadLangTexts(getLangBundle());
     }
 
-    public void getRoomToShow(Rooms room, long daysToStay){
-        id.setText(String.valueOf(room.getRoom_number()));
-        floor.setText(String.valueOf(room.getFloor_number()));
-        beds.setText(String.valueOf(room.getBed_number()));
-        toPay.setText(String.valueOf(room.getPrice()*daysToStay));
-        roomType.setText(capitalize(room.getRoom_type()));
-    }
-    
-    public void setRemoveButtonAction(EventHandler<ActionEvent> eventHandler){
-        removeButton.setOnAction(eventHandler);
-    }
-    
-    private String capitalize(String word){
-        String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
-        return cap;
+    public void getRoomToShow(Rooms room, long daysToStay) {
+//        id.setText(String.valueOf(room.getRoom_number()));
+//        floor.setText(String.valueOf(room.getFloor_number()));
+//        beds.setText(String.valueOf(room.getBed_number()));
+//        roomType.setText(capitalize(room.getRoom_type()));
     }
 
+    public void setBookButtonAction(EventHandler<ActionEvent> eventHandler) {
+//        bookButton.setOnAction(eventHandler);
+    }
 
-    public void setData(String roomNr, String floorNr,String bedNr,double price ) {
-        // load data to room details
+    private String capitalize(String word) {
+//        String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+//        return cap;
+        return "";
+    }
+
+    public void setData(String roomNr, String floorNr, String bedNr, double price) {
+
         //
 
     }
 
     private String setImagePath(int roomNr) {
-        return "../style/images/";
+        return "../style/images/Dhoma" + roomNr;
     }
 
     @Override
@@ -69,4 +93,5 @@ public class RoomDetailsController extends LanguageController {
         nrOfBeds.setText(langBundle.getString("bedNumber"));
         price.setText(langBundle.getString("price"));
     }
+
 }
