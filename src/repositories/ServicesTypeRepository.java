@@ -31,9 +31,9 @@ public class ServicesTypeRepository {
 
     public static Service_Type find(int id) throws Exception {
 
-        String query = "select * from service_type where id = ?";
+        String query = "select * from services_type where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
-
+        stmt.setInt(1 , id);
         ResultSet res = stmt.executeQuery();
 
         if (!res.next()) {
@@ -62,7 +62,7 @@ public class ServicesTypeRepository {
 
     public static Service_Type update(Service_Type model) throws Exception {
 
-        String query = "update services_types set service_name = ?, price = ? , quantity = ? where id = ?";
+        String query = "update services_type set service_name = ?, price = ? , quantity = ? where id = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1,model.getService_name());

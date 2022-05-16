@@ -34,18 +34,21 @@ public class RoomRepository {
     }
 
 
-    public static Rooms findAvailableRoom(Rooms room) throws Exception {
-        String query = "select * from rooms ro inner join reservations re on ro.room_number = re.room_id " +
-                "where ro.room_number = " + room.getRoom_number() + " and re.checkin_date is null and re.checkout_date is null";
+    public static Rooms findAvailableRoom(int room_number,String checkIn ,String checkOut,String type) throws Exception {
+        String query = query = "select * from rooms ro where ro.room_number not in (\n" +
+                "select ro.room_number from rooms ro inner join reservations re on re.room_id = ro.room_number \n" +
+                "where (re.checkin_date between '' and '') and (re.checkout_date between '' and '') ) and ro.room_number = 1;";
+
 
         Statement stmt = connection.createStatement();
         ResultSet result = stmt.executeQuery(query);
+
         if (result.next()) {
             return fromResultSet(result);
         }
+
         return null;
     }
-
 
 
     public static Rooms fromResultSet(ResultSet result) throws Exception {
@@ -77,16 +80,16 @@ public class RoomRepository {
         String query = "update rooms set floor_number = ? , capacity = ? , bed_number = ?,room_type = ?, price = ?  where room_number = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1 , model.getFloor_number());
+        stmt.setInt(1, model.getFloor_number());
         stmt.setInt(2, model.getCapacity());
-        stmt.setInt(3,model.getBed_number());
+        stmt.setInt(3, model.getBed_number());
         stmt.setString(4, model.getRoom_type());
         stmt.setDouble(5, model.getPrice());
         stmt.setInt(6, model.getRoom_number());
 
 
         int affectedRows = stmt.executeUpdate();
-        if(affectedRows != 1) {
+        if (affectedRows != 1) {
             throw new Exception("ERR_NO_ROW_CHANGE");
         }
 
@@ -95,29 +98,27 @@ public class RoomRepository {
 
 
     public static Rooms create(Rooms rooms) throws Exception {
-        try {
-            InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("rooms")
-                    .add("room_number", rooms.getRoom_number(), "i")
-                    .add("floor_number", rooms.getFloor_number(), "i")
-                    .add("capacity", rooms.getCapacity(), "i")
-                    .add("bed_number", rooms.getBed_number(), "i")
-                    .add("room_type", rooms.getRoom_type(), "s")
-                    .add("price", (float) rooms.getPrice(), "f");
 
-            int lastInsertedId = connection.execute(query);
-            Rooms room = find(lastInsertedId);
+        InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("rooms")
+                .add("room_number", rooms.getRoom_number(), "i")
+                .add("floor_number", rooms.getFloor_number(), "i")
+                .add("capacity", rooms.getCapacity(), "i")
+                .add("bed_number", rooms.getBed_number(), "i")
+                .add("room_type", rooms.getRoom_type(), "s")
+                .add("price", (float) rooms.getPrice(), "f");
 
-            if (room != null) {
-                SuccessPopupComponent.show("Successfully created", "Register");
-                return room;
-            }
-        } catch (Exception ex) {
-            ErrorPopupComponent.show(ex);
-        }
+        int lastInsertedId = connection.execute(query);
+        Rooms room = find(lastInsertedId);
+
+        if (room != null)
+            return room;
+
         return null;
     }
 
-    public static ArrayList<Rooms> filterAvailableRooms(String checkIn, String checkOut, String roomType) throws Exception {
+
+    public static ArrayList<Rooms> filterAvailableRooms(String checkIn, String checkOut, String roomType) throws
+            Exception {
 
         String query;
 

@@ -1,6 +1,8 @@
 package admin.controllers.services;
 
 import admin.controllers.MainController;
+import components.ErrorPopupComponent;
+import components.SuccessPopupComponent;
 import helpers.Service_Type;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import repositories.ServicesTypeRepository;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +29,7 @@ public class EditServiceController implements Initializable {
     @FXML
     private TextField quantityField;
 
+    private int id;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,7 +39,7 @@ public class EditServiceController implements Initializable {
 
 
     public void setData(Service_Type service ) throws Exception {
-        // maybe we need to add id field
+        id = service.getId();
         serviceField.setText(service.getService_name());
         priceField.setText(Double.toString(service.getPrice()));
         quantityField.setText(Integer.toString(service.getQuantity()));
@@ -46,8 +50,17 @@ public class EditServiceController implements Initializable {
 
     @FXML
     private void onEditAction(ActionEvent e) throws Exception {
+        String serviceName = serviceField.getText();
+        double price = Double.parseDouble(priceField.getText());
+        int quantity = Integer.parseInt(quantityField.getText());
+        Service_Type service = new Service_Type(id, serviceName , price, quantity);
 
-        System.out.println("On edit action is clicked ");
+        if(ServicesTypeRepository.update(service) != null) {
+            SuccessPopupComponent.show("Successfully edited " , "Edited");
+        }else {
+            ErrorPopupComponent.show("Failed to edit");
+        }
+
     }
 
     @FXML

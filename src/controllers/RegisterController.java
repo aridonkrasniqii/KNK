@@ -46,12 +46,15 @@ public class RegisterController implements Initializable {
             // check for empty fields
 
             boolean emptyFields = RegisterValidate.validate(name,username,email,password);
-            if(emptyFields) ErrorPopupComponent.show("Empty fields");
+            if(emptyFields) return;
 
 
 
             boolean userExists = UserRepository.find(email, username);
-            if (userExists) ErrorPopupComponent.show("User already exists");
+            if (userExists) {
+                ErrorPopupComponent.show("User already exists");
+                return;
+            }
 
 
             User registeredUser = register(name, username, email, password);

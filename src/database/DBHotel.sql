@@ -64,13 +64,13 @@ CREATE TABLE `guests` (
 ) ;
 
 
-drop table if exists `staff`
+drop table if exists staff;
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `personal_number` int(11) DEFAULT NULL,
-  `position` varchar(20) NOT NULL,
+  `position` varchar(100) NOT NULL,
   `birthdate` date NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `salary` double DEFAULT NULL,
@@ -80,7 +80,6 @@ CREATE TABLE `staff` (
   PRIMARY KEY (`id`),
   CONSTRAINT `staff_chk_1` CHECK ((`salary` > 169))
 ) ;
-
 
 
 
@@ -108,6 +107,8 @@ CREATE TABLE `perdoruesit` (
   PRIMARY KEY (`username`)
 );
 
+
+drop table if exists `rooms`;
 CREATE TABLE `rooms` (
   `room_number` int(11) NOT NULL AUTO_INCREMENT,
   `floor_number` int(11) NOT NULL,

@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import repositories.RoomRepository;
@@ -86,43 +87,48 @@ public class ReservationRoomsController implements Initializable {
 
     @FXML
     private void onMakeReservationAction(ActionEvent e) throws Exception {
-        Rooms selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
+        String checkIn = null;
+        String checkOut = null;
+        String type = null;
+        try {
+             checkIn = checkInDate.getValue().toString();
+             checkOut = checkOutDate.getValue().toString();
+             type = roomTypeSelector.getValue().toString();
 
-        Rooms availableRoom = RoomRepository.findAvailableRoom(selected);
 
-        if (availableRoom == null) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(setPath(MAKE_RESERVATION_VIEW)));
-            Parent parent = loader.load();
-            Scene scene = new Scene(parent);
+            Rooms selected = tableView.getSelectionModel().getSelectedItem();
+            if (selected == null) return;
 
-            String checkIn = "";
-            String checkOut = "";
-            double price = selected.getPrice();
-            try {
+            Rooms availableRoom = RoomRepository.findAvailableRoom(selected.getRoom_number(), checkIn, checkOut, type);
+
+
+            if (availableRoom != null) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(setPath(MAKE_RESERVATION_VIEW)));
+                Parent parent = loader.load();
+                Scene scene = new Scene(parent);
+
+                double price = selected.getPrice();
+
                 //FIXME: controll if checkOut is before checkIn
 
-                checkIn = checkInDate.getValue().toString();
-                checkOut = checkOutDate.getValue().toString();
+                MakeReservationController controller = loader.getController();
+                controller.setData(checkIn, checkOut, price, selected.getRoom_number());
 
-            } catch (Exception ex) {
-                ErrorPopupComponent.show("Fill Check In and CheckOut ");
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                stage.setScene(scene);
                 return;
+            } else {
+           
+                ErrorPopupComponent.show("Room is reserved");
             }
-
-            MakeReservationController controller = loader.getController();
-            controller.setData(checkIn, checkOut, price, selected.getRoom_number());
-
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            return;
-        } else {
-            ErrorPopupComponent.show("Room is reserved");
+        } catch (Exception ex) {
+            if (checkIn == null || checkOut == null || type == null) {
+                ErrorPopupComponent.show("Check In and Check Out must be filled");
+            }
         }
 
     }
-
 
 
     @FXML
@@ -134,19 +140,22 @@ public class ReservationRoomsController implements Initializable {
     }
 
 
-    private void onDetailsAction(ActionEvent e) throws Exception {
+    @FXML
+    private void onRoomDetailsAction(ActionEvent e) throws Exception {
         Rooms selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("path"));
+        loader.setLocation(getClass().getResource("../views/room-details.fxml"));
         Parent parent = loader.load();
         RoomDetailsController controller = loader.getController();
-//        controller.setData(.. qetu i qon tdhanat si selected.getRoom_Number etj etj );
+        controller.setDate(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(), selected.getPrice(), 1);
 
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(parent));
+        stage.show();
 
     }
 
