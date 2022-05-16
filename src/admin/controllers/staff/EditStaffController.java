@@ -3,7 +3,6 @@ package admin.controllers.staff;
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.DateHelper;
 import helpers.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +16,6 @@ import javafx.stage.Stage;
 import repositories.StaffRepository;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class EditStaffController implements Initializable {
