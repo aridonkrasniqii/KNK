@@ -91,9 +91,9 @@ public class ReservationRoomsController implements Initializable {
         String checkOut = null;
         String type = null;
         try {
-             checkIn = checkInDate.getValue().toString();
-             checkOut = checkOutDate.getValue().toString();
-             type = roomTypeSelector.getValue().toString();
+            checkIn = checkInDate.getValue().toString();
+            checkOut = checkOutDate.getValue().toString();
+            type = roomTypeSelector.getValue().toString();
 
 
             Rooms selected = tableView.getSelectionModel().getSelectedItem();
@@ -108,23 +108,23 @@ public class ReservationRoomsController implements Initializable {
                 Parent parent = loader.load();
                 Scene scene = new Scene(parent);
 
+
                 double price = selected.getPrice();
 
                 //FIXME: controll if checkOut is before checkIn
 
                 MakeReservationController controller = loader.getController();
-                controller.setData(checkIn, checkOut, price, selected.getRoom_number());
+                controller.setData(availableRoom.getRoom_number(),checkIn,checkOut,availableRoom.getRoom_type(), availableRoom.getPrice());
 
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                 stage.setScene(scene);
                 return;
             } else {
-           
                 ErrorPopupComponent.show("Room is reserved");
             }
         } catch (Exception ex) {
             if (checkIn == null || checkOut == null || type == null) {
-                ErrorPopupComponent.show("Check In and Check Out must be filled");
+                ErrorPopupComponent.show("Specific fields must be filled ");
             }
         }
 

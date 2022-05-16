@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import components.ErrorPopupComponent;
 import database.DBConnection;
-import helpers.DateHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
+import processor.DateHelper;
 import repositories.UserRepository;
 
 public class GuestController implements Initializable {

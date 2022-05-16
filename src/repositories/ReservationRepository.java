@@ -1,12 +1,10 @@
 package repositories;
 
 import components.ErrorPopupComponent;
-import components.SuccessPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.DateHelper;
 import helpers.Reservation;
-import models.UserRole;
+import processor.DateHelper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,9 +48,9 @@ public class ReservationRepository {
                 .add("id", model.getId(), "i")
                 .add("guest_id", model.getGuest_id(), "i")
                 .add("room_id", model.getRoom_id(), "i")
-                .add("reservation_date", model.getReservation_date(), "s")
-                .add("checkin_date", model.getCheckInDate(), "s")
-                .add("checkout_date", model.getCheckOutDate(), "s")
+                .add("reservation_date", DateHelper.toSql(model.getReservation_date()), "s")
+                .add("checkin_date", DateHelper.toSqlDate(model.getCheckInDate()), "s")
+                .add("checkout_date", DateHelper.toSqlDate(model.getCheckOutDate()), "s")
                 .add("adults", model.getAdults(), "i")
                 .add("children", model.getChildren(), "i")
                 .add("payment_id", model.getPayment_id(), "i");
@@ -61,7 +59,6 @@ public class ReservationRepository {
         Reservation reservation = find(lastInsertedId);
 
         if (reservation != null) {
-            SuccessPopupComponent.show("Successfully created", "Register");
             return reservation;
         }
         ErrorPopupComponent.show("Could not make reservation");

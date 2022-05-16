@@ -7,10 +7,9 @@ import java.util.Date;
 import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import database.UpdateQueryBuilder;
-import helpers.DateHelper;
 import models.User;
 import models.UserRole;
+import processor.DateHelper;
 
 public class UserRepository {
 

@@ -2,8 +2,8 @@ package controllers;
 
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.DateHelper;
 import helpers.Reservation;
+import helpers.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import helpers.SessionManager;
 import models.Payments;
+import processor.DateHelper;
 import repositories.PaymentRepository;
 import repositories.ReservationRepository;
 
@@ -26,7 +26,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MakeReservationController implements Initializable {
-
+    private int roomNumber, guestId, staffId, isBillPayed, adultsNum, childrenNum, paymentId;
+    private String paymentMethod, roomType, checkInDate, checkOutDate;
+    private double totalBill;
 
     @FXML
     private TextField personalNumberField;
@@ -41,58 +43,75 @@ public class MakeReservationController implements Initializable {
     private TextField totalField;
 
     @FXML
-    private ChoiceBox adultsNumber;
+    private ChoiceBox adultsNumberField;
     @FXML
-    private ChoiceBox childrensNumber;
+    private ChoiceBox childrensNumberField;
 
     @FXML
-    private TextField checkInDate;
+    private TextField checkInDateField;
     @FXML
-    private TextField checkOutDate;
+    private TextField checkOutDateField;
 
+
+    private ObservableList<String> numOfAdults = FXCollections.observableArrayList("1", "2", "3");
+    private ObservableList<String> numOfChildrens = FXCollections.observableArrayList("1", "2", "3");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        adultsNumberField.setItems(numOfAdults);
+        childrensNumberField.setItems(numOfChildrens);
     }
 
-    private static int room_number;
+
+    public void setData(int roomNumber, String checkInDate, String checkOutDate, String roomType, double price) {
+        this.roomNumber = roomNumber;
+        this.guestId = SessionManager.user.getId();
+        this.staffId = 1; // default
+        this.totalBill = price; // calculate totalbill
+        this.paymentMethod = "cach"; // cach default
+        this.isBillPayed = 0; // default 0
+        this.roomType = roomType;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+
+
+        checkInDateField.setText(checkInDate);
+        checkOutDateField.setText(checkOutDate);
+        totalField.setText(Double.toString(price));
+
+    }
 
 
     @FXML
     private void onReserveAction(ActionEvent e) throws Exception {
 
-        // TODO: store payment in db
-        int guest_id = SessionManager.user.getId();
-        int staff_id = 1;
-        double total = Double.parseDouble(totalField.getText());
-        String payment_method = "";
-        int is_payed = 0;
-
-        Payments payments = new Payments(0, guest_id, staff_id, total, payment_method, is_payed, null);
+        // first we create the payment object
+        Payments payments = new Payments(0, guestId, staffId, totalBill, paymentMethod, isBillPayed, null);
 
 
+        // than we store payment into database
         Payments createdPayment = PaymentRepository.create(payments);
-        if(createdPayment == null){
-            ErrorPopupComponent.show("Error occured");
+        if (createdPayment != null) {
+            ErrorPopupComponent.show("Payment error occurred");
             return;
         }
 
-
-        int adults = Integer.parseInt(adultsNumber.getValue().toString());
-        int children = Integer.parseInt(childrensNumber.getValue().toString());
-        String checkIn = checkInDate.getText();
-        String checkOut = checkOutDate.getText();
-        int payment_id = createdPayment.getId();
-
-        Reservation reservation = new Reservation(0 , guest_id, room_number ,new Date(), DateHelper.fromSql(checkIn) , DateHelper.fromSql(checkOut), adults, children, payment_id );
-
-        Reservation createdReservation = ReservationRepository.create(reservation);
-
-        if(createdReservation == null) ErrorPopupComponent.show("Error occured 2");
+        this.adultsNum = toInt(adultsNumberField.getValue().toString());
+        this.childrenNum = toInt(childrensNumberField.getValue().toString());
+        this.paymentId = createdPayment.getId();
 
 
-        // load reservation completed
+        Reservation reservation = new Reservation(0, guestId, roomNumber, new Date(),
+                DateHelper.fromSqlDate(checkInDate.toString()), DateHelper.fromSqlDate(checkInDate.toString())
+                , adultsNum, childrenNum, paymentId);
+
+
+        if (ReservationRepository.create(reservation) != null) {
+            ErrorPopupComponent.show("Reservation error occurred");
+            return;
+        }
+
+        // if everything goes well this pop up will be shown
         SuccessPopupComponent.show("Reservation created ", "Created");
 
     }
@@ -109,25 +128,8 @@ public class MakeReservationController implements Initializable {
         stage.setScene(new Scene(parent));
     }
 
-
-    public void setData(String checkIn, String checkOut, double price, int room_number) {
-        ObservableList<String> numOfAdults = FXCollections.observableArrayList("1", "2", "3");
-        ObservableList<String> numOfChildrens = FXCollections.observableArrayList("1", "2", "3");
-        adultsNumber.setItems(numOfAdults);
-        childrensNumber.setItems(numOfChildrens);
-        this.room_number = room_number;
-        if (checkIn == null || checkOut == null) {
-            checkInDate.setEditable(true);
-            checkOutDate.setEditable(true);
-            checkInDate.setDisable(false);
-            checkOutDate.setDisable(false);
-            totalField.setText(Double.toString(price));
-        } else {
-            checkInDate.setText(checkIn);
-            checkOutDate.setText(checkOut);
-            totalField.setText(Double.toString(price));
-
-        }
+    private static int toInt(String num) {
+        return Integer.parseInt(num);
     }
 
 

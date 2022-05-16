@@ -45,6 +45,7 @@ public class MainViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
     }
 
@@ -58,7 +59,11 @@ public class MainViewController implements Initializable {
         mainPane.getChildren().add(parent);
 
     }
+    private void loadAllRooms() throws Exception {
 
+
+
+    }
 
 
     // TODO: about part
@@ -86,10 +91,6 @@ public class MainViewController implements Initializable {
                 loader.setLocation(getClass().getResource(setPath(LOGOUT_VIEW)));
                 parent = loader.load();
                 break;
-            case EVENT_VIEW:
-                loader.setLocation(getClass().getResource(setPath(EVENT_VIEW)));
-                parent = loader.load();
-                break;
             default:
                 parent = null;
         }
@@ -99,16 +100,6 @@ public class MainViewController implements Initializable {
         mainPane.getChildren().add(parent);
     }
 
-<<<<<<< Updated upstream
-=======
-    
-    @FXML
-    private void onEventsAction(ActionEvent e ) throws Exception {
-        setView(EVENT_VIEW);
-
-    }
-    
->>>>>>> Stashed changes
     @FXML
     private void onReservationAction(ActionEvent e) throws Exception {
         setView(RESERVATION_ROOM_VIEW);
