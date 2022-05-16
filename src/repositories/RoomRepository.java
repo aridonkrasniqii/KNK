@@ -73,23 +73,24 @@ public class RoomRepository {
         return fromResultSet(result);
     }
 
-    public static Rooms update(Rooms rooms) throws Exception {
-        UpdateQueryBuilder query = (UpdateQueryBuilder) UpdateQueryBuilder.create("rooms")
-                .add("room_number", rooms.getRoom_number(), "i")
-                .add("floor_number", rooms.getFloor_number(), "i")
-                .add("capacity", rooms.getCapacity(), "i")
-                .add("bed_number", rooms.getBed_number(), "i")
-                .add("room_type", rooms.getRoom_type(), "s")
-                .add("price", (float) rooms.getPrice(), "f");
+    public static Rooms update(Rooms model) throws Exception {
+        String query = "update rooms set floor_number = ? , capacity = ? , bed_number = ?,room_type = ?, price = ?  where room_number = ?";
 
-        connection.execute(query);
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1 , model.getFloor_number());
+        stmt.setInt(2, model.getCapacity());
+        stmt.setInt(3,model.getBed_number());
+        stmt.setString(4, model.getRoom_type());
+        stmt.setDouble(5, model.getPrice());
+        stmt.setInt(6, model.getRoom_number());
 
-        Rooms updatedRoom = find(rooms.getRoom_number());
-        if (updatedRoom != null) {
-            return updatedRoom;
+
+        int affectedRows = stmt.executeUpdate();
+        if(affectedRows != 1) {
+            throw new Exception("ERR_NO_ROW_CHANGE");
         }
-        ErrorPopupComponent.show("Room failed to be updated");
-        return null;
+
+        return find(model.getRoom_number());
     }
 
 
