@@ -30,14 +30,6 @@ public class MakeReservationController implements Initializable {
     private String paymentMethod, roomType, checkInDate, checkOutDate;
     private double totalBill;
 
-    @FXML
-    private TextField personalNumberField;
-
-    @FXML
-    private TextField firstNameField;
-
-    @FXML
-    private TextField lastNameField;
 
     @FXML
     private TextField totalField;

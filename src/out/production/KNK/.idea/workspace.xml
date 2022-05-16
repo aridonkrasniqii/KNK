@@ -2,15 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1bbc802-c959-4995-a623-b262810bc7d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/admin/controllers/GuestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controllers/GuestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/staff/EditStaffController.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controllers/staff/EditStaffController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/MakeReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MakeReservationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ReservationRoomsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ReservationRoomsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/DateHelper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KNK/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/ReservationRoomsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/ReservationRoomsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KNK/repositories/PaymentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/repositories/PaymentRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/repositories/ReservationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/repositories/ReservationRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/KNK/repositories/RoomRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/repositories/RoomRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/PaymentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/RoomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/ServicesTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/ServicesTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/StaffRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/StaffRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
