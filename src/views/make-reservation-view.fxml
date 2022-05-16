@@ -41,13 +41,13 @@
             </Button>
             <Label text="Check In" GridPane.rowIndex="2" />
             <Label text="Check Out" GridPane.rowIndex="3" />
-            <TextField fx:id="checkInDate" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="checkOutDate" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="checkInDateField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="checkOutDateField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="totalField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Number of Adults" />
             <Label text="Numbers of Childrens" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="adultsNumber" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <ChoiceBox fx:id="childrensNumber" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <ChoiceBox fx:id="adultsNumberField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ChoiceBox fx:id="childrensNumberField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <AnchorPane layoutX="519.0" prefHeight="494.0" prefWidth="399.0" styleClass="reservationRightSide" stylesheets="@../style/StyleSheet.css">
