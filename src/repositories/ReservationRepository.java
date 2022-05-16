@@ -1,72 +1,93 @@
 package repositories;
 
-
-//import Connectivity.dbConnection;
+import components.ErrorPopupComponent;
+import components.SuccessPopupComponent;
 import database.DBConnection;
-import helpers.Person;
-import javafx.scene.control.Alert;
-
-import java.sql.Connection;
+import database.InsertQueryBuilder;
+import helpers.Reservation;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.Date;
 
 public class ReservationRepository {
-	DBConnection dbconnection=DBConnection.getConnection();
-	DBConnection connection;
-	public ReservationRepository(){
-		
-	}
-  
-	public Person getGuest(String id) throws Exception{
-//		connection = dbconnection.getConnection();
-		connection = dbconnection;
-        String findGuestQuery="select * from guests where personal_number=? limit 1";
-        PreparedStatement prep=connection.prepareStatement(findGuestQuery);
-        prep.setString(1,id);
-        ResultSet rs=prep.executeQuery();
 
-//        public Person(int id/, String firstName/, String lastName/, String personalNumber/, String phoneNumber, String gender,String birthdate)
-        
-        
-        if(rs.next()){
-        	Person person= new Person(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(6),rs.getString(8),rs.getString(5));
-            return person;
-        }else return null;
+    private static DBConnection connection = DBConnection.getConnection();
+
+
+    public static Reservation find(int id) throws Exception {
+        String query = "select * from reservations where id = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, id);
+
+        ResultSet res = stmt.executeQuery();
+
+        if (res.next()) {
+            return fromResultSet(res);
+        }
+        return null;
     }
-  
-  public int getPaymentId() throws Exception{
-//	  connection=dbconnection.getConnection();
-	  connection = dbconnection;
-      Statement stmt=connection.createStatement();
-      ResultSet rs=stmt.executeQuery("select id from payments order by id desc limit 1");
 
-      rs.next();
-      return rs.getInt(1);
-  }
-  
-  public int createPayment(String guestId,String price) throws Exception{
-      String insertQuery="insert into payments(guest_id,price,payment_method) values(?,?,'cash')";
-      PreparedStatement prep=connection.prepareStatement(insertQuery);
-      prep.setString(1,guestId);//Kqyri edhe niher se jane si ints mundet me dal problem
-      prep.setString(2,price);
-      prep.executeUpdate();
 
-      int paymentId=getPaymentId();
-      return paymentId;
-  }
-  
-  public void createReservation(int guest_id,int room_id,String checkin_date,String checkout_date,int paymentId) throws Exception{
-//      connection=dbconnection.getConnection();
-	  connection = dbconnection;
-      String createReservationQuery="insert into reservations(guest_id,room_id,checkin_date,checkout_date,payment_id) values(?,?,?,?,?)";
-      PreparedStatement prep=connection.prepareStatement(createReservationQuery);
-      prep.setInt(1,guest_id);
-      prep.setInt(2,room_id);
-      prep.setString(3,checkin_date);
-      prep.setString(4,checkout_date);
-      prep.setInt(5,paymentId);
-      prep.executeUpdate();
-  }
+    public static Reservation fromResultSet(ResultSet res) throws Exception {
+        int id = res.getInt("id");
+        int guest_id = res.getInt("guest_id");
+        int room_id = res.getInt("room_id");
+        Date reservation_date = res.getDate("reservation_date");
+        Date checkin_date = res.getDate("checkin_date");
+        Date checkout_date = res.getDate("checkout_date");
+        int adults = res.getInt("adults");
+        int children = res.getInt("children");
+        int payment_id = res.getInt("payment_id");
+
+        return new Reservation(id, guest_id, room_id, reservation_date, checkin_date, checkout_date, adults, children, payment_id);
+    }
+
+    public static Reservation create(Reservation model) throws Exception {
+        InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("reservations")
+                .add("id", model.getId(), "i")
+                .add("guest_id", model.getGuest_id(), "i")
+                .add("room_id", model.getRoom_id(), "i")
+                .add("reservation_date", model.getReservation_date(), "s")
+                .add("checkin_date", model.getCheckInDate(), "s")
+                .add("checkout_date", model.getCheckOutDate(), "s")
+                .add("adults", model.getAdults(), "i")
+                .add("children", model.getChildren(), "i")
+                .add("payment_id", model.getPayment_id(), "i");
+
+        int lastInsertedId = connection.execute(query);
+        Reservation reservation = find(lastInsertedId);
+
+        if (reservation != null) {
+            SuccessPopupComponent.show("Successfully created", "Register");
+            return reservation;
+        }
+        ErrorPopupComponent.show("Could not make reservation");
+        return null;
+    }
+
+
+    public static Reservation update(Reservation model) throws Exception {
+        // TODO:
+
+
+        return null;
+    }
+
+    public static boolean remove(int id) throws  Exception{
+        String query = "delete from reservations where id = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+
+        stmt.setInt(1 , id);
+
+        Reservation reservation = find(id);
+
+        if(reservation == null) {
+            return true;
+        }
+        return false;
+    }
 
 }
+
+
+

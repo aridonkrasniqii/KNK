@@ -2,7 +2,6 @@ package admin.controllers;
 
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -18,7 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.view.PaymentModel;
-import repositories.PaymentsRepository;
+import repositories.PaymentsModelRepository;
 
 public class PaymentsController implements Initializable{
   @FXML
@@ -64,7 +63,7 @@ public class PaymentsController implements Initializable{
   }
 
   public ArrayList<PaymentModel> loadPayments() throws Exception {
-    PaymentsRepository repository = new PaymentsRepository();
+    PaymentsModelRepository repository = new PaymentsModelRepository();
     return repository.findAll();
   }
 
@@ -77,7 +76,7 @@ public class PaymentsController implements Initializable{
       return;
 
     System.out.println("Date : " + date);
-    ArrayList<PaymentModel> payments = PaymentsRepository.filterPayments(date);
+    ArrayList<PaymentModel> payments = PaymentsModelRepository.filterPayments(date);
     paymentsModel = FXCollections.observableArrayList(payments);
     paymentsTableView.setItems(paymentsModel);
     paymentsTableView.refresh();

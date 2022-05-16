@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import admin.controllers.MainController;
 import components.SuccessPopupComponent;
+import helpers.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
@@ -69,12 +70,18 @@ public class LoginController implements Initializable {
 				Scene scene = new Scene(parent);
 				primaryStage.setScene(scene);
 			} else {
-				SuccessPopupComponent.show("Successfully logged in", "logged in");
-				// Parent parent = FXMLLoader.load(getClass().getResource(" MAINNNNN PAGE "));
-				// Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-				// Scene scene = new Scene(parent);
-				// primaryStage.setScene(scene);
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../views/main-view.fxml"));
+				Parent parent = loader.load();
 
+				SessionManager.user = user;
+
+				MainViewController controller = loader.getController();
+				controller.setView(MainViewController.RESERVATION_ROOM_VIEW);
+
+				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				Scene scene = new Scene(parent);
+				primaryStage.setScene(scene);
 			}
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -91,7 +98,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void onRegisterAction(MouseEvent e) throws IOException {
-		Parent parent = FXMLLoader.load(getClass().getResource("../views/register.fxml"));
+		Parent parent = FXMLLoader.load(getClass().getResource("../views/register-view.fxml"));
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);

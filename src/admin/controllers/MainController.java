@@ -150,7 +150,7 @@ public class MainController implements Initializable {
     @FXML
     private void onLogoutNavClick(ActionEvent ev) {
         try {
-            Parent parent = FXMLLoader.load(getClass().getResource("../../views/login.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("../../views/login-view.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) ev.getSource()).getScene().getWindow();
             stage.setScene(scene);

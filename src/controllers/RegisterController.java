@@ -24,8 +24,6 @@ public class RegisterController implements Initializable {
   @FXML
   private TextField passwordField;
 
-  // @FXML
-  // private TextField repeatpasswordField;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +38,6 @@ public class RegisterController implements Initializable {
       String username = usernameField.getText();
       String email = emailField.getText();
       String password = passwordField.getText();
-      // String repeatPassword = repeatpasswordField.getText();
 
       // if (fields are not empty ) call method register
       // register(username, email , password);

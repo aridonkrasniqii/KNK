@@ -23,7 +23,7 @@ public class Rooms {
     this.price = price;
   }
 
-  public static Rooms fromResultSet(ResultSet res) throws SQLException {
+  public static Rooms fromResultSet(ResultSet res) throws Exception {
 
     int room_number = res.getInt("room_number");
     int floor_number = res.getInt("floor_number");
@@ -34,6 +34,7 @@ public class Rooms {
     Rooms rooms = new Rooms(room_number, floor_number, capacity, bed_number, room_type, price);
     return rooms;
   }
+
 
   public Rooms(int room_number, String room_type, double price) {
     this.room_number = room_number;
