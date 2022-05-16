@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1bbc802-c959-4995-a623-b262810bc7d9" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/application/App.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/application/LoginValidate.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/application/RegisterValidate.java" beforeDir="false" />
@@ -11,6 +12,20 @@
       <change beforePath="$PROJECT_DIR$/controllers/LoginRegisterController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/UserRepository.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/MakeReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MakeReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/MainViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/MainViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/database/DBHotel.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/database/DBHotel.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/style/StyleSheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/style/StyleSheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/payments-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/payments-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/reservation-rooms.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/reservation-rooms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/EventsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/EventsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/make-reservation-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/views/make-reservation-view.fxml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
