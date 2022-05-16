@@ -95,6 +95,7 @@ public class MakeReservationController implements Initializable {
             return;
         }
 
+
         this.adultsNum = toInt(adultsNumberField.getValue().toString());
         this.childrenNum = toInt(childrensNumberField.getValue().toString());
         this.paymentId = createdPayment.getId();
