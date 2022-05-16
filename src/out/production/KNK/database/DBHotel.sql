@@ -168,6 +168,19 @@ CREATE TABLE `services` (
   CONSTRAINT `services_chk_1` CHECK ((`quantity` > 0))
 ) ;
 
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL;
+  `organizer` varchar(50) NOT NULL;
+  `category` varchar(50) NOT NULL;
+  `price` double DEFAULT NULL;
+  `start_date` date NOT NULL;
+  `end_date` date NOT NULL;
+
+
+  PRIMARY KEY (`id`);
+) ;
+
 create view paymentmodal(payment_id , firstname, lastname, date, price, ispayed) as
 	select p.id as 'payment_id', r.first_name, r.username ,p.pay_date as 'pay_date' , p.price  ,p.is_payed from registerGuests r
 	inner join payments p on p.guest_id = r.id;
