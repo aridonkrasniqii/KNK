@@ -2,7 +2,11 @@ package repositories;
 
 import database.DBConnection;
 import database.InsertQueryBuilder;
+import helpers.DateHelper;
+import javafx.scene.Parent;
 import models.Payments;
+import models.User;
+import models.UserRole;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,6 +61,28 @@ public class PaymentRepository {
         return null;
     }
 
+
+    public static Payments update(Payments model) throws Exception {
+
+        String query = "update payments set guest_id = ? , staff_id = ?," +
+                "price = ? , payment_method = ?, is_payed = ?, pay_date = ? where id = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1,model.getGuest_id());
+        stmt.setInt(2,model.getStaff_id());
+        stmt.setDouble(3, model.getPrice());
+        stmt.setString(4,model.getPayment_method());
+        stmt.setInt(5,model.getIs_payed());
+        stmt.setString(6, DateHelper.toSql(model.getPay_date()));
+        stmt.setInt(7, model.getId());
+
+        int affectedRows = stmt.executeUpdate();
+        if(affectedRows != 1) {
+            throw new Exception("ERR_NO_ROW_CHANGE");
+        }
+
+        return find(model.getId());
+
+    }
 
 
 
