@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
+<BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
    <top>
       <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,14 +55,14 @@
       </VBox>
    </top>
    <center>
-        <TableView fx:id="tableView" fixedCellSize="0.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
+        <TableView fx:id="tableView" fixedCellSize="0.0" prefHeight="385.0" prefWidth="976.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="capacityCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="87.76873779296875" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Capacity" />
-            <TableColumn fx:id="bedNumberCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="126.66626739501953" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Number of beds " />
-                <TableColumn fx:id="roomTypeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="93.75299072265625" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Type" />
-            <TableColumn fx:id="priceCol" maxWidth="1.7976931348623157E308" prefWidth="58.844970703125" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Price" />
-                <TableColumn fx:id="roomNumberCol" maxWidth="1.7976931348623157E308" prefWidth="114.69775390625" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Number" />
-                <TableColumn fx:id="roomFloorCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="102.729248046875" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Floor" />
+                <TableColumn fx:id="capacityCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="135.64266395568848" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Capacity" />
+            <TableColumn fx:id="bedNumberCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="201.4691619873047" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Number of beds " />
+                <TableColumn fx:id="roomTypeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="174.54013061523438" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Type" />
+            <TableColumn fx:id="priceCol" maxWidth="1.7976931348623157E308" prefWidth="102.7293701171875" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Price" />
+                <TableColumn fx:id="roomNumberCol" maxWidth="1.7976931348623157E308" prefWidth="136.63995361328125" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Number" />
+                <TableColumn fx:id="roomFloorCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.471923828125" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Room Floor" />
             </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -73,14 +73,17 @@
         </TableView>
    </center>
    <right>
-      <VBox alignment="TOP_CENTER" prefHeight="451.0" prefWidth="154.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="makeReservation" mnemonicParsing="false" onAction="#onMakeReservationAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Make Reservation" textFill="#faf9f9">
+            <Button fx:id="makeReservation" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onMakeReservationAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Make Reservation" textFill="#faf9f9">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
             </Button>
-            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" prefHeight="37.0" prefWidth="116.0" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" textFill="#fdf9f9">
+            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" textFill="#fdf9f9">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

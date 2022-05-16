@@ -23,6 +23,7 @@ public class MainViewController implements Initializable {
 
 
     public static final String LOGOUT_VIEW = "login-view";
+    public static final String EVENT_VIEW = "event-view";
     public static final String RESERVATION_ROOM_VIEW = "reservation-rooms";
     public static final String PAYMENT_VIEW = "payments-view";
 
@@ -41,6 +42,9 @@ public class MainViewController implements Initializable {
     private Label loggedInUser;
     @FXML
     private MenuItem logoutButton;
+    @FXML
+    private Button eventBtn;
+    
 
 
     @Override
@@ -100,6 +104,17 @@ public class MainViewController implements Initializable {
         mainPane.getChildren().add(parent);
     }
 
+    
+    @FXML
+    private void onEventsAction(ActionEvent e ) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/event-view.fxml"));
+        Parent parent = loader.load();
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(parent);
+
+    }
+    
     @FXML
     private void onReservationAction(ActionEvent e) throws Exception {
         setView(RESERVATION_ROOM_VIEW);

@@ -191,3 +191,8 @@
 #textTable{
     -fx-text-color:red;
 }
+
+.table-row{
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+}
