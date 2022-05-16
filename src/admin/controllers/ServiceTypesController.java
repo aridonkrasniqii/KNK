@@ -98,9 +98,9 @@ public class ServiceTypesController implements Initializable {
 
     @FXML
     private void onRemoveAction(ActionEvent e) throws Exception {
-        int id = Integer.parseInt(serviceID.getText());
-        ServicesTypeRepository.remove(id);
         Service_Type selected = servicesTableView.getSelectionModel().getSelectedItem();
+        int id = selected.getId();
+        ServicesTypeRepository.remove(id);
         servicesTableView.getItems().remove(selected);
         servicesTableView.refresh();
     }

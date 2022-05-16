@@ -1,10 +1,11 @@
 package repositories;
 
 import components.ErrorPopupComponent;
-import components.SuccessPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import helpers.Reservation;
+import processor.DateHelper;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
@@ -47,9 +48,9 @@ public class ReservationRepository {
                 .add("id", model.getId(), "i")
                 .add("guest_id", model.getGuest_id(), "i")
                 .add("room_id", model.getRoom_id(), "i")
-                .add("reservation_date", model.getReservation_date(), "s")
-                .add("checkin_date", model.getCheckInDate(), "s")
-                .add("checkout_date", model.getCheckOutDate(), "s")
+                .add("reservation_date", DateHelper.toSql(model.getReservation_date()), "s")
+                .add("checkin_date", DateHelper.toSqlDate(model.getCheckInDate()), "s")
+                .add("checkout_date", DateHelper.toSqlDate(model.getCheckOutDate()), "s")
                 .add("adults", model.getAdults(), "i")
                 .add("children", model.getChildren(), "i")
                 .add("payment_id", model.getPayment_id(), "i");
@@ -58,7 +59,6 @@ public class ReservationRepository {
         Reservation reservation = find(lastInsertedId);
 
         if (reservation != null) {
-            SuccessPopupComponent.show("Successfully created", "Register");
             return reservation;
         }
         ErrorPopupComponent.show("Could not make reservation");
@@ -67,10 +67,27 @@ public class ReservationRepository {
 
 
     public static Reservation update(Reservation model) throws Exception {
-        // TODO:
+        String query = "update reservations set guest_id = ?, room_id = ? , reservation_date = ? , checkin_date = ? ," +
+                " checkout_date = ?,adults = ? ,children = ?,payment_id = ? where id = ? ";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1,model.getGuest_id());
+        stmt.setInt(2,model.getRoom_id());
+        stmt.setString(3,DateHelper.toSql(model.getReservation_date()));
+        stmt.setString(4,DateHelper.toSql(model.getCheckInDate()));
+        stmt.setString(5,DateHelper.toSql(model.getCheckOutDate()));
+        stmt.setInt(6,model.getAdults());
+        stmt.setInt(7,model.getChildren());
+        stmt.setInt(8,model.getPayment_id());
+        stmt.setInt(9,model.getId());
 
 
-        return null;
+        int affectedRows = stmt.executeUpdate();
+        if(affectedRows != 1) {
+            throw new Exception("ERR_NO_ROW_CHANGE");
+        }
+
+        return find(model.getId());
     }
 
     public static boolean remove(int id) throws  Exception{

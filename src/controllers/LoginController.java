@@ -1,10 +1,13 @@
 package controllers;
 
+import java.awt.print.PrinterAbortException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import admin.controllers.MainController;
+import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
 import helpers.SessionManager;
 import javafx.event.ActionEvent;
@@ -21,8 +24,9 @@ import javafx.stage.*;
 import models.User;
 import models.UserRole;
 import processor.LoginProcessor;
+import processor.LoginValidate;
 
-public class LoginController implements Initializable {
+public class LoginController {
 
 	@FXML
 	private AnchorPane parent;
@@ -36,10 +40,10 @@ public class LoginController implements Initializable {
 	@FXML
 	private TextField passwordField;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
 
-	}
+
+	private static final String ADMIN_SCREEN = "admin-screen";
+	private static final String GUEST_SCREEN = "main-view";
 
 	@FXML
 	private void onLoginAction(ActionEvent e) {
@@ -49,39 +53,21 @@ public class LoginController implements Initializable {
 			String email = emailField.getText();
 			String password = passwordField.getText();
 
+			boolean emptyFields = LoginValidate.validate(email,password);
+			if(emptyFields) ErrorPopupComponent.show("Empty fields");
+
 			user = login(email, password);
 
 			if (user == null)
-				throw new Exception();
-
-			// TODO:
-			// store user name and user last login and show these details to main page
-			// when user is logged in
+			{
+				ErrorPopupComponent.show("Wrong username or password");
+				return;
+			}
 
 			if (user.getRole() == UserRole.Admin) {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../admin/views/admin-screen.fxml"));
-				Parent parent = loader.load();
-
-				MainController controller = loader.getController();
-				controller.setView(MainController.GUESTS_DASHBOARD);
-
-				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-				Scene scene = new Scene(parent);
-				primaryStage.setScene(scene);
-			} else {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../views/main-view.fxml"));
-				Parent parent = loader.load();
-
-				SessionManager.user = user;
-
-				MainViewController controller = loader.getController();
-				controller.setView(MainViewController.RESERVATION_ROOM_VIEW);
-
-				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-				Scene scene = new Scene(parent);
-				primaryStage.setScene(scene);
+				loadPage(e,user,ADMIN_SCREEN);
+			} else if(user.getRole() == UserRole.Guest){
+				loadPage(e,user,GUEST_SCREEN);
 			}
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -89,11 +75,43 @@ public class LoginController implements Initializable {
 
 	}
 
+
+	public void loadPage(ActionEvent e, User user, String view) throws Exception{
+
+		FXMLLoader loader = new FXMLLoader();
+		Parent parent;
+		switch (view) {
+			case ADMIN_SCREEN :
+				loader.setLocation(getClass().getResource("../admin/views/admin-screen.fxml"));
+				parent = loader.load();
+				SessionManager.user = user;
+				SessionManager.lastLogin = new Date();
+				MainController adminController = loader.getController();
+				adminController.setView(MainController.GUESTS_DASHBOARD);
+				Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				primaryStage.setScene(new Scene(parent));
+				break;
+			case GUEST_SCREEN:
+				loader.setLocation(getClass().getResource("../views/main-view.fxml"));
+				parent = loader.load();
+				SessionManager.user = user;
+				SessionManager.lastLogin = new Date();
+				MainViewController guestController = loader.getController();
+				guestController.setView(MainViewController.RESERVATION_ROOM_VIEW);
+				Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				stage.setScene(new Scene(parent));
+				break;
+			default:
+				ErrorPopupComponent.show("Error occurred");
+
+		}
+
+	}
+
+
 	private User login(String email, String password) throws Exception {
 		LoginProcessor loginProcessor = new LoginProcessor();
-		User user = loginProcessor.login(email ,password);
-
-		return user;
+		return  loginProcessor.login(email ,password);
 	}
 
 	@FXML

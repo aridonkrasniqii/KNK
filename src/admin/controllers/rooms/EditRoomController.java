@@ -1,8 +1,12 @@
 package admin.controllers.rooms;
 
 import admin.controllers.MainController;
+import components.ErrorPopupComponent;
+import components.SuccessPopupComponent;
 import database.UpdateQueryBuilder;
 import helpers.Rooms;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,15 +35,13 @@ public class EditRoomController implements Initializable {
     @FXML
     private TextField price;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTypes();
     }
     private void loadTypes() {
-        roomType.getItems().add("First Class");
-        roomType.getItems().add("Second Class");
-        roomType.getItems().add("Third Class");
+        ObservableList roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
+        roomType.setItems(roomTypeSelectorList);
         roomType.setValue("None");
     }
 
@@ -53,7 +55,11 @@ public class EditRoomController implements Initializable {
         double prc = Double.parseDouble(price.getText());
         Rooms room = new Rooms(roomNum, floorNum, roomCpc, bedNum, roomTp, prc);
 
-        RoomRepository.update(room);
+        if(RoomRepository.update(room) != null) {
+            SuccessPopupComponent.show("Successfully edited " , "Edited");
+        }else {
+            ErrorPopupComponent.show("Failed to edit");
+        }
 
     }
 

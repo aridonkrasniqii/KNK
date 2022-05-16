@@ -4,18 +4,19 @@ import javafx.application.*;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
 import javafx.scene.*;
-import java.io.IOException;
+import repositories.RoomRepository;
 
 public class App extends Application {
 
   @Override
-  public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
+  public void start(Stage primaryStage) throws Exception {
 
     Parent root = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
 
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
+
   }
 
   public static void main(String[] args) {

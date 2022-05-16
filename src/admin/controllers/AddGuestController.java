@@ -1,4 +1,4 @@
-package controllers;
+package admin.controllers;
 
 import java.net.URL;
 import java.util.Date;
@@ -9,14 +9,19 @@ import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
 import repositories.UserRepository;
 
-public class RegisterController implements Initializable {
+public class AddGuestController {
 
     @FXML
     private TextField nameField;
@@ -28,13 +33,8 @@ public class RegisterController implements Initializable {
     private TextField passwordField;
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
     @FXML
-    private void onRegisterAction(ActionEvent event) {
+    private void onCreateAction(ActionEvent event) {
 
         try {
             String name = nameField.getText();
@@ -45,9 +45,10 @@ public class RegisterController implements Initializable {
 
             // check for empty fields
 
-            boolean emptyFields = RegisterValidate.validate(name,username,email,password);
-            if(emptyFields) return;
-
+            boolean fields = RegisterValidate.validate(name, username, email, password);
+            if (!fields) {
+                throw new Exception();
+            }
 
 
             boolean userExists = UserRepository.find(email, username);
@@ -60,12 +61,11 @@ public class RegisterController implements Initializable {
             User registeredUser = register(name, username, email, password);
 
             if (registeredUser != null) {
-              SuccessPopupComponent.show("Successfully registered", "");
-              return;
-            }
-            else{
-              ErrorPopupComponent.show("User was not registered");
-              return;
+                SuccessPopupComponent.show("Successfully registered", "");
+                return;
+            } else {
+                ErrorPopupComponent.show("User was not registered");
+                return;
             }
 
 
@@ -74,6 +74,14 @@ public class RegisterController implements Initializable {
             ErrorPopupComponent.show(ex);
         }
 
+    }
+
+
+    @FXML
+    private void onCancleAction(ActionEvent e) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource("../views/admin-screen.fxml"));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(parent));
     }
 
     private User register(String name, String username, String email, String password) throws Exception {
@@ -92,7 +100,6 @@ public class RegisterController implements Initializable {
         user = UserRepository.create(user);
         return user;
     }
-
 
 
 }

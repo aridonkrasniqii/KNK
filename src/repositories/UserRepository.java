@@ -5,13 +5,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import components.ErrorPopupComponent;
-import components.SuccessPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import database.UpdateQueryBuilder;
-import helpers.DateHelper;
 import models.User;
 import models.UserRole;
+import processor.DateHelper;
 
 public class UserRepository {
 
@@ -69,30 +67,44 @@ public class UserRepository {
     return fromResultSet(res);
   }
 
-  public static User update(User model) throws Exception {
-    UpdateQueryBuilder query = (UpdateQueryBuilder) UpdateQueryBuilder.create("users")
-        .add("id", 0, "i")
-        .add("name", model.getName(), "s")
-        .add("username", model.getUsername(), "s")
-        .add("email", model.getEmail(), "s")
-        .add("password", model.getSalt(), "s")
-        .add("salt", model.getSalt(), "s")
-        .add("role", model.getRole() == UserRole.Guest ? "G" : "A", "s")
-        .add("isActive", model.getIsActive() ? 1 : 0, "i")
-        .add("createdAt", DateHelper.toSql(model.getCreatedAt()), "s")
-        .add("updatedAt", DateHelper.toSql(model.getUpdatedAt()), "s");
+  public static boolean find(String email ,String username) throws Exception {
 
-    connection.execute(query);
+    PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE email = ? OR username = ?");
 
-    User updateGuest = find(model.getId());
-
-    if (updateGuest != null) {
-      return updateGuest;
+    stmt.setString(1, email);
+    stmt.setString(2, username);
+    ResultSet res = stmt.executeQuery();
+    if (res.next()) {
+      return true;
     }
-    ErrorPopupComponent.show("Guest failed to update!");
-    return null;
+    return false;
   }
 
+
+  public static User update(User model) throws Exception {
+
+    String query = "update users set name = ? , username = ? , email = ?, password = ? , salt = ? " +
+            ", role = ? , isActive = ? ,createdAt = ? , updatedAt = ? where id = ?";
+    PreparedStatement stmt = connection.prepareStatement(query);
+    stmt.setString(1,model.getName());
+    stmt.setString(2,model.getUsername());
+    stmt.setString(3, model.getEmail());
+    stmt.setString(4,model.getPassword());
+    stmt.setString(5,model.getSalt());
+    stmt.setString(6, model.getRole() == UserRole.Admin ? "A" : "G");
+    stmt.setInt(7,model.getIsActive() ? 1 : 0);
+    stmt.setString(8 , DateHelper.toSql(model.getCreatedAt()));
+    stmt.setString(9, DateHelper.toSql(model.getUpdatedAt()));
+    stmt.setInt(10, model.getId());
+
+    int affectedRows = stmt.executeUpdate();
+    if(affectedRows != 1) {
+      throw new Exception("ERR_NO_ROW_CHANGE");
+    }
+
+    return find(model.getId());
+
+  }
   public static User create(User model) throws Exception {
     InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("users")
         .add("id", 0, "i")
@@ -110,7 +122,6 @@ public class UserRepository {
     User user = find(lastInsertedId);
 
     if (user != null) {
-      SuccessPopupComponent.show("Successfully Created", "Register");
       return user;
     }
 

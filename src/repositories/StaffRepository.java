@@ -1,17 +1,11 @@
 package repositories;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import database.UpdateQueryBuilder;
 import helpers.Staff;
 
 public class StaffRepository {
@@ -46,7 +40,7 @@ public class StaffRepository {
         String birthdate = res.getString("birthdate");
         String phone_number = res.getString("phone_number");
         double salary = res.getDouble("salary");
-        String password = res.getString("passwordd");
+        String password = res.getString("password");
         String gender = res.getString("gender");
 
         Staff staff = new Staff(id, first_name, last_name, personalNumber, phone_number, gender, birthdate, position,
@@ -88,7 +82,7 @@ public class StaffRepository {
                 .add("birthdate", model.getBirthdate(), "s")
                 .add("phone_number", model.getPhone_number(), "s")
                 .add("salary", (float) model.getSalary(), "f")
-                .add("passwordd", model.getPassword(), "s")
+                .add("password", model.getPassword(), "s")
                 .add("gender", model.getGender(), "s");
 
 
@@ -99,32 +93,32 @@ public class StaffRepository {
         if (newStaff != null) {
             return newStaff;
         }
-        ErrorPopupComponent.show("Could not created a staff");
         return null;
     }
 
 
     public static Staff update(Staff model) throws Exception {
-        UpdateQueryBuilder query = (UpdateQueryBuilder) UpdateQueryBuilder.create("staff")
-                .add("id", model.getId(), "i")
-                .add("first_name", model.getFirst_name(), "s")
-                .add("last_name", model.getLast_name(), "s")
-                .add("personal_number", model.getPersonal_number(), "s")
-                .add("position", model.getPosition(), "s")
-                .add("birthdate", model.getBirthdate(), "s")
-                .add("phone_number", model.getPhone_number(), "s")
-                .add("salary", (float) model.getSalary(), "f")
-                .add("passwordd", model.getPassword(), "s")
-                .add("gender", model.getGender(), "s");
+        String query =  "update staff set first_name = ? , last_name = ? ,personal_number = ?, " +
+                "position = ? ,birthdate = ? , phone_number = ? , salary = ? , password = ? , " +
+                "gender = ?  where id = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setString(1, model.getFirst_name());
+        stmt.setString(2 , model.getLast_name());
+        stmt.setString(3, model.getPersonal_number());
+        stmt.setString(4, model.getPosition());
+        stmt.setString(5 , model.getBirthdate());
+        stmt.setString(6 , model.getPhone_number());
+        stmt.setDouble( 7 , model.getSalary());
+        stmt.setString( 8 , model.getPassword());
+        stmt.setString(9 , model.getGender());
+        stmt.setInt(10 , model.getId());
 
-        connection.execute(query);
-
-        Staff updatedStaff = find(model.getId());
-        if (updatedStaff != null) {
-            return updatedStaff;
+        int affectedRows = stmt.executeUpdate();
+        if(affectedRows != 1 ) {
+            throw new Exception("ERR_NO_ROW_CHANGE");
         }
-        ErrorPopupComponent.show("Could not updated staff");
-        return null;
+
+        return find(model.getId());
     }
 
 

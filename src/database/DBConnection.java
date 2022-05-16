@@ -13,7 +13,7 @@ public class DBConnection {
   private static String SERVER = "localhost:3306";
   private static String DATABASE = "DBHotel";
   private static String USERNAME = "aridon";
-  private static String PASSWORD = "Aridon123!";
+  private static String PASSWORD = "aridon123";
   private Connection connection;
 
   public static DBConnection getConnection() {

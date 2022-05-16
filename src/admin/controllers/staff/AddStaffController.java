@@ -2,6 +2,7 @@ package admin.controllers.staff;
 
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
+import processor.SecurityHelper;
 import components.SuccessPopupComponent;
 import helpers.Staff;
 import javafx.event.ActionEvent;
@@ -72,8 +73,9 @@ public class AddStaffController implements Initializable {
             String genderStr = gender.getText();
             String pos = position.getValue().toString();
             double salary = Double.parseDouble(salaryField.getText());
-            String password = passwordField.getText();
-            Staff staff = new Staff(0, fname, lname, prsNumber, phoneNum, genderStr, birthday, pos, salary, password);
+            String salt = SecurityHelper.generateSalt();
+            String hashedPassword = SecurityHelper.computeHash(passwordField.getText(), salt);
+            Staff staff = new Staff(0, fname, lname, prsNumber, phoneNum, genderStr, birthday, pos, salary, hashedPassword);
             if (staff != null) {
                 StaffRepository.create(staff);
                 SuccessPopupComponent.show("SuccessFully created staff", "Created");
