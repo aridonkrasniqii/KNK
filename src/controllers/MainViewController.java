@@ -26,6 +26,7 @@ public class MainViewController implements Initializable {
     public static final String RESERVATION_ROOM_VIEW = "reservation-rooms";
     public static final String PAYMENT_VIEW = "payments-view";
 
+    public static final String EVENTS_VIEW = "event-view";
 
     @FXML
     private Button mainBtn;
@@ -57,7 +58,6 @@ public class MainViewController implements Initializable {
         Parent parent = loader.load();
         mainPane.getChildren().clear();
         mainPane.getChildren().add(parent);
-
     }
     private void loadAllRooms() throws Exception {
 
@@ -91,6 +91,10 @@ public class MainViewController implements Initializable {
                 loader.setLocation(getClass().getResource(setPath(LOGOUT_VIEW)));
                 parent = loader.load();
                 break;
+            case EVENTS_VIEW:
+                loader.setLocation(getClass().getResource(setPath(EVENTS_VIEW)));
+                parent = loader.load();
+                break;
             default:
                 parent = null;
         }
@@ -108,6 +112,11 @@ public class MainViewController implements Initializable {
     @FXML
     private void onPaymentsAction(ActionEvent e) throws Exception {
         setView(PAYMENT_VIEW);
+    }
+
+    @FXML
+    private void onEventsAction(ActionEvent  e ) throws  Exception{
+        setView(EVENTS_VIEW);
     }
 
     @FXML
@@ -129,6 +138,8 @@ public class MainViewController implements Initializable {
     private void onMenuAboutAction(ActionEvent e) throws Exception {
         System.out.println("on menu about");
     }
+
+
 
     private void changeStage(String path, ActionEvent e) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource(setPath(path)));
