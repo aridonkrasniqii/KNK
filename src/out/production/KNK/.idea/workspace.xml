@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83a6a672-05bc-4bf1-85ed-9d7524f08789" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_27.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a1bbc802-c959-4995-a623-b262810bc7d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/EventsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/EventsRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
