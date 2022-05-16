@@ -26,38 +26,38 @@
                   <Insets left="25.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <Button fx:id="eventBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEventsAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Events" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
                <Button fx:id="reservationsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservationAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Reservations" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
                <Button fx:id="paymentsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaymentsAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Payments" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
+            <Button fx:id="eventBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEventsAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Events" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
                <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Log out" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
             <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-text-fill: #a38995;" text="Overview" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="50.0" top="10.0" />
                </VBox.margin></Button>
          </children>
       </VBox>
