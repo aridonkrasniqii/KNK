@@ -26,6 +26,8 @@ public class ErrorPopupComponent {
     label.setWrapText(true);
     label.setMaxWidth(400);
     StackPane pane = new StackPane(label);
+    pane.setMinWidth(250);
+    pane.setMinHeight(90);
     alert.getDialogPane().setContent(pane);
     alert.showAndWait();
   }

@@ -63,6 +63,8 @@ CREATE TABLE `guests` (
   PRIMARY KEY (`id`)
 ) ;
 
+
+drop table if exists `staff`
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(20) NOT NULL,
@@ -72,11 +74,16 @@ CREATE TABLE `staff` (
   `birthdate` date NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `salary` double DEFAULT NULL,
-  `password` varchar(200) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `salt` varchar(200) default null,
   `gender` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `staff_chk_1` CHECK ((`salary` > 169))
 ) ;
+
+
+
+
 
 drop table if exists payments;
 CREATE TABLE `payments` (

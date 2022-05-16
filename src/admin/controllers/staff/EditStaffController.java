@@ -1,6 +1,9 @@
 package admin.controllers.staff;
 
 import admin.controllers.MainController;
+import components.ErrorPopupComponent;
+import components.SuccessPopupComponent;
+import helpers.DateHelper;
 import helpers.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,11 +17,14 @@ import javafx.stage.Stage;
 import repositories.StaffRepository;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class EditStaffController implements Initializable {
 
 
+    private int id;
     @FXML
     private TextField fnameField;
     @FXML
@@ -50,7 +56,8 @@ public class EditStaffController implements Initializable {
     }
 
 
-    public void setData(Staff staff) {
+    public void setData(Staff staff) throws Exception {
+        id = staff.getId();
         fnameField.setText(staff.getFirst_name());
         lnameField.setText(staff.getLast_name());
         personalNumberField.setText(staff.getPersonal_number());
@@ -84,14 +91,21 @@ public class EditStaffController implements Initializable {
         String lname = lnameField.getText();
         String prsNumber = personalNumberField.getText();
         String phoneNum = phoneNumberField.getText();
+        if(birthdayField.getValue().toString() == null) {
+            ErrorPopupComponent.show("Must fill date");
+            return;
+        }
         String birthday = birthdayField.getValue().toString();
-        String gender = toggle.getSelectedToggle().toString();
-        String pos = position.getItems().toString();
+        RadioButton gen = (RadioButton ) toggle.getSelectedToggle();
+        String gender = gen.getText();
+        String pos = position.getValue().toString();
         double salary = Double.parseDouble(salaryField.getText());
         String password = passwordField.getText();
-        Staff staff = new Staff(0 , fname, lname, prsNumber , phoneNum , birthday ,gender, pos , salary , password);
+        Staff staff = new Staff(id,fname,lname,prsNumber,phoneNum,gender,birthday,pos,salary,password);
 
-        StaffRepository.update(staff);
+        if(StaffRepository.update(staff) != null){
+            SuccessPopupComponent.show("Successfully created" , "Created");
+        }
     }
 
 

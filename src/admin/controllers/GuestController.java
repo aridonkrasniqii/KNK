@@ -11,12 +11,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import repositories.UserRepository;
@@ -112,6 +117,7 @@ public class GuestController implements Initializable {
     emailField.clear();
     passwordField.clear();
     saltField.clear();
+    roleField.clear();
     isActiveField.clear();
     createdAtField.clear();
     updatedAtField.clear();
@@ -120,41 +126,32 @@ public class GuestController implements Initializable {
 
   @FXML
   public void onCreateAction(ActionEvent e) throws Exception {
-
-    User user = new User(Integer.parseInt(idField.getText()), nameColumn.getText(),
-        emailColumn.getText(), usernameColumn.getText(),
-        passwordColumn.getText(), saltColumn.getText(),
-        roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin,
-        Boolean.parseBoolean(isActiveColumn.getText()),
-        DateHelper.fromSql(createdAtColumn.getText()),
-        DateHelper.fromSql(updatedAtColumn.getText()));
-
-    UserRepository.create(user);
-    tableView.getItems().add(user);
-    tableView.refresh();
-    tableView.getSelectionModel().clearSelection();
+    Parent parent = FXMLLoader.load(getClass().getResource("../views/add-guest.fxml"));
+    Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    stage.setScene(new Scene(parent));
   }
 
   @FXML
   private void onUpdateAction(ActionEvent e) throws Exception {
 
-    User user = new User(Integer.parseInt(idField.getText()), nameColumn.getText(),
-        emailColumn.getText(), usernameColumn.getText(),
-        passwordColumn.getText(), saltColumn.getText(),
-        roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin,
-        Boolean.parseBoolean(isActiveColumn.getText()),
-        DateHelper.fromSql(createdAtColumn.getText()),
-        DateHelper.fromSql(updatedAtColumn.getText()));
+    User user = new User(Integer.parseInt(idField.getText()), nameField.getText(),
+        emailField.getText(), usernameField.getText(),
+        passwordField.getText(), saltField.getText(),
+        roleField.getText() == "G" ? UserRole.Guest : UserRole.Admin,
+        Boolean.parseBoolean(isActiveField.getText()),
+        DateHelper.fromSql(createdAtField.getText()),
+        DateHelper.fromSql(updatedAtField.getText()));
 
     UserRepository.update(user);
+
     User selected = tableView.getSelectionModel().getSelectedItem();
     selected.setName(nameField.getText());
     selected.setUsername(usernameField.getText());
     selected.setEmail(emailField.getText());
     selected.setPassword(passwordField.getText());
     selected.setSalt(saltField.getText());
-    selected.setRole(roleColumn.getText() == "G" ? UserRole.Guest : UserRole.Admin);
-    selected.setIsActive(Integer.parseInt(isActiveField.getText()) == 1 ? true : false);
+    selected.setRole(roleField.getText() == "G" ? UserRole.Guest : UserRole.Admin);
+    selected.setIsActive(isActiveField.getText()== "true" ? true : false);
     selected.setCreatedAt(DateHelper.fromSql(createdAtField.getText()));
     selected.setUpdatedAt(DateHelper.fromSql(updatedAtField.getText()));
     tableView.refresh();
