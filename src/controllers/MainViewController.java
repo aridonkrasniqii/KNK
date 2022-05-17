@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import helpers.SessionManager;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,11 @@ public class MainViewController implements Initializable {
     public static final String PAYMENT_VIEW = "payments-view";
 
     public static final String EVENTS_VIEW = "event-view";
+    public static final String REGISTER_GUEST = "register-guest-view";
+
+
+    @FXML
+    private Label loggedInUser;
 
     @FXML
     private Button mainBtn;
@@ -38,8 +44,6 @@ public class MainViewController implements Initializable {
     private Button logOutBtn;
     @FXML
     private Pane mainPane;
-    @FXML
-    private Label loggedInUser;
     @FXML
     private MenuItem logoutButton;
 
@@ -59,18 +63,6 @@ public class MainViewController implements Initializable {
         mainPane.getChildren().clear();
         mainPane.getChildren().add(parent);
     }
-    private void loadAllRooms() throws Exception {
-
-
-
-    }
-
-
-    // TODO: about part
-    // TODO: Insert Guest
-
-
-
 
 
     public void setView(String view) throws Exception {
@@ -126,17 +118,27 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void onMenuLogoutAction(ActionEvent e) throws Exception {
-        changeStage(LOGOUT_VIEW, e);
+        Parent parent = FXMLLoader.load(getClass().getResource(setPath(LOGOUT_VIEW)));
+        Stage stage = (Stage) loggedInUser.getScene().getWindow();
+        stage.setScene(new Scene(parent));
     }
 
     @FXML
     private void onMenuInsertAction(ActionEvent e) throws Exception {
-        System.out.println("On menu insert");
+        Parent parent = FXMLLoader.load(getClass().getResource(setPath(REGISTER_GUEST)));
+        Stage stage = new Stage();
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
     }
 
     @FXML
     private void onMenuAboutAction(ActionEvent e) throws Exception {
-        System.out.println("on menu about");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../views/about-view.fxml"))));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
     }
 
 

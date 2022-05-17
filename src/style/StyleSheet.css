@@ -188,6 +188,7 @@
     -fx-text-color:#f3f0e9;
 }
 
-#textTable{
-    -fx-text-color:red;
+.table-row{
+    -fx-alignment: center;
+    -fx-background-color: transparent;
 }

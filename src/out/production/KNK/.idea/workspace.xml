@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83a6a672-05bc-4bf1-85ed-9d7524f08789" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_27.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1be9b46d-c09e-4d55-8770-b35de16a14da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/HomeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/LanguageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/MainViewController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/PaymentsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bin/controllers/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_27.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/admin-screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/admin-screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ReservationRoomsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ReservationRoomsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/RoomDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/RoomDetailsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/database/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/DBHotel.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/DBHotel.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Events.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/Events.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/.idea/libraries/mysql_connector_java_8_0_27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/.idea/libraries/mysql_connector_java_8_0_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/admin/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/admin/controllers/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/admin/views/admin-screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/admin/views/admin-screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/application/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/application/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/EventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/MainViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/MainViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/MakeReservationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/ReservationRoomsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/ReservationRoomsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/controllers/RoomDetailsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/controllers/RoomDetailsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/database/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/database/DBConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/database/DBHotel.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/database/DBHotel.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/models/Events.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/models/Events.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/style/StyleSheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/style/StyleSheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/make-reservation-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/make-reservation-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/payments-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/payments-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/reservation-rooms.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/reservation-rooms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KNK/views/room-details.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KNK/views/room-details.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/StyleSheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/StyleSheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/views/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/payments-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/views/payments-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/reservation-rooms.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/views/reservation-rooms.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/room-details.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/views/room-details.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +55,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="29GJFl02XoalqJ7sLKNAPmMEil4" />
+  <component name="ProjectId" id="29J4ZAAz5Bi0cSWqvaJkYN23PiB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,18 +64,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/lorikmustafa/Documents/GitHub/KNKMASTER/src",
+    "last_opened_file_path": "/Users/lorikmustafa/Documents/GitHub/KNK-123/src",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="application.App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.App" />
       <module name="KNK" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Desktop/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="application.*" />
@@ -51,18 +86,18 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.application.App" />
+        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="83a6a672-05bc-4bf1-85ed-9d7524f08789" name="Changes" comment="" />
-      <created>1652733387987</created>
+      <changelist id="1be9b46d-c09e-4d55-8770-b35de16a14da" name="Changes" comment="" />
+      <created>1652817907815</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1652733387987</updated>
+      <updated>1652817907815</updated>
     </task>
     <servers />
   </component>

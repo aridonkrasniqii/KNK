@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
+<BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
     <top>
         <VBox prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
@@ -83,6 +83,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
                     </VBox.margin>
                 </Button>
+            <Button mnemonicParsing="false" onAction="#onRoomDetailsAction" text="Room Details" />
                 <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" textFill="#fdf9f9">
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

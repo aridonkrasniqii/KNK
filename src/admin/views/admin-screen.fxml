@@ -43,19 +43,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="Exit" />
-                    <MenuItem mnemonicParsing="false" text="Logout" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMenuExitAction" text="Exit" />
+                    <MenuItem mnemonicParsing="false" onAction="#onMenuLogoutAction" text="Logout" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Insert">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="User" />
-                    <MenuItem mnemonicParsing="false" text="Product" />
+                        <MenuItem mnemonicParsing="false" onAction="#onInsertUserMenuAction" text="User" />
+                    <MenuItem mnemonicParsing="false" onAction="#onInsertRoomMenuAction" text="Room" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#onAboutMenuAction" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -107,7 +107,7 @@
          <children>
             <HBox>
                <children>
-                  <Label text="Blla blla" />
+                  <Label fx:id="sessionLabel" text="Blla blla" />
                </children>
             </HBox>
          </children>

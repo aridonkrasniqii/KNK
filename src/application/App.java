@@ -4,7 +4,6 @@ import javafx.application.*;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.*;
 import javafx.scene.*;
-import repositories.RoomRepository;
 
 public class App extends Application {
 

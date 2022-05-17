@@ -1,12 +1,15 @@
 package admin.controllers;
 
 
+import controllers.AreYouSureController;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -25,6 +28,8 @@ public class MainController implements Initializable {
 
     private static final String VIEW_PATH = "../views";
 
+    @FXML
+    private Label sessionLabel;
     @FXML
     private VBox contentPane;
 
@@ -158,4 +163,51 @@ public class MainController implements Initializable {
             System.out.println(ex);
         }
     }
+
+
+    @FXML
+    private void onMenuExitAction(ActionEvent e) throws  Exception{
+        Stage stage = (Stage) sessionLabel.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    private void onMenuLogoutAction(ActionEvent e) throws  Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../../views/are-you-sure.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void onInsertUserMenuAction(ActionEvent e) throws  Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/add-guest.fxml"));
+        Parent parent = loader.load();
+        AreYouSureController controller = loader.getController();
+        Stage stage = (Stage) sessionLabel.getScene().getWindow();
+        controller.setStage(stage);
+        stage.setScene(new Scene(parent));
+        stage.show();
+    }
+
+    @FXML
+    private void onInsertRoomMenuAction(ActionEvent e) throws  Exception{
+        Parent parent = FXMLLoader.load(getClass().getResource("../views/roomviews/add-new-room.fxml"));
+        Stage stage = (Stage) sessionLabel.getScene().getWindow();
+        stage.setScene(new Scene(parent));
+    }
+
+    @FXML
+    private void onAboutMenuAction(ActionEvent e) throws  Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource("../../views/about-view.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+
 }

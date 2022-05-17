@@ -56,5 +56,6 @@
             </font>
         </Label>
         <Button fx:id="bookButton" layoutX="344.0" layoutY="349.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBookAction" prefHeight="50.0" prefWidth="195.0" text="BOOK NOW" />
+      <Label fx:id="roomType" layoutX="434.0" layoutY="283.0" text="roomType" />
     </children>
 </AnchorPane>

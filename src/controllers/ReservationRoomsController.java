@@ -150,7 +150,7 @@ public class ReservationRoomsController implements Initializable {
         loader.setLocation(getClass().getResource("../views/room-details.fxml"));
         Parent parent = loader.load();
         RoomDetailsController controller = loader.getController();
-        controller.setDate(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(), selected.getPrice(), 1);
+        controller.setDate(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(), selected.getRoom_type(),selected.getPrice(), selected.getRoom_number());
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

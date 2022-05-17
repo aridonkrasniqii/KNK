@@ -5,22 +5,22 @@ import java.util.Date;
 
 public class Events {
     private int id;
-    private String emri;
+    private String title;
     private String organizer;
     private String category;
-    private String location;
+    private double price;
     private Date start_date;
     private Date end_date;
 
 
-    public Events(int id, String emri, String organizer, String category, String location, Date start_date,
+    public Events(int id, String title, String organizer, String category, double price, Date start_date,
                   Date end_date) {
         super();
         this.id = id;
-        this.emri = emri;
+        this.title = title;
         this.organizer = organizer;
         this.category = category;
-        this.location = location;
+        this.price = price;
         this.start_date = start_date;
         this.end_date = end_date;
     }
@@ -30,15 +30,13 @@ public class Events {
         return id;
     }
 
-    public String getEmri() {
-        return emri;
+    public String getTitle() {
+        return title;
     }
 
-
-    public void setEmri(String emri) {
-        this.emri = emri;
+    public void setTitle(String title) {
+        this.title = title;
     }
-
 
     public String getOrganizer() {
         return organizer;
@@ -60,15 +58,13 @@ public class Events {
     }
 
 
-    public String getLocation() {
-        return location;
+    public double getPrice() {
+        return price;
     }
 
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPrice(double price) {
+        this.price = price;
     }
-
 
     public Date getStart_date() {
         return start_date;
