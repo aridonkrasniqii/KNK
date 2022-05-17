@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -9,8 +10,14 @@ import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
@@ -93,6 +100,16 @@ public class RegisterController implements Initializable {
         return user;
     }
 
+    @FXML
+    private void onBackToLoginAction(MouseEvent e) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+
+    }
 
 
 }
+
+
