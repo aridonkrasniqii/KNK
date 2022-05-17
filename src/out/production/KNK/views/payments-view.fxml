@@ -9,33 +9,33 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="anchor" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
+<AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
     <children>
-        <BorderPane>
+        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1200.0">
             <top>
-                <AnchorPane prefHeight="50.0" prefWidth="942.0" BorderPane.alignment="CENTER">
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
                     <children>
                         <DatePicker fx:id="dateFilter" layoutX="56.0" layoutY="34.0" style="-fx-background-color: #343742;" />
-                  <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-                     <children>
-                        <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" text="Search" />
-                        <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
+                        <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                            <children>
+                                <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" text="Search" />
+                                <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
                     </children>
                 </AnchorPane>
             </top>
             <center>
-                <TableView fx:id="paymentsTableView" prefHeight="500.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                <TableView fx:id="paymentsTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="paymentIdCol" prefWidth="116.79998475313187" text="Payment Id" />
-                        <TableColumn fx:id="firstNameCol" prefWidth="148.80003356933594" text="FirstName" />
-                        <TableColumn fx:id="lastNameCol" prefWidth="151.199951171875" text="LastName" />
-                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="111.99993896484375" text="Date" />
-                        <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="148.79998779296875" text="Price" />
+                        <TableColumn fx:id="paymentIdCol" prefWidth="116.79998475313187" styleClass="table-row" text="Payment Id" />
+                        <TableColumn fx:id="firstNameCol" prefWidth="148.80003356933594" styleClass="table-row" text="FirstName" />
+                        <TableColumn fx:id="lastNameCol" prefWidth="151.199951171875" styleClass="table-row" text="LastName" />
+                        <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="111.99993896484375" styleClass="table-row" text="Date" />
+                        <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="148.79998779296875" styleClass="table-row" text="Price" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -43,14 +43,14 @@
                 </TableView>
             </center>
             <bottom>
-                <HBox alignment="CENTER_RIGHT" prefWidth="729.0" BorderPane.alignment="CENTER_RIGHT">
+                <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER_RIGHT">
                     <children>
                         <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPayPaymentAction" text="Pay and check details">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
                         </Button>
-                  <Button mnemonicParsing="false" onAction="#onCancleAction" text="Cancel" />
+                        <Button mnemonicParsing="false" onAction="#onCancleAction" text="Cancel" />
                     </children>
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
