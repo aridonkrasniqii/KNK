@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" minHeight="145.0" minWidth="300.0" prefHeight="431.0" prefWidth="571.0" style="-fx-background-color: white;" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RoomDetailsController">
+<AnchorPane maxHeight="1.7976931348623157E308" minHeight="145.0" minWidth="300.0" prefHeight="431.0" prefWidth="571.0" styleClass="roomDetailsBackground" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RoomDetailsController">
     <children>
         <GridPane layoutY="232.0" prefHeight="199.0" prefWidth="331.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="232.0">
             <columnConstraints>
@@ -24,38 +24,38 @@
                 <RowConstraints maxHeight="84.00000610351563" minHeight="10.0" prefHeight="34.80000610351563" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label id="room-details-labels" fx:id="roomNumber" style="-fx-text-fill: black;" text="Room Number">
+                <Label id="room-details-labels" fx:id="roomNumber" styleClass="roomDetailsLeftLabels" stylesheets="@../style/StyleSheet.css" text="Room Number">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Label>
-                <Label id="room-details-labels" fx:id="roomFloor" style="-fx-text-fill: black;" text="Room floor" GridPane.rowIndex="1">
+                <Label id="room-details-labels" fx:id="roomFloor" styleClass="roomDetailsLeftLabels" stylesheets="@../style/StyleSheet.css" text="Room floor" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Label>
-                <Label id="room-details-labels" fx:id="price" style="-fx-text-fill: black;" text="Price for nights" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                <Label id="room-details-labels" fx:id="price" styleClass="roomDetailsLeftLabels" stylesheets="@../style/StyleSheet.css" text="Price for nights" GridPane.columnSpan="2" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin>
                 </Label>
-                <Label id="room-details-labels" fx:id="nrOfBeds" style="-fx-text-fill: black;" text="Number of beds" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                <Label id="room-details-labels" fx:id="nrOfBeds" styleClass="roomDetailsLeftLabels" stylesheets="@../style/StyleSheet.css" text="Number of beds" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </GridPane.margin></Label>
-                <Label fx:id="roomNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Nr" GridPane.columnIndex="1" />
-                <Label fx:id="roomFlr" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Floor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label fx:id="bedNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Beds" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label fx:id="priceNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" text="Price" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="roomNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" styleClass="roomDetailsRightLabels" stylesheets="@../style/StyleSheet.css" text="Nr" GridPane.columnIndex="1" />
+                <Label fx:id="roomFlr" maxWidth="1.7976931348623157E308" prefHeight="18.0" styleClass="roomDetailsRightLabels" stylesheets="@../style/StyleSheet.css" text="Floor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="bedNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" styleClass="roomDetailsRightLabels" stylesheets="@../style/StyleSheet.css" text="Beds" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="priceNum" maxWidth="1.7976931348623157E308" prefHeight="18.0" styleClass="roomDetailsRightLabels" stylesheets="@../style/StyleSheet.css" text="Price" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
-        <ImageView fx:id="roomImageView" fitHeight="200.0" fitWidth="230.0" layoutX="172.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-        <Label id="room-type" fx:id="roomType" layoutX="391.0" layoutY="252.0" style="-fx-text-fill: #DA9100;" text="Room type" textFill="#4f3838">
+        <ImageView fx:id="roomImageView" fitHeight="215.0" fitWidth="250.0" layoutX="152.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+        <Label id="room-type" fx:id="roomType" layoutX="344.0" layoutY="251.0" style="-fx-text-fill: black;" text="Room type" textFill="#4f3838">
             <font>
                 <Font name="System Bold Italic" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="bookButton" layoutX="344.0" layoutY="349.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBookAction" prefHeight="50.0" prefWidth="195.0" text="BOOK NOW" />
-      <Label fx:id="roomType" layoutX="434.0" layoutY="283.0" text="roomType" />
+        <Button fx:id="bookButton" layoutX="344.0" layoutY="349.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onBookAction" prefHeight="50.0" prefWidth="195.0" styleClass="roomDetailsBtn" stylesheets="@../style/StyleSheet.css" text="BOOK NOW" />
+      <Label fx:id="roomType" layoutX="344.0" layoutY="288.0" style="-fx-text-fill: grey;" text="roomType" />
     </children>
 </AnchorPane>

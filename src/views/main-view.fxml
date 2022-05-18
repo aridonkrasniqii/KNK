@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1000.0" prefWidth="1400.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="1000.0" prefWidth="1400.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
     <left>
         <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -26,21 +26,21 @@
                         <Insets left="25.0" top="10.0" />
                     </VBox.margin>
                 </ImageView>
-                <Button fx:id="reservationsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservationAction" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Reservations" textAlignment="CENTER" wrapText="true">
+                <Button fx:id="reservationsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservationAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Reservations" textAlignment="CENTER" wrapText="true">
                     <VBox.margin>
                         <Insets top="30.0" />
                     </VBox.margin>
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button fx:id="paymentsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaymentsAction" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Payments" textAlignment="CENTER" wrapText="true">
+                <Button fx:id="paymentsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaymentsAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Payments" textAlignment="CENTER" wrapText="true">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button fx:id="eventBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEventsAction" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Events" textAlignment="CENTER" wrapText="true">
+                <Button fx:id="eventBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEventsAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Events" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -48,14 +48,14 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Log out" textAlignment="CENTER" wrapText="true">
+                <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Log out" textAlignment="CENTER" wrapText="true">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Overview" textAlignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Overview" textAlignment="CENTER">
                     <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                     </VBox.margin>
@@ -69,9 +69,9 @@
         <Pane fx:id="mainPane" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER" />
     </center>
     <bottom>
-        <HBox BorderPane.alignment="CENTER">
+        <HBox style="-fx-background-color: rgb(156, 144, 126);" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="loggedInUser" style="-fx-text-fill: #A38995; -fx-font-weight: bold;" text="Emri Mbiemri">
+                <Label fx:id="loggedInUser" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Emri Mbiemri">
                     <HBox.margin>
                         <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
                     </HBox.margin></Label>
@@ -79,7 +79,7 @@
         </HBox>
     </bottom>
     <top>
-        <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: cyan; -fx-text-fill: white;" BorderPane.alignment="CENTER">
+        <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgb(156, 144, 126); -fx-text-fill: white;" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
                     <items>

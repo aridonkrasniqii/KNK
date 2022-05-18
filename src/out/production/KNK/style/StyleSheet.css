@@ -63,9 +63,11 @@
 }
 
 .roomsBtn{
-    -fx-background-color:#4c525f;
+    -fx-background-color: rgba(171,155,129,255);
     -fx-text-fill:#f3f0e9;
     -fx-cursor:hand;
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
 }
 
 #dark.roomsBtn{
@@ -75,18 +77,20 @@
 }
 
 .roomsBtnMakeReservation{
-    -fx-background-color:#517c63;
+    -fx-background-color: rgba(171,155,129,255);
     -fx-text-fill:#f3f0e9;
     -fx-cursor:hand;
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
 }
 .reservationRightSide{
-    -fx-background-color:#1d1f2a;
+    -fx-background-color: rgba(231,224,208,255);
 }
 .reservationForm{
 
 }
 .reservationTitle{
-    -fx-font: 26px "Candara";
+    -fx-font: 30px "Candara";
     -fx-text-fill: #1d1f2a;
 }
 
@@ -122,3 +126,19 @@
 .forgotPassword {
 	-fx-text-fill: rgb(217, 210, 195);
 }
+
+.buttonAreYouSure, .homeBtn {
+    -fx-background-color: rgba(171,155,129,255);
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
+}
+
+.homeBackground {
+    -fx-background-color: rgba(231,224,208,255);
+}
+
+.mainViewBtns {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
