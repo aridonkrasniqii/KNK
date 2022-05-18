@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import helpers.Rooms;
+import models.charts.RoomChart;
 
 public class RoomRepository {
 
@@ -23,6 +24,23 @@ public class RoomRepository {
             rooms.add(fromResultSet(res));
         }
         return rooms;
+    }
+
+    public static ArrayList<RoomChart> findType() throws  Exception {
+        String query = "select count(*), room_type from rooms group by room_type";
+
+        Statement stmt = connection.createStatement();
+        ResultSet result = stmt.executeQuery(query);
+
+        ArrayList<RoomChart> rooms = new ArrayList<>();
+
+        while(result.next()){
+            rooms.add(new RoomChart(result.getInt("count(*)"), result.getString("room_type")));
+        }
+
+        if(rooms != null) return rooms;
+
+        return null;
     }
 
 

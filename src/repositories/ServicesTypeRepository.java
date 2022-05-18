@@ -2,12 +2,14 @@ package repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import helpers.Service_Type;
+import models.charts.ServiceTypeChart;
 
 public class ServicesTypeRepository {
 
@@ -23,11 +25,27 @@ public class ServicesTypeRepository {
         return new Service_Type(id, service_name, price, quantity);
     }
 
+
+    public static ArrayList<ServiceTypeChart> findServicesName() throws Exception {
+        String query = "select count(*) , service_name from services_type group by service_name";
+        ArrayList<ServiceTypeChart> services = new ArrayList<>();
+        Statement stmt = connection.createStatement();
+
+        ResultSet res = stmt.executeQuery(query);
+        while(res.next()) {
+            services.add(new ServiceTypeChart(res.getInt("count(*)"), res.getString("service_name")));
+        }
+
+        if(services != null) return services;
+
+        return null;
+    }
+
     public static Service_Type find(int id) throws Exception {
 
         String query = "select * from services_type where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1 , id);
+        stmt.setInt(1, id);
         ResultSet res = stmt.executeQuery();
 
         if (!res.next()) {
@@ -59,13 +77,13 @@ public class ServicesTypeRepository {
         String query = "update services_type set service_name = ?, price = ? , quantity = ? where id = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setString(1,model.getService_name());
-        stmt.setDouble(2,model.getPrice());
+        stmt.setString(1, model.getService_name());
+        stmt.setDouble(2, model.getPrice());
         stmt.setInt(3, model.getQuantity());
-        stmt.setInt(4,model.getId());
+        stmt.setInt(4, model.getId());
 
         int affectedRows = stmt.executeUpdate();
-        if(affectedRows != 1) {
+        if (affectedRows != 1) {
             throw new Exception("ERR_NO_ROW_CHANGE");
         }
 
@@ -94,7 +112,6 @@ public class ServicesTypeRepository {
         }
         return service_types;
     }
-
 
 
     // public static int getLastID() throws Exception {
