@@ -89,6 +89,7 @@ public class LoginController {
 			loader.setLocation(getClass().getResource("../views/main-view.fxml"));
 			parent = loader.load();
 			SessionManager.user = user;
+			System.out.println("User: " + user.getUsername());
 			SessionManager.lastLogin = new Date();
 			MainViewController guestController = loader.getController();
 			guestController.setView(MainViewController.RESERVATION_ROOM_VIEW);
@@ -115,6 +116,5 @@ public class LoginController {
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setTitle("LAMALE Hotel");
-
 	}
 }

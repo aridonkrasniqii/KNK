@@ -67,12 +67,11 @@ public class StaffRepository {
         return staff;
     }
 
-    public ArrayList<Staff> findAll() throws Exception {
+    public static ArrayList<Staff> findAll() throws Exception {
         String query = "select * from staff";
-        ResultSet res = this.connection.executeQuery(query);
+        ResultSet res = connection.executeQuery(query);
         ArrayList<Staff> staff = new ArrayList<>();
         while (res.next()) {
-            System.out.println("Name: " + res.getString("last_name"));
             staff.add(fromResultSet(res));
         }
         return staff;
@@ -148,6 +147,9 @@ public class StaffRepository {
 
         return stmt.executeUpdate() == 1;
     }
+
+
+
 
 
 }
