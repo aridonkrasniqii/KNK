@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MembersController">
    <children>
       <ImageView fitHeight="240.0" fitWidth="320.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -16,7 +16,7 @@
       <Label fx:id="firstName" layoutX="172.0" layoutY="275.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="First Name" />
       <Label fx:id="lastName" layoutX="172.0" layoutY="312.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Last Name" />
       <Label fx:id="positionOfMember" layoutX="184.0" layoutY="352.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Position" />
-      <Button layoutX="365.0" layoutY="365.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Next" />
-      <Button layoutX="14.0" layoutY="365.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Back" />
+      <Button layoutX="365.0" layoutY="365.0" mnemonicParsing="false" onAction="#onNextAction" prefHeight="27.0" prefWidth="54.0" text="Next" />
+      <Button layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="27.0" prefWidth="54.0" text="Back" />
    </children>
 </AnchorPane>
