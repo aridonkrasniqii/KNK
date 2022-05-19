@@ -141,4 +141,48 @@
     -fx-background-color: transparent;
     -fx-text-fill: black;
 }
+.paymentsBtns {
+    -fx-background-color: rgba(171,155,129,255);
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
+}
+.registerGuest {
+    -fx-background-color: rgba(231,224,208,255);
+}
+.registerGuestText {
+    -fx-font-size: 30px;
+    -fx-text-fill: rgb(107, 104, 99);
+}
+.textFieldRegisterGuest {
+    -fx-background-color: rgba(255,255,255,255);
+}
+.registerGuestBtns {
+    -fx-background-color: rgba(171,155,129,255);
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
+}
+.roomDetailsBackground {
+    -fx-background-color: rgba(231,224,208,255);
+}
+.roomDetailsLeftLabels {
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+}
+.roomDetailsRightLabels{
+    -fx-font-size: 14px;
+    -fx-text-fill: grey;
+}
+.roomDetailsBtn {
+    -fx-background-color: rgba(171,155,129,255);
+    -fx-background-radius:10px;
+    -fx-border-radius:10px;
+}
+.roomDetailsDeals {
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+}
+.percentageOff{
+    -fx-font-size: 25px;
+    -fx-text-fill: rgba(80,118,98,255);
 
+}

@@ -48,20 +48,20 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Log out" textAlignment="CENTER" wrapText="true">
+                <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Offers" textAlignment="CENTER">
                     <VBox.margin>
                         <Insets top="10.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font size="14.0" />
-                    </font></Button>
-                <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Overview" textAlignment="CENTER">
-                    <VBox.margin>
-                        <Insets bottom="50.0" top="10.0" />
                     </VBox.margin>
                <font>
                   <Font size="14.0" />
                </font></Button>
+                <Button fx:id="logOutBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogoutAction" styleClass="mainViewBtns" stylesheets="@../style/StyleSheet.css" text="Log out" textAlignment="CENTER" wrapText="true">
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="14.0" />
+                    </font></Button>
             </children>
         </VBox>
     </left>

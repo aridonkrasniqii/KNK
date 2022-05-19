@@ -177,3 +177,12 @@
     -fx-background-radius:10px;
     -fx-border-radius:10px;
 }
+.roomDetailsDeals {
+    -fx-font-size: 30px;
+    -fx-text-fill: black;
+}
+.percentageOff{
+    -fx-font-size: 25px;
+    -fx-text-fill: rgba(80,118,98,255);
+
+}

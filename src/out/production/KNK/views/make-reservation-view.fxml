@@ -33,12 +33,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="reserveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReserveAction" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Reserve" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="reserveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReserveAction" prefHeight="35.0" prefWidth="154.0" styleClass="roomsBtnMakeReservation" stylesheets="@../style/StyleSheet.css" text="Reserve" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Button fx:id="cancelButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancleAction" prefHeight="34.0" prefWidth="156.0" styleClass="roomsBtn" stylesheets="@../style/StyleSheet.css" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
