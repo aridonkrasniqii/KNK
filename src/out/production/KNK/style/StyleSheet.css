@@ -1,23 +1,86 @@
 .root{
-    -fx-background-color:#1d1f2a;
+    /* -fx-background-color:#1d1f2a; */
+    -fx-background-color: #f3f0e9;
+    -fx-text-fill:#1d1f2a;
 }
+
+/*  */
+.table-view{
+    /* -fx-background-color:#1d1f2a; */
+    -fx-background-color: #f3f0e9;
+    -fx-text-fill:#1d1f2a;
+    -fx-background-radius:5;
+/*     -fx-table-cell-border-color: transparent; */
+}
+.table-view .column-header-background{
+    /* -fx-background-color:#343742; */
+    -fx-background-color: #f3f0e9;
+    -fx-background-radius:5;
+    -fx-padding:5 5 5 5;
+}
+.table-view .column-background, #table .column-background{
+    -fx-background-color:transparent;
+}
+.table-view .table-cell{
+    /* -fx-text-fill:#A38995; */
+    -fx-text-fill:#1d1f2a;
+    -fx-font-size:15px;
+}
+.table-view .table-row-cell{
+    /* -fx-background:#343742; */
+    /* -fx-background: rgba(243,240,233,255); */
+    -fx-background-color: #f3f0e9;
+    /*-fx-selection-bar:#DA9100;*/
+    -fx-text-fill:#1d1f2a;
+}
+.table-view .table-row-cell:selected , .table-view .table-row-cell:selected .table-cell{
+    -fx-background:#DA9100;
+    -fx-text-fill:#1d1f2a;
+    -fx-font-weight:bold;
+}
+.table-view .placeholder{
+    /* -fx-background-color:#343742; */
+    -fx-background-color: transparent;
+}
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.column-header{
+    -fx-alignment: center;
+    -fx-background-color: #f3f0e9;
+    -fx-text-fill:#1d1f2a;
+}
+
+/*  */
 
 .label{
     /* -fx-text-fill:#A38995; */
-    -fx-text-fill:#f3f0e9;
+    -fx-text-fill:#1d1f2a;
     -fx-font-weight:bold;
 }
 .button{
-    -fx-background-color:#89609e;
+    /* -fx-background-color:#89609e;
     -fx-text-fill:white;
+    -fx-cursor:hand; */
+    -fx-background-color:#ab9b81;
+    -fx-text-fill:#f3f0e9;
     -fx-cursor:hand;
 }
 .button:hover{
     -fx-effect:dropshadow(two-pass-box,#A38995,10,0.0,0,0);
 }
 .choice-box , .choice-box .context-menu{
-    -fx-background-color:#343742;
+    /* -fx-background-color:#343742; */
     -fx-mark-color:#DA9100;
+    -fx-background-color: #f3f0e9;
+    -fx-text-fill:#1d1f2a;
 }
 .choice-box .menu-item:hover{
     -fx-background-color:#DA9100;
@@ -31,13 +94,13 @@
     -fx-background-color:red;
 }
 .text-field{
-    -fx-background-color:#343742;
+    /* -fx-background-color:#343742; */
     -fx-text-inner-color:white;
     -fx-highlight-fill:#DA9100;
     -fx-highlight-text-fill:#1d1f2a;
 }
 .radio-button .radio{
-    -fx-background-color:#343742;
+    /* -fx-background-color:#343742; */
 }
 .radio-button .radio .dot{
     -fx-background-color:#DA9100;
@@ -49,13 +112,13 @@
     -fx-text-fill:white;
 }
 .menu-bar .menu-button{
-    -fx-background-color:#1d1f2a;
+    /* -fx-background-color:#1d1f2a; */
 }
 .menu-bar .menu-button:hover, .menu-bar .menu-button:focused{
     -fx-background-color:#DA9100;
 }
 .menu-bar .context-menu{
-    -fx-background-color:#1d1f2a;
+    /* -fx-background-color:#1d1f2a; */
 }
 .forgotBtn {
 
@@ -63,15 +126,15 @@
 }
 
 .roomsBtn{
-    -fx-background-color: rgba(171,155,129,255);
+    -fx-background-color:#ab9b81;
     -fx-text-fill:#f3f0e9;
     -fx-cursor:hand;
     -fx-background-radius:10px;
     -fx-border-radius:10px;
 }
 
-#dark.roomsBtn{
-    -fx-background-color:#1d1f2a;
+#shade.roomsBtn{
+    -fx-background-color:#4c525f;
     -fx-text-fill:#f3f0e9;
     -fx-cursor:hand;
 }
@@ -84,7 +147,7 @@
     -fx-border-radius:10px;
 }
 .reservationRightSide{
-    -fx-background-color: rgba(231,224,208,255);
+    /* -fx-background-color:#1d1f2a; */
 }
 .reservationForm{
 
@@ -100,7 +163,7 @@
 }
 .roomDetails{
     -fx-text-fill:#f3f0e9;
-    -fx-background-color:#1d1f2a;
+    /* -fx-background-color:#1d1f2a; */
 }
 
 #main-viewBtn{
@@ -115,11 +178,6 @@
     -fx-text-color:#f3f0e9;
 }
 
-.table-row{
-    -fx-alignment: center;
-    -fx-background-color: transparent;
-}
-
 .newUser {
 	-fx-text-fill: rgb(217, 210, 195);
 }
@@ -127,6 +185,9 @@
 	-fx-text-fill: rgb(217, 210, 195);
 }
 
+.test{
+    -fx-background-color:#ab9b81;
+}
 .buttonAreYouSure, .homeBtn {
     -fx-background-color: rgba(171,155,129,255);
     -fx-background-radius:10px;

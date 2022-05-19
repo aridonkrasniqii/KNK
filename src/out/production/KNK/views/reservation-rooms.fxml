@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: rgba(171,155,129,255);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
+<BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: rgba(171,155,129,255);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReservationRoomsController">
     <top>
         <VBox prefWidth="100.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -55,7 +55,7 @@
         </VBox>
     </top>
     <center>
-        <TableView fx:id="tableView" fixedCellSize="0.0" prefHeight="550.0" prefWidth="992.0" style="-fx-background-color: rgba(243,240,233,255); -fx-text-fill: black;" BorderPane.alignment="CENTER">
+        <TableView fx:id="tableView" fixedCellSize="0.0" prefHeight="550.0" prefWidth="992.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="capacityCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="157.0" resizable="false" style="-fx-alignment: center; -fx-background-color: rgba(243,240,233,255); -fx-text-fill: black;" text="Capacity" />
                 <TableColumn fx:id="bedNumberCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="181.0" resizable="false" style="-fx-alignment: center; -fx-background-color: rgba(243,240,233,255); -fx-text-fill: black;" text="Number of beds " />

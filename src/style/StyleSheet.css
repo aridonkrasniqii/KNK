@@ -247,3 +247,11 @@
     -fx-text-fill: rgba(80,118,98,255);
 
 }
+.membersView {
+    -fx-background-color: rgba(77,83,97,255);
+}
+.memberLabels {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+
+}
