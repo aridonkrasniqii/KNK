@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="overviewPane" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="overviewPane" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.OverviewController">
    <children>
       <GridPane fx:id="chartGridPane" prefHeight="700.0" prefWidth="942.0">
          <columnConstraints>
@@ -20,14 +19,9 @@
          </rowConstraints>
          <children>
             <PieChart fx:id="serviceChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" />
-            <Label fx:id="statusi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="309.0" text="" />
             <PieChart fx:id="staffChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" GridPane.columnIndex="1" />
-            <Label fx:id="statusi1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="309.0" text="" GridPane.columnIndex="1" />
             <PieChart fx:id="roomsChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" GridPane.rowIndex="1" />
-            <Label fx:id="statusi2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="309.0" text="" GridPane.rowIndex="1" />
-            <PieChart fx:id="roomsChart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="statusi3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="309.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="This part needs to be populated with data" />
+            <PieChart fx:id="eventsChart" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

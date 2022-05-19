@@ -45,19 +45,19 @@ public class MainViewController implements Initializable {
 	private MenuItem logoutButton;
 	@FXML
 	private Button overviewBtn;
-	
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
 	}
+
 	private void changeRunTime(Button button) {
 		reservationsBtn.setStyle("-fx-background-color:transparent;");
 		paymentsBtn.setStyle("-fx-background-color:transparent;");
 		eventBtn.setStyle("-fx-background-color:transparent;");
 		logOutBtn.setStyle("-fx-background-color:transparent;");
-		overviewBtn.setStyle("-fx-background-color:transparent;");
+//		overviewBtn.setStyle("-fx-background-color:transparent;");
 		button.setStyle("-fx-background-color:#ab9b81;");
 	}
 

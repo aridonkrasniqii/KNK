@@ -13,7 +13,7 @@ public class DBConnection {
 	private static String SERVER = "localhost:3306";
 	private static String DATABASE = "DBHotel";
 	private static String USERNAME = "root";
-	private static String PASSWORD = "Musahoti123";
+	private static String PASSWORD = "Lorzi127.0.0.1";
 	private Connection connection;
 
 	public static DBConnection getConnection() {
@@ -37,7 +37,7 @@ public class DBConnection {
 		}
 
 	}
-	
+
 	public ResultSet executeQuery(String query) {
 		try {
 			PreparedStatement sq = this.connection.prepareStatement(query);

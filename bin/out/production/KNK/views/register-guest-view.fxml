@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuRegisterGuestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="445.0" styleClass="registerGuest" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuRegisterGuestController">
     <children>
-        <Label layoutX="60.0" layoutY="80.0" text="Create Guest" textFill="#545454">
+        <Label layoutX="77.0" layoutY="90.0" styleClass="registerGuestText" stylesheets="@../style/StyleSheet.css" text="Create Guest" textFill="#545454">
             <font>
                 <Font name="Ebrima Bold" size="24.0" />
             </font>
@@ -21,14 +21,14 @@
                 <Font name="Ebrima Bold" size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="nameField" layoutX="77.0" layoutY="140.0" prefHeight="25.0" prefWidth="326.0" promptText="Name" />
-        <TextField fx:id="emailField" layoutX="77.0" layoutY="238.0" prefHeight="25.0" prefWidth="326.0" promptText="Email" />
-        <TextField fx:id="usernameField" layoutX="77.0" layoutY="189.0" prefHeight="25.0" prefWidth="326.0" promptText="Username" />
-        <PasswordField fx:id="passwordField" layoutX="77.0" layoutY="287.0" prefHeight="25.0" prefWidth="326.0" promptText="Password" />
+        <TextField fx:id="nameField" layoutX="77.0" layoutY="140.0" prefHeight="25.0" prefWidth="326.0" promptText="Name" styleClass="textFieldRegisterGuest" stylesheets="@../style/StyleSheet.css" />
+        <TextField fx:id="emailField" layoutX="77.0" layoutY="238.0" prefHeight="25.0" prefWidth="326.0" promptText="Email" styleClass="textFieldRegisterGuest" stylesheets="@../style/StyleSheet.css" />
+        <TextField fx:id="usernameField" layoutX="77.0" layoutY="189.0" prefHeight="25.0" prefWidth="326.0" promptText="Username" styleClass="textFieldRegisterGuest" stylesheets="@../style/StyleSheet.css" />
+        <PasswordField fx:id="passwordField" layoutX="77.0" layoutY="287.0" prefHeight="25.0" prefWidth="326.0" promptText="Password" style="-fx-background-color: white;" stylesheets="@../style/StyleSheet.css" />
         <HBox alignment="CENTER" layoutX="129.0" layoutY="312.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#onCreateAction" text="Create" />
-                <Button mnemonicParsing="false" onAction="#onCancelAction" text="Cancel" />
+                <Button mnemonicParsing="false" onAction="#onCreateAction" prefHeight="36.0" prefWidth="69.0" styleClass="registerGuestBtns" stylesheets="@../style/StyleSheet.css" text="Create" />
+                <Button mnemonicParsing="false" onAction="#onCancelAction" prefHeight="36.0" prefWidth="69.0" styleClass="registerGuestBtns" stylesheets="@../style/StyleSheet.css" text="Cancel" />
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

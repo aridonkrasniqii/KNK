@@ -19,7 +19,7 @@
             <top>
                 <HBox style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="SUN HOTEL" textFill="WHITE">
+                        <Label prefHeight="19.0" prefWidth="180.0" style="-fx-background-color: rgba(77,83,97,255);" text="LAMALE HOTEL" textFill="WHITE">
                             <font>
                                 <Font name="Broadway" size="21.0" />
                             </font>
@@ -27,21 +27,21 @@
                                 <Insets left="5.0" />
                             </padding>
                         </Label>
-                        <Region prefHeight="30.0" prefWidth="399.0" HBox.hgrow="ALWAYS" />
+                        <Region prefHeight="30.0" prefWidth="399.0" style="-fx-background-color: rgba(77,83,97,255); }: ;" HBox.hgrow="ALWAYS" />
                     </children>
                 </HBox>
             </top>
             <center>
                 <AnchorPane style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
                     <children>
-                        <TableView fx:id="roomTableView" prefHeight="430.0" prefWidth="378.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="roomTableView" prefHeight="430.0" prefWidth="378.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="0.0">
                             <columns>
                                 <TableColumn fx:id="roomNumberCol" prefWidth="125.59997862577438" text="Room" />
                                 <TableColumn fx:id="roomTypeCol" prefWidth="149.6000213623047" text="Room type" />
                                 <TableColumn fx:id="roomPriceCol" prefWidth="102.39996337890625" text="Price" />
                             </columns>
                         </TableView>
-                        <TableView fx:id="serviceTableView" layoutX="375.0" prefHeight="367.0" prefWidth="303.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="serviceTableView" layoutX="375.0" prefHeight="367.0" prefWidth="303.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
                                 <TableColumn fx:id="serviceNameCol" prefWidth="151.2000732421875" text="Service name" />
                                 <TableColumn fx:id="servicePriceCol" minWidth="0.0" prefWidth="118.39996337890625" text="Price" />
@@ -51,7 +51,7 @@
                 </AnchorPane>
             </center>
             <right>
-                <AnchorPane prefHeight="367.0" prefWidth="304.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="367.0" prefWidth="304.0" style="-fx-background-color: rgba(243,240,233,255);" BorderPane.alignment="CENTER">
                     <children>
                         <Label fx:id="lbl_name" layoutX="14.0" layoutY="-1.0" prefHeight="29.0" prefWidth="140.0" text="Name:" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="-1.0">
                             <font>
@@ -82,9 +82,9 @@
                 </AnchorPane>
             </right>
             <bottom>
-                <AnchorPane prefHeight="139.0" prefWidth="918.0" style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="139.0" prefWidth="918.0" style="-fx-background-color: rgba(77,83,97,255);" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="lbl_paymentDetail" layoutX="14.0" layoutY="8.0" prefHeight="27.0" prefWidth="174.0" text="Payment details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="730.0" AnchorPane.topAnchor="8.0">
+                        <Label fx:id="lbl_paymentDetail" layoutX="14.0" layoutY="8.0" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: rgba(77,83,97rgba(77,83,97,255),255);};" text="Payment details" textAlignment="CENTER" textFill="WHITE" underline="true" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="730.0" AnchorPane.topAnchor="8.0">
                             <font>
                                 <Font name="Bodoni MT Bold" size="20.0" />
                             </font>
@@ -113,10 +113,10 @@
                         <RadioButton fx:id="cachButton" layoutX="528.0" layoutY="44.0" mnemonicParsing="false" text="Cash" textFill="WHITE" AnchorPane.bottomAnchor="64.80000000000001" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="44.0" />
                         <RadioButton fx:id="giftCuponButton" layoutX="528.0" layoutY="96.0" mnemonicParsing="false" text="Gift Cupon" textFill="WHITE" AnchorPane.bottomAnchor="12.799999999999997" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="96.0" />
                         <RadioButton fx:id="creditCardButton" layoutX="528.0" layoutY="70.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" text="Credit Card" textFill="WHITE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="70.0" />
-                        <Pane layoutX="823.0" layoutY="69.0" prefHeight="53.0" prefWidth="89.0" AnchorPane.bottomAnchor="16.599999999999994" AnchorPane.leftAnchor="823.0" AnchorPane.rightAnchor="14.600000000000023" AnchorPane.topAnchor="69.0">
-                            <children>
-                                <Button layoutX="4.0" layoutY="3.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="81.0" text="Pay" />
-                            </children>
+                        <Pane layoutX="754.0" layoutY="69.0" prefHeight="53.0" prefWidth="89.0" AnchorPane.bottomAnchor="16.599999999999994" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="83.60000000000002" AnchorPane.topAnchor="69.0">
+                     <children>
+                                <Button layoutY="3.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="112.0" style="-fx-background-color: rgba(243,240,233,255);" text="Pay" />
+                     </children>
                         </Pane>
                     </children>
                 </AnchorPane>

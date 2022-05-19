@@ -42,7 +42,7 @@ public class LoginController {
 	@FXML
 	private void onLoginAction(ActionEvent e) {
 		try {
-			System.out.println("Aridon");
+//			System.out.println("Aridon");
 			User user = null;
 			String email = emailField.getText();
 			String password = passwordField.getText();

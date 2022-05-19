@@ -19,7 +19,7 @@
             <top>
                 <HBox style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label prefHeight="19.0" prefWidth="180.0" style="-fx-background-color: rgba(77,83,97,255);" text="LAMALE HOTEL" textFill="WHITE">
+                        <Label prefHeight="33.0" prefWidth="180.0" style="-fx-background-color: rgba(77,83,97,255);" text="LAMALE HOTEL" textFill="WHITE">
                             <font>
                                 <Font name="Broadway" size="21.0" />
                             </font>
@@ -32,55 +32,46 @@
                 </HBox>
             </top>
             <center>
-                <AnchorPane style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="434.0" prefWidth="917.0" style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
                     <children>
-                        <TableView fx:id="roomTableView" prefHeight="430.0" prefWidth="378.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="serviceTableView" prefHeight="434.0" prefWidth="546.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="404.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="roomNumberCol" prefWidth="125.59997862577438" text="Room" />
-                                <TableColumn fx:id="roomTypeCol" prefWidth="149.6000213623047" text="Room type" />
-                                <TableColumn fx:id="roomPriceCol" prefWidth="102.39996337890625" text="Price" />
+                                <TableColumn fx:id="serviceNameCol" prefWidth="269.0" text="Service name" />
+                                <TableColumn fx:id="servicePriceCol" minWidth="0.0" prefWidth="276.0" text="Price" />
                             </columns>
                         </TableView>
-                        <TableView fx:id="serviceTableView" layoutX="375.0" prefHeight="367.0" prefWidth="303.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columns>
-                                <TableColumn fx:id="serviceNameCol" prefWidth="151.2000732421875" text="Service name" />
-                                <TableColumn fx:id="servicePriceCol" minWidth="0.0" prefWidth="118.39996337890625" text="Price" />
-                            </columns>
-                        </TableView>
+                      <AnchorPane layoutX="542.0" prefHeight="434.0" prefWidth="408.0" style="-fx-background-color: rgba(243,240,233,255);">
+                          <children>
+                              <Label fx:id="lbl_name" layoutX="14.0" layoutY="-1.0" prefHeight="29.0" prefWidth="140.0" text="Name:" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="-1.0">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="22.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="fullName" layoutX="14.0" layoutY="28.0" prefHeight="50.0" prefWidth="272.0" text="Lorent Sinani" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
+                                  <font>
+                                      <Font name="Bodoni MT Bold Italic" size="27.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="errorHandle" layoutX="101.0" layoutY="207.0" prefHeight="114.0" prefWidth="203.0">
+                                  <font>
+                                      <Font name="Bell MT Bold" size="18.0" />
+                                  </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="104.0" prefHeight="51.0" prefWidth="147.0" text="PAYMENT ID: " AnchorPane.bottomAnchor="279.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="247.0" AnchorPane.topAnchor="104.0">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="20.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="paymentId" layoutX="144.0" layoutY="102.0" prefHeight="56.0" prefWidth="194.0" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="102.0">
+                                  <font>
+                                      <Font name="Monospaced Bold" size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </AnchorPane>
                     </children>
                 </AnchorPane>
             </center>
-            <right>
-                <AnchorPane prefHeight="367.0" prefWidth="304.0" style="-fx-background-color: rgba(243,240,233,255);" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="lbl_name" layoutX="14.0" layoutY="-1.0" prefHeight="29.0" prefWidth="140.0" text="Name:" AnchorPane.bottomAnchor="402.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="-1.0">
-                            <font>
-                                <Font name="Bodoni MT Bold" size="22.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="emriMbiemri" layoutX="14.0" layoutY="28.0" prefHeight="50.0" prefWidth="272.0" text="Lorent Sinani" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
-                            <font>
-                                <Font name="Bodoni MT Bold Italic" size="27.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="errorHandle" layoutX="50.0" layoutY="215.0" prefHeight="114.0" prefWidth="203.0">
-                            <font>
-                                <Font name="Bell MT Bold" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="emriMbiemri1" layoutX="14.0" layoutY="104.0" prefHeight="47.0" prefWidth="94.0" text="ID: " AnchorPane.bottomAnchor="279.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="196.0" AnchorPane.topAnchor="104.0">
-                            <font>
-                                <Font name="Bodoni MT Bold" size="20.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="personalNr" layoutX="50.0" layoutY="102.0" prefHeight="52.0" prefWidth="134.0" text="13212321" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="102.0">
-                            <font>
-                                <Font name="Monospaced Bold" size="20.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-            </right>
             <bottom>
                 <AnchorPane prefHeight="139.0" prefWidth="918.0" style="-fx-background-color: rgba(77,83,97,255);" BorderPane.alignment="CENTER">
                     <children>
@@ -113,9 +104,9 @@
                         <RadioButton fx:id="cachButton" layoutX="528.0" layoutY="44.0" mnemonicParsing="false" text="Cash" textFill="WHITE" AnchorPane.bottomAnchor="64.80000000000001" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="44.0" />
                         <RadioButton fx:id="giftCuponButton" layoutX="528.0" layoutY="96.0" mnemonicParsing="false" text="Gift Cupon" textFill="WHITE" AnchorPane.bottomAnchor="12.799999999999997" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="96.0" />
                         <RadioButton fx:id="creditCardButton" layoutX="528.0" layoutY="70.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" text="Credit Card" textFill="WHITE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="70.0" />
-                        <Pane layoutX="754.0" layoutY="69.0" prefHeight="53.0" prefWidth="89.0" AnchorPane.bottomAnchor="16.599999999999994" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="83.60000000000002" AnchorPane.topAnchor="69.0">
+                        <Pane layoutX="783.0" layoutY="58.0" prefHeight="53.0" prefWidth="89.0" AnchorPane.bottomAnchor="27.599999999999994" AnchorPane.leftAnchor="783.0" AnchorPane.rightAnchor="54.60000000000002" AnchorPane.topAnchor="58.0">
                      <children>
-                                <Button layoutY="3.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="112.0" style="-fx-background-color: rgba(243,240,233,255);" text="Pay" />
+                                <Button layoutY="3.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="112.0" style="-fx-background-color: rgba(231,224,208,255);" text="Pay" />
                      </children>
                         </Pane>
                     </children>
