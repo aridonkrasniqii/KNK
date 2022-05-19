@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import helpers.Rooms;
+import helpers.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +55,6 @@ public class MainViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-//        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
 	}
 	private void changeRunTime(Button button) {
@@ -120,6 +120,7 @@ public class MainViewController implements Initializable {
 		default:
 			parent = null;
 		}
+		loggedInUser.setText(SessionManager.user.getName() + " " + SessionManager.lastLogin );
 
 		mainPane.getChildren().clear();
 		mainPane.getChildren().add(parent);
