@@ -2,11 +2,13 @@ package repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import helpers.Staff;
+import models.charts.StaffChart;
 
 public class StaffRepository {
 
@@ -26,6 +28,23 @@ public class StaffRepository {
         }
 
         if (staffMembers != null) return staffMembers;
+
+        return null;
+    }
+
+
+    public static ArrayList<StaffChart> findPositions() throws Exception {
+        String query = "select count(*) , position from staff group by position";
+        ArrayList<StaffChart> staffs = new ArrayList<>();
+
+        Statement stmt = connection.createStatement();
+        ResultSet result = stmt.executeQuery(query);
+
+        while (result.next()) {
+            staffs.add(new StaffChart(result.getInt("count(*)"), result.getString("position")));
+        }
+
+        if (staffs != null) return staffs;
 
         return null;
     }
@@ -98,23 +117,23 @@ public class StaffRepository {
 
 
     public static Staff update(Staff model) throws Exception {
-        String query =  "update staff set first_name = ? , last_name = ? ,personal_number = ?, " +
+        String query = "update staff set first_name = ? , last_name = ? ,personal_number = ?, " +
                 "position = ? ,birthdate = ? , phone_number = ? , salary = ? , password = ? , " +
                 "gender = ?  where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, model.getFirst_name());
-        stmt.setString(2 , model.getLast_name());
+        stmt.setString(2, model.getLast_name());
         stmt.setString(3, model.getPersonal_number());
         stmt.setString(4, model.getPosition());
-        stmt.setString(5 , model.getBirthdate());
-        stmt.setString(6 , model.getPhone_number());
-        stmt.setDouble( 7 , model.getSalary());
-        stmt.setString( 8 , model.getPassword());
-        stmt.setString(9 , model.getGender());
-        stmt.setInt(10 , model.getId());
+        stmt.setString(5, model.getBirthdate());
+        stmt.setString(6, model.getPhone_number());
+        stmt.setDouble(7, model.getSalary());
+        stmt.setString(8, model.getPassword());
+        stmt.setString(9, model.getGender());
+        stmt.setInt(10, model.getId());
 
         int affectedRows = stmt.executeUpdate();
-        if(affectedRows != 1 ) {
+        if (affectedRows != 1) {
             throw new Exception("ERR_NO_ROW_CHANGE");
         }
 

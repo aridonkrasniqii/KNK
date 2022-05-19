@@ -2,6 +2,7 @@ package repositories;
 
 import database.DBConnection;
 import models.Events;
+import models.charts.EventChart;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +29,22 @@ public class EventsRepository {
 
         return false;
 
+    }
+
+    public static ArrayList<EventChart> findOrganizer() throws Exception {
+        ArrayList<EventChart> events = new ArrayList<>();
+
+        String query = "select count(*), organizer from events group by organizer";
+
+        Statement stmt = connection.createStatement();
+        ResultSet result = stmt.executeQuery(query);
+
+        while (result.next()) {
+            events.add(new EventChart(result.getInt("count(*)") , result.getString("organizer")));
+        }
+        if(events != null) return events;
+
+        return null;
     }
     public static ArrayList<Events> findAll()  throws Exception{
 

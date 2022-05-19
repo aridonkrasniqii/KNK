@@ -55,6 +55,7 @@ public class MainController implements Initializable {
                     break;
                 case OVERVIEW_DASHBOARD:
                     pane = loader.load();
+                    System.out.println(" overview dashboard");
                     contentPane.setAlignment(Pos.TOP_CENTER);
                     break;
                 case PAYMENTS_DASHBOARD:
