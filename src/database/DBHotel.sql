@@ -175,13 +175,12 @@ create view paymentmodal(payment_id , firstname, lastname, date, price, ispayed)
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) NOT NULL;
-  `organizer` varchar(50) NOT NULL;
-  `category` varchar(50) NOT NULL;
-  `price` double DEFAULT NULL;
-  `start_date` date NOT NULL;
-  `end_date` date NOT NULL;
+  `title` varchar(50) NOT NULL,
+  `organizer` varchar(50) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `price` double DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
 
-
-  PRIMARY KEY (`id`);
+  PRIMARY KEY (`id`)
 ) ;

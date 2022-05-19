@@ -36,20 +36,34 @@ public class MainViewController implements Initializable {
 	@FXML
 	private Button paymentsBtn;
 	@FXML
+	private Button eventBtn;
+	@FXML
 	private Button logOutBtn;
 	@FXML
 	private Pane mainPane;
 	@FXML
 	private MenuItem logoutButton;
+	@FXML
+	private Button overviewBtn;
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
 	}
+	private void changeRunTime(Button button) {
+		reservationsBtn.setStyle("-fx-background-color:transparent;");
+		paymentsBtn.setStyle("-fx-background-color:transparent;");
+		eventBtn.setStyle("-fx-background-color:transparent;");
+		logOutBtn.setStyle("-fx-background-color:transparent;");
+		overviewBtn.setStyle("-fx-background-color:transparent;");
+		button.setStyle("-fx-background-color:#ab9b81;");
+	}
 
 	@FXML
 	private void onOverviewAction(ActionEvent e) throws Exception {
+		changeRunTime(overviewBtn);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../views/room-details.fxml"));
 		Parent parent = loader.load();
@@ -64,18 +78,22 @@ public class MainViewController implements Initializable {
 		switch (view) {
 		case RESERVATION_ROOM_VIEW:
 			loader.setLocation(getClass().getResource(setPath(RESERVATION_ROOM_VIEW)));
+			changeRunTime(reservationsBtn);
 			parent = loader.load();
 			break;
 		case PAYMENT_VIEW:
 			loader.setLocation(getClass().getResource(setPath(PAYMENT_VIEW)));
+			changeRunTime(paymentsBtn);
 			parent = loader.load();
 			break;
 		case LOGOUT_VIEW:
 			loader.setLocation(getClass().getResource(setPath(LOGOUT_VIEW)));
+			changeRunTime(logOutBtn);
 			parent = loader.load();
 			break;
 		case EVENTS_VIEW:
 			loader.setLocation(getClass().getResource(setPath(EVENTS_VIEW)));
+			changeRunTime(eventBtn);
 			parent = loader.load();
 			break;
 		default:

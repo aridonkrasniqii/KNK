@@ -1,4 +1,12 @@
+/admin/
 /application/
+/components/
 /controllers/
-/views/
+/database/
+/helpers/
+/models/
+/processor/
+/repositories/
+/utilities/
 /style/
+/views/

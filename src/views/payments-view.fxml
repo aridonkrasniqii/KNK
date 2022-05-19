@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
+<AnchorPane fx:id="anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentsController">
     <children>
-        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: rgba(231,224,208,255);">
+        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: rgba(231,224,208,255);" stylesheets="@../style/StyleSheet.css">
             <top>
-                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(77,83,97rgba(77,83,97,255),255);" BorderPane.alignment="CENTER">
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
                     <children>
-                        <DatePicker fx:id="dateFilter" layoutX="56.0" layoutY="34.0" style="-fx-background-color: #343742;" />
+                        <DatePicker fx:id="dateFilter" layoutX="56.0" layoutY="34.0" />
                         <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                             <children>
                                 <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" text="Search" />
@@ -45,7 +45,7 @@
             <bottom>
                 <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER_RIGHT">
                     <children>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPayPaymentAction" text="Pay and check details">
+                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPayPaymentAction" prefHeight="31.0" prefWidth="175.0" text="Pay and check details">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>

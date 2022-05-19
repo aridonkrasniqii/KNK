@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1000.0" prefWidth="1400.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="1000.0" prefWidth="1400.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
     <left>
         <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -55,7 +55,7 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Overview" textAlignment="CENTER">
+                <Button fx:id="overviewBtn" mnemonicParsing="false" onAction="#onOverviewAction" prefHeight="24.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Overview" textAlignment="CENTER">
                     <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                     </VBox.margin>

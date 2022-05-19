@@ -12,8 +12,8 @@ public class DBConnection {
 	private static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	private static String SERVER = "localhost:3306";
 	private static String DATABASE = "DBHotel";
-	private static String USERNAME = "root";
-	private static String PASSWORD = "Lorzi127.0.0.1";
+	private static String USERNAME = "aridon";
+	private static String PASSWORD = "Aridon123!";
 	private Connection connection;
 
 	public static DBConnection getConnection() {
@@ -37,7 +37,7 @@ public class DBConnection {
 		}
 
 	}
-
+	
 	public ResultSet executeQuery(String query) {
 		try {
 			PreparedStatement sq = this.connection.prepareStatement(query);
