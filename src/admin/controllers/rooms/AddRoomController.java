@@ -76,7 +76,7 @@ public class AddRoomController implements Initializable {
         Parent parent = loader.load();
 
         MainController controller = loader.getController();
-        controller.setView(MainController.ROOMS_DASHBOARD);
+        controller.setView(MainController.OVERVIEW_DASHBOARD);
 
         Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);

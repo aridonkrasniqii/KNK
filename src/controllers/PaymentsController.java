@@ -1,5 +1,6 @@
 package controllers;
 
+import helpers.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +15,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import models.Payments;
 import models.view.PaymentModel;
 import repositories.PaymentsModelRepository;
+import repositories.RoomRepository;
 
 import java.net.URL;
 import java.sql.Date;
@@ -54,10 +57,10 @@ public class PaymentsController implements Initializable {
     @FXML
     private void onSearchAction(ActionEvent e) throws Exception {
         String date = dateFilter.getValue().toString();
-        if(date == null) return;
+        if (date == null) return;
 
         ArrayList<PaymentModel> filteredPayment = PaymentsModelRepository.filterPayment(date);
-        if(filteredPayment == null) return;
+        if (filteredPayment == null) return;
 
         paymentsModel = FXCollections.observableArrayList(filteredPayment);
         paymentsTableView.setItems(paymentsModel);
@@ -66,7 +69,7 @@ public class PaymentsController implements Initializable {
 
 
     @FXML
-    private void onRefreshAction(ActionEvent e ) throws Exception {
+    private void onRefreshAction(ActionEvent e) throws Exception {
         dateFilter.setValue(null);
         paymentsModel = FXCollections.observableArrayList(loadGuestPayments());
         paymentsTableView.setItems(paymentsModel);
@@ -75,15 +78,28 @@ public class PaymentsController implements Initializable {
 
     @FXML
     private void onPayPaymentAction(ActionEvent e) throws Exception {
+
+
+        PaymentModel selected = paymentsTableView.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        Rooms room = RoomRepository.findReservedRooms(selected.getPayment_id());
+        if(room == null) return;
         // send data to pay payment controllerr
 
-        Parent parent = FXMLLoader.load(getClass().getResource("../views/pay-payment-view.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/pay-payment-view.fxml"));
+        Parent parent = loader.load();
+
+        PayPaymentsController controller = loader.getController();
+        controller.loadRoomData(room);
+
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(new Scene(parent));
     }
 
     @FXML
-    private void onCancleAction(ActionEvent e ) throws Exception {
+    private void onCancleAction(ActionEvent e) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("../views/main-view.fxml"));
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(new Scene(parent));

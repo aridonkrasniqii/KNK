@@ -75,8 +75,12 @@ public class AddGuestController {
 
     @FXML
     private void onCancleAction(ActionEvent e) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("../views/admin-screen.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/admin-screen.fxml"));
+        Parent parent = loader.load();
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        MainController controller = loader.getController();
+        controller.setView(MainController.OVERVIEW_DASHBOARD);
         stage.setScene(new Scene(parent));
     }
 

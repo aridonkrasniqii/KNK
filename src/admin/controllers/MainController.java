@@ -28,6 +28,7 @@ public class MainController implements Initializable {
     public static final String ROOMS_DASHBOARD = "rooms";
     public static final String SERVICE_TYPES_DASHBOARD = "service_types";
     public static final String STAFF_DASHBOARD = "staff";
+    public static final String ABOUT_VIEW = "about-view";
 
     private static final String VIEW_PATH = "../views";
 
@@ -190,9 +191,7 @@ public class MainController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../views/add-guest.fxml"));
         Parent parent = loader.load();
-        AreYouSureController controller = loader.getController();
         Stage stage = (Stage) sessionLabel.getScene().getWindow();
-        controller.setStage(stage);
         stage.setScene(new Scene(parent));
         stage.show();
     }
@@ -213,14 +212,7 @@ public class MainController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void onFinderAction(MouseEvent e) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../views/members-view.fxml"));
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
 
-    }
 
 
 }

@@ -1,14 +1,20 @@
 package controllers;
 
 import helpers.Rooms;
+import helpers.Service_Type;
 import helpers.Services;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import repositories.ServicesTypeRepository;
+
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PayPaymentsController implements Initializable {
@@ -31,6 +37,15 @@ public class PayPaymentsController implements Initializable {
     private ToggleGroup payMethodGroup;
 
 
+    public void initRadio() {
+        cachButton.setToggleGroup(payMethodGroup);
+        creditCardButton.setToggleGroup(payMethodGroup);
+        giftCuponButton.setToggleGroup(payMethodGroup);
+
+        RadioButton method = (RadioButton) payMethodGroup.getSelectedToggle();
+        String meth = method.getText();
+    }
+
     @FXML
     private TableView<Rooms> roomTableView;
 
@@ -45,24 +60,29 @@ public class PayPaymentsController implements Initializable {
 
 
     @FXML
-    private TableView<Services> serviceTableView;
+    private TableView<Service_Type> serviceTableView;
 
 
     @FXML
-    private TableColumn<Services, String> serviceNameCol;
+    private TableColumn<Service_Type, String> serviceNameCol;
 
 
     @FXML
-    private TableColumn<Services, Double> servicePriceCol;
+    private TableColumn<Service_Type, Double> servicePriceCol;
 
+
+    ObservableList<Rooms> roomsObservableList;
+    ObservableList<Service_Type> servicesObservableList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try{
+        try {
             bindPaymentMethod();
             initializeRooms();
             initializeServices();
-        }catch(Exception ex) {
+            servicesObservableList = FXCollections.observableArrayList(loadServices());
+            serviceTableView.setItems(servicesObservableList);
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
@@ -74,7 +94,6 @@ public class PayPaymentsController implements Initializable {
         String payMethod = payM.getText();
 
     }
-
 
 
     private void bindPaymentMethod() {
@@ -90,21 +109,23 @@ public class PayPaymentsController implements Initializable {
     }
 
 
-    private void initializeServices(){
+    private void initializeServices() {
         // TODO:
         this.serviceNameCol.setCellValueFactory(new PropertyValueFactory<>(""));
         this.servicePriceCol.setCellValueFactory(new PropertyValueFactory<>(""));
     }
-    private ArrayList<Services> loadServices() {
-        //TODO:
+
+    private ArrayList<Service_Type> loadServices() throws Exception {
+        ArrayList<Service_Type> services = ServicesTypeRepository.findAll();
+        if (services != null) return services;
         return null;
     }
 
 
-    // TODO:
-//    private void loadDate( ..... ) {
-//
-//    }
+    public void loadRoomData(Rooms room) throws Exception {
+        ArrayList<Rooms> r = new ArrayList<>(List.of(room));
+        roomsObservableList = FXCollections.observableArrayList(r);
+    }
 
 
 }

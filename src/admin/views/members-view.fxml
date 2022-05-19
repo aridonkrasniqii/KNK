@@ -2,21 +2,37 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MembersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MembersController">
    <children>
-      <ImageView fitHeight="240.0" fitWidth="320.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../style/person1.jpeg" />
-         </image>
-      </ImageView>
-      <Label fx:id="firstName" layoutX="172.0" layoutY="275.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="First Name" />
-      <Label fx:id="lastName" layoutX="172.0" layoutY="312.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Last Name" />
-      <Label fx:id="positionOfMember" layoutX="184.0" layoutY="352.0" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Position" />
+      <ImageView fx:id="personImageView" fitHeight="240.0" fitWidth="246.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="365.0" layoutY="365.0" mnemonicParsing="false" onAction="#onNextAction" prefHeight="27.0" prefWidth="54.0" text="Next" />
       <Button layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="27.0" prefWidth="54.0" text="Back" />
+      <GridPane alignment="CENTER_RIGHT" hgap="5.0" layoutX="62.0" layoutY="265.0" vgap="5.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="32.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="firstName" alignment="CENTER" contentDisplay="CENTER" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="First Name" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="lastName" alignment="CENTER" contentDisplay="CENTER" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Last Name" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Label fx:id="positionOfMember" styleClass="memberLabels" stylesheets="@../../style/StyleSheet.css" text="Position" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

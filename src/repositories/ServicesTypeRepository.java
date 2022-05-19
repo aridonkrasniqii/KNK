@@ -101,9 +101,9 @@ public class ServicesTypeRepository {
     }
 
 
-    public ArrayList<Service_Type> findAll() throws Exception {
+    public static ArrayList<Service_Type> findAll() throws Exception {
         String query = "select * from services_type";
-        ResultSet res = this.connection.executeQuery(query);
+        ResultSet res = connection.executeQuery(query);
         ArrayList<Service_Type> service_types = new ArrayList<Service_Type>();
 
         while (res.next()) {

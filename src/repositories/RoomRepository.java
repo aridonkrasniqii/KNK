@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 //import com.mysql.cj.x.protobuf.MysqlxCrud;
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import helpers.Rooms;
@@ -214,31 +215,40 @@ public class RoomRepository {
         return rs;
     }
 
+
+    public static Rooms findReservedRooms(int payment_id) throws  Exception {
+        String query = "select ro.room_number as room_number , ro.floor_number as floor_number \n" +
+                ",ro.capacity as capacity ,ro.bed_number ,ro.room_type,ro.price from reservations re \n" +
+                "inner join payments pa  on pa.id = re.payment_id\n" +
+                "inner join rooms ro on ro.room_number = re.room_id where re.payment_id = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+
+        stmt.setInt(1 , payment_id);
+        ResultSet result = stmt.executeQuery();
+
+        Rooms rooms = fromResultSet(result);
+        if(rooms != null) return rooms;
+
+        return null;
+    }
+
+    public static ArrayList<Rooms> getOffers() throws Exception  {
+        String query = "select * from rooms where price < 100 limit 4";
+
+        ArrayList<Rooms> rooms = new ArrayList<>();
+        Statement stmt = connection.createStatement();
+        ResultSet res = stmt.executeQuery(query);
+
+        while (res.next()) {
+            rooms.add(fromResultSet(res));
+        }
+        if(rooms != null) return rooms;
+
+        return null;
+    }
+
+
+
 }
-
-
-// public static List<RoomChartModel> selectAllGroupByRoomType() throws Exception {
-//   ArrayList<RoomChartModel> list = new ArrayList<>();
-//   Connection conn = DBConnect.getConnection();
-//   PreparedStatement stmt = conn.prepareStatement("SELECT room_type, COUNT(*) FROM rooms GROUP BY room_type ");
-//   ResultSet res = stmt.executeQuery();
-//   while (res.next()) {
-//     list.add(new RoomChartModel(res.getString("room_type"), res.getInt("COUNT(*)")));
-//   }
-//   return list;
-// }
-
-
-// public static List<RoomChartModel> selectAllGroupByFloorNum() throws Exception {
-//   ArrayList<RoomChartModel> list = new ArrayList<>();
-//   Connection conn = DBConnect.getConnection();
-//   PreparedStatement stmt = conn.prepareStatement("SELECT rr.floor_number, COUNT(*) FROM reservations r \n" +
-//       "INNER JOIN rooms rr ON r.room_id = rr.room_number\n" +
-//       "GROUP BY rr.floor_number ");
-//   ResultSet res = stmt.executeQuery();
-//   while (res.next()) {
-//     list.add(new RoomChartModel(res.getInt("floor_number"), res.getInt("COUNT(*)")));
-//   }
-//   return list;
-// }
 
