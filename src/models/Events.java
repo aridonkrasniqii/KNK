@@ -15,7 +15,7 @@ public class Events {
 
     public Events(int id, String title, String organizer, String category, double price, Date start_date,
                   Date end_date) {
-        super();
+//        super();
         this.id = id;
         this.title = title;
         this.organizer = organizer;

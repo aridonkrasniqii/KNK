@@ -24,6 +24,7 @@ public class MainController implements Initializable {
 
     public static final String GUESTS_DASHBOARD = "guests";
     public static final String OVERVIEW_DASHBOARD = "overview";
+    public static final String EVENTS_DASHBOARD = "events";
     public static final String PAYMENTS_DASHBOARD = "payments";
     public static final String ROOMS_DASHBOARD = "rooms";
     public static final String SERVICE_TYPES_DASHBOARD = "service_types";
@@ -57,6 +58,11 @@ public class MainController implements Initializable {
                 case OVERVIEW_DASHBOARD:
                     pane = loader.load();
                     System.out.println(" overview dashboard");
+                    contentPane.setAlignment(Pos.TOP_CENTER);
+                    break;
+                case EVENTS_DASHBOARD:
+                    pane = loader.load();
+//                    System.out.println(" overview dashboard");
                     contentPane.setAlignment(Pos.TOP_CENTER);
                     break;
                 case PAYMENTS_DASHBOARD:
@@ -106,6 +112,15 @@ public class MainController implements Initializable {
     private void onOverViewNavClick(ActionEvent ev) {
         try {
             this.setView(OVERVIEW_DASHBOARD);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    @FXML
+    private void onEventViewNavClick(ActionEvent ev) {
+        try {
+            this.setView(EVENTS_DASHBOARD);
         } catch (Exception ex) {
             System.out.println(ex);
         }

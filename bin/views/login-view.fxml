@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: rgba(231,224,208,255);">
+         <children>
+            <ImageView fitHeight="340.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/LogoWhite.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="We are honored to have you here!">
+               <font>
+                  <Font name="AppleGothic Regular" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Pane fx:id="content_area" layoutX="500.0" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #FFF;">
+         <children>
+            <Label layoutX="156.0" layoutY="213.0" text="Welcome Back" textFill="#545454">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="272.0" text="Sign in to continue" textFill="#a3a3a3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="297.0" layoutY="389.0" styleClass="forgotPassword" stylesheets="@../style/StyleSheet.css" text="Forgot password?" textFill="#342cbf">
+               <font>
+                  <Font name="Ebrima Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="50.0" layoutY="423.0" mnemonicParsing="false" onAction="#onLoginAction" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: rgba(171,155,129,255);" stylesheets="@../style/StyleSheet.css" text="LOGIN">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="goToRegister" layoutX="231.0" layoutY="496.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
+               <font>
+                  <Font name="Ebrima Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label id="newUser" layoutX="156.0" layoutY="496.0" styleClass="newUser" stylesheets="@../style/StyleSheet.css" text="New user?" textFill="#a3a3a3">
+               <font>
+                  <Font name="Ebrima Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="emailField" layoutX="50.0" layoutY="299.0" prefHeight="33.0" prefWidth="351.0" promptText="Username" />
+            <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="350.0" prefHeight="33.0" prefWidth="351.0" promptText="Password" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
