@@ -64,8 +64,8 @@ public class EditEventController implements Initializable {
         	String organizerStr = organizerCol.getText();
         	String categoryStr = categoryCol.getText();
             double price = Double.parseDouble(priceCol.getText());
-            Date startDate = DateHelper.fromSql(startDateCol.getValue().toString());
-            Date endDate = DateHelper.fromSql(endDateCol.getValue().toString());
+            Date startDate = DateHelper.fromSqlDate(startDateCol.getValue().toString());
+            Date endDate = DateHelper.fromSqlDate(endDateCol.getValue().toString());
             Events event = new Events(1, titleStr, organizerStr, categoryStr, price, startDate, endDate);
             
             if (EventsRepository.update(event) != null) {
