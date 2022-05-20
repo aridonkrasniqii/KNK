@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import helpers.Rooms;
@@ -12,9 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -142,14 +141,38 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private void onLogoutAction(ActionEvent e) throws Exception {
-		changeStage(LOGOUT_VIEW, e);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Logout");
+		alert.setHeaderText("Are you sure to log out");
+		alert.setResizable(false);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		ButtonType button = result.orElse(ButtonType.CANCEL);
+
+		if (button == ButtonType.OK) {
+			changeStage(LOGOUT_VIEW, e);
+		}
+
 	}
 
 	@FXML
 	private void onMenuLogoutAction(ActionEvent e) throws Exception {
 		Parent parent = FXMLLoader.load(getClass().getResource(setPath(LOGOUT_VIEW)));
 		Stage stage = (Stage) loggedInUser.getScene().getWindow();
-		stage.setScene(new Scene(parent));
+
+
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Logout");
+		alert.setHeaderText("Are you sure to log out");
+		alert.setResizable(false);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		ButtonType button = result.orElse(ButtonType.CANCEL);
+
+		if (button == ButtonType.OK) {
+			stage.setScene(new Scene(parent));
+		}
+
 	}
 
 	@FXML

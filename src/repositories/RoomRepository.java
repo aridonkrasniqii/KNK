@@ -234,7 +234,7 @@ public class RoomRepository {
     }
 
     public static ArrayList<Rooms> getOffers() throws Exception  {
-        String query = "select * from rooms where price > 100 limit 4";
+        String query = "select * from rooms where price < 100 limit 4";
 
         ArrayList<Rooms> rooms = new ArrayList<>();
         Statement stmt = connection.createStatement();
