@@ -8,8 +8,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import admin.controllers.events.*;
-import helpers.Events;
-import helpers.Rooms;
+import models.Events;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,14 +19,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.EventsRepository;
-//import repositories.RoomRepository;
 
 public class EventsController implements Initializable {
     @FXML
@@ -57,7 +55,7 @@ public class EventsController implements Initializable {
 //            roomTypeFilter.setItems(roomTypeSelectorList);
 //            roomNumberFilter.setItems(roomNumberList);
 //            roomCapacityFilter.setItems(roomBedNumberList);
-            ObservableList<helpers.Events> staffs = FXCollections.observableArrayList(loadEvents());
+            ObservableList<Events> staffs = FXCollections.observableArrayList(loadEvents());
             eventsTableView.setItems(staffs);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -78,7 +76,7 @@ public class EventsController implements Initializable {
         
     }
 
-    public ArrayList<helpers.Events> loadEvents() throws Exception {
+    public ArrayList<Events> loadEvents() throws Exception {
     	EventsRepository repository = new EventsRepository();
         return repository.findAll();
     }
