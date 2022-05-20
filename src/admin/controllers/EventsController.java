@@ -1,4 +1,4 @@
-package controllers;
+package admin.controllers;
 
 
 import java.net.URL;
@@ -19,15 +19,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.EventsRepository;
+//import repositories.RoomRepository;
 
-public class EventController implements Initializable {
+public class EventsController implements Initializable {
     @FXML
     public AnchorPane eventsPane;
     @FXML
@@ -99,8 +100,10 @@ public class EventController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../views/eventviews/edit-event.fxml"));
         Parent parent = loader.load();
+
         EditEventController controller = loader.getController();
         Events selected = eventsTableView.getSelectionModel().getSelectedItem();
+
         if(selected == null) {
             return;
         }

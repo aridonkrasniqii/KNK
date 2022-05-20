@@ -9,7 +9,6 @@ import javafx.scene.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,13 +18,13 @@ import javafx.stage.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
     public static final String GUESTS_DASHBOARD = "guests";
     public static final String OVERVIEW_DASHBOARD = "overview";
+    public static final String EVENTS_DASHBOARD = "events";
     public static final String PAYMENTS_DASHBOARD = "payments";
     public static final String ROOMS_DASHBOARD = "rooms";
     public static final String SERVICE_TYPES_DASHBOARD = "service_types";
@@ -59,6 +58,11 @@ public class MainController implements Initializable {
                 case OVERVIEW_DASHBOARD:
                     pane = loader.load();
                     System.out.println(" overview dashboard");
+                    contentPane.setAlignment(Pos.TOP_CENTER);
+                    break;
+                case EVENTS_DASHBOARD:
+                    pane = loader.load();
+//                    System.out.println(" overview dashboard");
                     contentPane.setAlignment(Pos.TOP_CENTER);
                     break;
                 case PAYMENTS_DASHBOARD:
@@ -108,6 +112,15 @@ public class MainController implements Initializable {
     private void onOverViewNavClick(ActionEvent ev) {
         try {
             this.setView(OVERVIEW_DASHBOARD);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    @FXML
+    private void onEventViewNavClick(ActionEvent ev) {
+        try {
+            this.setView(EVENTS_DASHBOARD);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -165,17 +178,7 @@ public class MainController implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource("../../views/login-view.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) ev.getSource()).getScene().getWindow();
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText("Are you sure to log out");
-            alert.setResizable(false);
-
-            Optional<ButtonType> result = alert.showAndWait();
-            ButtonType button = result.orElse(ButtonType.CANCEL);
-
-            if (button == ButtonType.OK) {
-                stage.setScene(scene);
-            }
+            stage.setScene(scene);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -190,22 +193,12 @@ public class MainController implements Initializable {
     @FXML
     private void onMenuLogoutAction(ActionEvent e) throws  Exception{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../../views/login-view.fxml"));
+        loader.setLocation(getClass().getResource("../../views/are-you-sure.fxml"));
         Parent parent = loader.load();
-        Stage stage = (Stage) sessionLabel.getScene().getWindow();
         Scene scene = new Scene(parent);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("Are you sure to log out");
-        alert.setResizable(false);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        ButtonType button = result.orElse(ButtonType.CANCEL);
-
-        if (button == ButtonType.OK) {
-            stage.setScene(scene);
-        }
-
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
