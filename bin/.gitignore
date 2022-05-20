@@ -1,10 +1,2 @@
-/admin/
-/application/
-/components/
-/controllers/
 /database/
-/helpers/
 /models/
-/processor/
-/repositories/
-/utilities/
