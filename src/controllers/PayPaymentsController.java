@@ -106,18 +106,26 @@ public class PayPaymentsController implements Initializable {
 		String meth = method.getText();
 	}
 
-	public void setTotal(double price) {
+	public void setData(double price, String fullName, int id) {
 		String servicePrice = servicePriceCol.getText();
 		this.totalValue.setText(Double.toString(price) + servicePrice);
-
-	}
-
-	public void setFullName(String fullName) {
 		this.fullName.setText(fullName);
+		this.paymentId.setText(Integer.toString(id));
+
 	}
 
-	public void setPaymentId(int id) {
-		this.paymentId.setText(Integer.toString(id));
-	}
+//	public void setTotal(double price) {
+//		String servicePrice = servicePriceCol.getText();
+//		this.totalValue.setText(Double.toString(price) + servicePrice);
+//
+//	}
+//
+//	public void setFullName(String fullName) {
+//		this.fullName.setText(fullName);
+//	}
+//
+//	public void setPaymentId(int id) {
+//		this.paymentId.setText(Integer.toString(id));
+//	}
 
 }

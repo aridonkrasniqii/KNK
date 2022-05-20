@@ -87,9 +87,10 @@ public class PaymentsController implements Initializable {
 		loader.setLocation(getClass().getResource("../views/pay-payment-view.fxml"));
 		Parent parent = loader.load();
 		PayPaymentsController controller = loader.getController();
-		controller.setTotal(selected.getPrice());
-		controller.setFullName(SessionManager.user.getName());
-		controller.setPaymentId(selected.getPayment_id());
+//		controller.setTotal(selected.getPrice());
+//		controller.setFullName(SessionManager.user.getName());
+//		controller.setPaymentId(selected.getPayment_id());
+		controller.setData(selected.getPrice(), SessionManager.user.getName(), selected.getPayment_id());
 
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
