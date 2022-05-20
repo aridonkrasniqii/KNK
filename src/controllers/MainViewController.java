@@ -1,8 +1,10 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import helpers.Rooms;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +15,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import repositories.RoomRepository;
 
 public class MainViewController implements Initializable {
 
@@ -44,31 +49,47 @@ public class MainViewController implements Initializable {
 	@FXML
 	private MenuItem logoutButton;
 	@FXML
-	private Button overviewBtn;
+	private Button offersButton;
+	
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
 	}
-
 	private void changeRunTime(Button button) {
 		reservationsBtn.setStyle("-fx-background-color:transparent;");
 		paymentsBtn.setStyle("-fx-background-color:transparent;");
 		eventBtn.setStyle("-fx-background-color:transparent;");
 		logOutBtn.setStyle("-fx-background-color:transparent;");
-//		overviewBtn.setStyle("-fx-background-color:transparent;");
+		offersButton.setStyle("-fx-background-color:transparent;");
 		button.setStyle("-fx-background-color:#ab9b81;");
 	}
 
 	@FXML
 	private void onOverviewAction(ActionEvent e) throws Exception {
-		changeRunTime(overviewBtn);
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../views/room-details.fxml"));
-		Parent parent = loader.load();
+		changeRunTime(offersButton);
+		GridPane pane = new GridPane();
+
+		ArrayList<Rooms> rooms = RoomRepository.getOffers();
+		int size = 0;
+		for(int i = 0; i < 2 ;i ++ ) {
+			for(int j = 0; j < 2 ;j ++ ) {
+
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../views/room-details.fxml"));
+				Parent parent = loader.load();
+				RoomDetailsController controller = loader.getController();
+				Rooms r = rooms.get(size);
+				controller.setDate(r.getRoom_number(),r.getFloor_number(),r.getBed_number(),r.getRoom_type(),r.getPrice(),size + 1);
+				pane.add(parent, i , j);
+				size += 1;
+			}
+		}
+		pane.setVgap(15);
+		pane.setHgap(15);
 		mainPane.getChildren().clear();
-		mainPane.getChildren().add(parent);
+		mainPane.getChildren().add(pane);
 	}
 
 	public void setView(String view) throws Exception {

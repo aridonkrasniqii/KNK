@@ -184,5 +184,3 @@ CREATE TABLE `events` (
 
   PRIMARY KEY (`id`)
 ) ;
-
-INSERT INTO events VALUES (1,"event", "org", "cat", 100.2, '2020-11-22', '2020-12-20');

@@ -113,6 +113,6 @@ public class RoomDetailsController implements Initializable {
 
 
     private String setImagePath(int image) {
-        return "/Users/lorikmustafa/Documents/GitHub/KNKMASTER/src/images/roomOffers/offers-room" + Integer.toString(image) + ".jpeg";
+        return "/home/teknikashi/Documents/GitHub/KNK/src/images/roomOffers/offers-room" + Integer.toString(image) + ".jpeg";
     }
 }

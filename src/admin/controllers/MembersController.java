@@ -100,6 +100,6 @@ public class MembersController implements Initializable {
 
 
     private String setImagePath(int image) {
-        return "/Users/lorikmustafa/Documents/GitHub/KNKMASTER/src/admin/images/person" + Integer.toString(image) + ".jpeg";
+        return "/home/teknikashi/Documents/GitHub/KNK/src/admin/images/person" + Integer.toString(image) + ".jpeg";
     }
 }

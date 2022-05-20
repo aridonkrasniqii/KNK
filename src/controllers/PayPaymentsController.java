@@ -1,131 +1,131 @@
 package controllers;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
-
-import components.ErrorPopupComponent;
-import components.SuccessPopupComponent;
 import helpers.Rooms;
+import helpers.Service_Type;
 import helpers.Services;
-import helpers.SessionManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.Payments;
-import repositories.PaymentRepository;
+import repositories.ServicesTypeRepository;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class PayPaymentsController implements Initializable {
 
-	// FIXME: figure out for what is service table
 
-	@FXML
-	private Label totalValue;
+    // FIXME: figure out for what is service table
 
-	@FXML
-	private RadioButton cachButton;
+    @FXML
+    private Label totalValue;
 
-	@FXML
-	private RadioButton creditCardButton;
+    @FXML
+    private RadioButton cachButton;
 
-	@FXML
-	private RadioButton giftCuponButton;
+    @FXML
+    private RadioButton creditCardButton;
 
-	@FXML
-	private ToggleGroup payMethodGroup;
+    @FXML
+    private RadioButton giftCuponButton;
 
-	@FXML
-	private Label paymentId;
+    private ToggleGroup payMethodGroup;
 
-	@FXML
-	private Label fullName;
 
-	@FXML
-	private TableView<Rooms> roomTableView;
+    public void initRadio() {
+        cachButton.setToggleGroup(payMethodGroup);
+        creditCardButton.setToggleGroup(payMethodGroup);
+        giftCuponButton.setToggleGroup(payMethodGroup);
 
-	@FXML
-	private TableView<Services> serviceTableView;
+        RadioButton method = (RadioButton) payMethodGroup.getSelectedToggle();
+        String meth = method.getText();
+    }
 
-	@FXML
-	private TableColumn<Services, String> serviceNameCol;
+    @FXML
+    private TableView<Rooms> roomTableView;
 
-	@FXML
-	private TableColumn<Services, Double> servicePriceCol;
+    @FXML
+    private TableColumn<Rooms, Integer> roomNumberCol;
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-		try {
-			initRadio();
-			bindPaymentMethod();
-			initializeServices();
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-	}
+    @FXML
+    private TableColumn<Rooms, String> roomTypeCol;
 
-	@FXML
-	private void onPayAction(ActionEvent e) throws Exception {
-		RadioButton payM = (RadioButton) payMethodGroup.getSelectedToggle();
-		String payMethod = payM.getText();
+    @FXML
+    private TableColumn<Rooms, Double> roomPriceCol;
 
-		Double price = Double.parseDouble(totalValue.getText());
-		Payments pay = new Payments(Integer.parseInt(paymentId.getText()), SessionManager.user.getId(), 1, price,
-				payMethod, 1, new Date());
 
-		if (PaymentRepository.update(pay) != null) {
-			SuccessPopupComponent.show("Successfully payed", "Updated pay");
-		} else {
-			ErrorPopupComponent.show("Failed payment!!!");
-		}
-	}
+    @FXML
+    private TableView<Service_Type> serviceTableView;
 
-	private void bindPaymentMethod() {
-		cachButton.setToggleGroup(payMethodGroup);
-		creditCardButton.setToggleGroup(payMethodGroup);
-		giftCuponButton.setToggleGroup(payMethodGroup);
-	}
 
-	private void initializeServices() {
-		// TODO:
-		this.serviceNameCol.setCellValueFactory(new PropertyValueFactory<>(""));
-		this.servicePriceCol.setCellValueFactory(new PropertyValueFactory<>(""));
-	}
+    @FXML
+    private TableColumn<Service_Type, String> serviceNameCol;
 
-	public void initRadio() {
-		cachButton.setToggleGroup(payMethodGroup);
-		creditCardButton.setToggleGroup(payMethodGroup);
-		giftCuponButton.setToggleGroup(payMethodGroup);
 
-		RadioButton method = (RadioButton) payMethodGroup.getSelectedToggle();
-		String meth = method.getText();
-	}
+    @FXML
+    private TableColumn<Service_Type, Double> servicePriceCol;
 
-	public void setData(double price, String fullName, int id) {
-		String servicePrice = servicePriceCol.getText();
-		this.totalValue.setText(Double.toString(price) + servicePrice);
-		this.fullName.setText(fullName);
-		this.paymentId.setText(Integer.toString(id));
 
-	}
+    ObservableList<Rooms> roomsObservableList;
+    ObservableList<Service_Type> servicesObservableList;
 
-//	public void setTotal(double price) {
-//		String servicePrice = servicePriceCol.getText();
-//		this.totalValue.setText(Double.toString(price) + servicePrice);
-//
-//	}
-//
-//	public void setFullName(String fullName) {
-//		this.fullName.setText(fullName);
-//	}
-//
-//	public void setPaymentId(int id) {
-//		this.paymentId.setText(Integer.toString(id));
-//	}
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            bindPaymentMethod();
+            initializeRooms();
+            initializeServices();
+            servicesObservableList = FXCollections.observableArrayList(loadServices());
+            serviceTableView.setItems(servicesObservableList);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+
+    @FXML
+    private void onPayAction(ActionEvent e) throws Exception {
+        RadioButton payM = (RadioButton) payMethodGroup.getSelectedToggle();
+        String payMethod = payM.getText();
+
+    }
+
+
+    private void bindPaymentMethod() {
+        cachButton.setToggleGroup(payMethodGroup);
+        creditCardButton.setToggleGroup(payMethodGroup);
+        giftCuponButton.setToggleGroup(payMethodGroup);
+    }
+
+    private void initializeRooms() {
+        this.roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("room_number"));
+        this.roomTypeCol.setCellValueFactory(new PropertyValueFactory<>("room_type"));
+        this.roomPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
+
+
+    private void initializeServices() {
+        // TODO:
+        this.serviceNameCol.setCellValueFactory(new PropertyValueFactory<>(""));
+        this.servicePriceCol.setCellValueFactory(new PropertyValueFactory<>(""));
+    }
+
+    private ArrayList<Service_Type> loadServices() throws Exception {
+        ArrayList<Service_Type> services = ServicesTypeRepository.findAll();
+        if (services != null) return services;
+        return null;
+    }
+
+
+    public void loadRoomData(Rooms room) throws Exception {
+        ArrayList<Rooms> r = new ArrayList<>(List.of(room));
+        roomsObservableList = FXCollections.observableArrayList(r);
+    }
+
 
 }
