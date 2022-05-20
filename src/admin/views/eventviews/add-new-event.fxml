@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.events.AddEventController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.events.AddEventController">
     <children>
         <GridPane hgap="15.0" layoutX="12.0" layoutY="9.0" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
@@ -41,7 +41,7 @@
                         <Insets />
                     </GridPane.margin>
                 </Label>
-                <TextField fx:id="title" promptText="Title" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                <TextField fx:id="titleCol" promptText="Title" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                 <Label fx:id="lbl_floorNr" graphicTextGap="5.0" text="Organizer" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="System Bold" size="14.0" />
@@ -52,12 +52,12 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="lbl_bedNr" graphicTextGap="5.0" text="End date" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Label fx:id="lbl_bedNr" graphicTextGap="5.0" text="End date" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="lbl_roomType" graphicTextGap="5.0" text="Start date" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <Label fx:id="lbl_roomType" graphicTextGap="5.0" text="Start date" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -67,13 +67,13 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="organizer" promptText="Organizer" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                <TextField fx:id="category" promptText="Category" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                <TextField fx:id="price" promptText="Price" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                <TextField fx:id="organizerCol" promptText="Organizer" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                <TextField fx:id="categoryCol" promptText="Category" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                <TextField fx:id="priceCol" promptText="Price" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addNewEvent" text="Add Room" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                 <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancleButton" text="Cancel" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <DatePicker fx:id="endDate" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <DatePicker fx:id="endDate" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <DatePicker fx:id="startDateCol" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <DatePicker fx:id="endDateCol" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             </children>
         </GridPane>
     </children>

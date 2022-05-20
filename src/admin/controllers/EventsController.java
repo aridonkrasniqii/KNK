@@ -8,8 +8,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import admin.controllers.events.*;
-import helpers.Events;
-//import helpers.Rooms;
+import models.Events;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,7 +56,7 @@ public class EventsController implements Initializable {
 //            roomTypeFilter.setItems(roomTypeSelectorList);
 //            roomNumberFilter.setItems(roomNumberList);
 //            roomCapacityFilter.setItems(roomBedNumberList);
-            ObservableList<helpers.Events> staffs = FXCollections.observableArrayList(loadEvents());
+            ObservableList<Events> staffs = FXCollections.observableArrayList(loadEvents());
             eventsTableView.setItems(staffs);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -78,7 +77,7 @@ public class EventsController implements Initializable {
         
     }
 
-    public ArrayList<helpers.Events> loadEvents() throws Exception {
+    public ArrayList<Events> loadEvents() throws Exception {
     	EventsRepository repository = new EventsRepository();
         return repository.findAll();
     }
@@ -101,8 +100,10 @@ public class EventsController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../views/eventviews/edit-event.fxml"));
         Parent parent = loader.load();
+
         EditEventController controller = loader.getController();
         Events selected = eventsTableView.getSelectionModel().getSelectedItem();
+
         if(selected == null) {
             return;
         }

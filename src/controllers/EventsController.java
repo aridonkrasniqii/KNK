@@ -1,4 +1,4 @@
-package admin.controllers;
+package controllers;
 
 
 import java.net.URL;

@@ -4,8 +4,8 @@ import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
 import database.UpdateQueryBuilder;
-import helpers.Events;
-import helpers.Rooms;
+import models.Events;
+//import helpers.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +24,7 @@ import repositories.EventsRepository;
 import repositories.RoomRepository;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.ResourceBundle;
 public class EditEventController implements Initializable {
@@ -57,30 +58,15 @@ public class EditEventController implements Initializable {
     }
 
     @FXML
-    private void updateEvent(ActionEvent e ) throws Exception{
-//        int title = Integer.parseInt(roomNumber.getText());
-//        int floorNum = Integer.parseInt(floorNumber.getText());
-//        int roomCpc = Integer.parseInt(roomCapacity.getText());
-//        int bedNum = Integer.parseInt(bedNumber.getText());
-//        String roomTp = roomType.getValue().toString();
-//        double prc = Double.parseDouble(price.getText());
-//        Events event = new Events(roomNum, floorNum, roomCpc, bedNum, roomTp, prc);
-//
-//        if(EventsRepository.update(event) != null) {
-//            SuccessPopupComponent.show("Successfully edited " , "Edited");
-//        }else {
-//            ErrorPopupComponent.show("Failed to edit");
-//        }
-    	
+    private void updateEvent(ActionEvent e ) throws Exception{    	
     	try {
         	String titleStr = titleCol.getText();
         	String organizerStr = organizerCol.getText();
         	String categoryStr = categoryCol.getText();
             double price = Double.parseDouble(priceCol.getText());
-            String startDate = startDateCol.getValue().toString();
-            String endDate = endDateCol.getValue().toString();
-//            Rooms room = new Rooms(roomNum, floorNum, roomCpc, bedNum, roomTp, prc);
-            Events event = new Events(titleStr, organizerStr, categoryStr, price, startDate, endDate);
+            Date startDate = DateHelper.fromSql(startDateCol.getValue().toString());
+            Date endDate = DateHelper.fromSql(endDateCol.getValue().toString());
+            Events event = new Events(1, titleStr, organizerStr, categoryStr, price, startDate, endDate);
             
             if (EventsRepository.update(event) != null) {
                 EventsRepository.create(event);

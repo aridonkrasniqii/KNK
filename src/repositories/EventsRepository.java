@@ -2,17 +2,14 @@ package repositories;
 
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Rooms;
 import models.Events;
 import models.charts.EventChart;
 import processor.DateHelper;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+
 
 public class EventsRepository {
 
@@ -49,13 +46,13 @@ public class EventsRepository {
 
         return null;
     }
-    public ArrayList<helpers.Events> findAll()  throws Exception{
+    public ArrayList<Events> findAll()  throws Exception{
 
         String query = "select * from events";
         Statement stmt = connection.createStatement();
 
         ResultSet res = stmt.executeQuery(query);
-        ArrayList<helpers.Events> events = new ArrayList<>();
+        ArrayList<Events> events = new ArrayList<>();
         while(res.next()){
             events.add(fromResultSet(res));
         }
@@ -64,18 +61,17 @@ public class EventsRepository {
     }
 
 
-    public static helpers.Events fromResultSet(ResultSet res) throws  Exception{
+    public static Events fromResultSet(ResultSet res) throws  Exception{
         int id = res.getInt("id");
         String title = res.getString("title");
         String organizer = res.getString("organizer");
         String category = res.getString("category");
         double price = res.getDouble("price");
-//        Date start_date = res.getDate("start_date");
-//        Date end_date = res.getDate("end_date");
         String start_date = res.getString("start_date");
         String end_date = res.getString("end_date");
 
-        return new helpers.Events(title, organizer, category, price, start_date, end_date);
+        return new Events(id,title, organizer, category, price, DateHelper.fromSqlDate(start_date),
+                DateHelper.fromSqlDate(end_date));
     }
 
 
@@ -84,18 +80,19 @@ public class EventsRepository {
 //        return null;
 //    }
     
-    public static helpers.Events update(helpers.Events model) throws Exception {
-        String query = "update rooms set category = ? , capacity = ? , bed_number = ?,room_type = ?, price = ?  where room_number = ?";
+    public static Events update(Events model) throws Exception {
+        //fixme:
+        String query = "update events set title = ? , organizer = ? , category = ? , price = ? " +
+                ", start_date = ? , end_date = ? where id = ?;";
 
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, model.getTitle());
         stmt.setString(2, model.getOrganizer());
         stmt.setString(3, model.getCategory());
         stmt.setDouble(4, model.getPrice());
-//        stmt.setString(5 , DateHelper.toSql(model.getStart_date()));
-//        stmt.setString(6 , DateHelper.toSql(model.getEnd_date()));
-        stmt.setString(5 , model.getStart_date());
-        stmt.setString(6 , model.getEnd_date());
+        stmt.setString(5 , DateHelper.toSqlDate(model.getStart_date()));
+        stmt.setString(6 , DateHelper.toSqlDate(model.getEnd_date()));
+        stmt.setInt(7, model.getId());
 
 
         int affectedRows = stmt.executeUpdate();
@@ -106,8 +103,8 @@ public class EventsRepository {
         return find(model.getId());
     }
     
-    public static helpers.Events find(int id) throws Exception {
-        String query = "select * from events where title = ?";
+    public static Events find(int id) throws Exception {
+        String query = "select * from events where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
 
         stmt.setInt(1, id);
@@ -120,20 +117,21 @@ public class EventsRepository {
     }
     
 
-    public static helpers.Events create(helpers.Events model) throws  Exception {
-    	InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("rooms")
+    public static Events create(Events model) throws  Exception {
+    	InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("events")
                 .add("title", model.getTitle(), "s")
                 .add("organizer", model.getOrganizer(), "s")
                 .add("category", model.getCategory(), "s")
-                .add("price", model.getPrice(), "f")
-                .add("start_date", model.getStart_date(), "s")
-                .add("end_date", model.getEnd_date(), "s");
+                .add("price", (float) model.getPrice(), "f")
+                .add("start_date", DateHelper.toSqlDate(model.getStart_date()), "s")
+                .add("end_date", DateHelper.toSqlDate(model.getEnd_date()), "s");
 
         int lastInsertedId = connection.execute(query);
-        helpers.Events event = find(lastInsertedId);
+        Events event = find(lastInsertedId);
 
         if (event != null)
             return event;
+
         return null;
     }
 }
