@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -34,7 +35,7 @@ public class LoginController {
 	private Pane content_area;
 
 	@FXML
-	private TextField emailField;
+	private TextField usernameField;
 
 	@FXML
 	private TextField passwordField;
@@ -48,6 +49,18 @@ public class LoginController {
 	@FXML
 	private Button loginBtn;
 
+	@FXML
+	private Label goToRegister;
+
+	@FXML
+	private Label newUser;
+
+	@FXML
+	private Label forgotPw;
+
+	@FXML
+	private Label welcome;
+
 	private static final String ADMIN_SCREEN = "admin-screen";
 	private static final String GUEST_SCREEN = "main-view";
 
@@ -56,7 +69,7 @@ public class LoginController {
 		try {
 			System.out.println("Aridon");
 			User user = null;
-			String email = emailField.getText();
+			String email = usernameField.getText();
 			String password = passwordField.getText();
 
 			boolean emptyFields = LoginValidate.validate(email, password);
@@ -95,7 +108,7 @@ public class LoginController {
 			adminController.setView(MainController.GUESTS_DASHBOARD);
 			Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			primaryStage.setScene(new Scene(parent));
-			primaryStage.setTitle("LAMALE Hotel");
+			primaryStage.titleProperty().bind(I18N.createStringBinding("window.title"));
 			primaryStage.centerOnScreen();
 			break;
 		case GUEST_SCREEN:
@@ -127,12 +140,20 @@ public class LoginController {
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
-		stage.setTitle("LAMALE Hotel");
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
 
 	}
 
 	@FXML
 	public void albanianLanguageOnClick(MouseEvent event) {
+		this.usernameField.promptTextProperty().bind(I18N.createStringBinding("usernameField"));
+		this.passwordField.promptTextProperty().bind(I18N.createStringBinding("passwordField"));
+		this.loginBtn.textProperty().bind(I18N.createStringBinding("loginBtn"));
+		this.goToRegister.textProperty().bind(I18N.createStringBinding("goToRegister"));
+		this.welcome.textProperty().bind(I18N.createStringBinding("welcome"));
+		this.forgotPw.textProperty().bind(I18N.createStringBinding("forgotPw"));
+		this.newUser.textProperty().bind(I18N.createStringBinding("newUser"));
+
 		I18N.setLocale(Locale.GERMAN);
 	}
 

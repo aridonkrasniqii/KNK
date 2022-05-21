@@ -34,6 +34,7 @@ public class MainController implements Initializable {
 	public static final String SERVICE_TYPES_DASHBOARD = "service_types";
 	public static final String STAFF_DASHBOARD = "staff";
 	public static final String ABOUT_VIEW = "about-view";
+	public static final String EVENTS_DASHBOARD = "events";
 
 	private static final String VIEW_PATH = "../views";
 
@@ -82,6 +83,10 @@ public class MainController implements Initializable {
 				contentPane.setAlignment(Pos.TOP_CENTER);
 				break;
 			case STAFF_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case EVENTS_DASHBOARD:
 				pane = loader.load();
 				contentPane.setAlignment(Pos.TOP_CENTER);
 				break;
@@ -160,6 +165,15 @@ public class MainController implements Initializable {
 	private void onServiceTypesNavClick(ActionEvent ev) {
 		try {
 			this.setView(SERVICE_TYPES_DASHBOARD);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+
+	@FXML
+	private void onEventViewNavClick(ActionEvent e) {
+		try {
+			this.setView(EVENTS_DASHBOARD);
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

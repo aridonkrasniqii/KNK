@@ -18,8 +18,9 @@ public class App extends Application {
 
 		Scene scene = new Scene(root);
 
+		primaryStage.titleProperty().bind(I18N.createStringBinding("window.title"));
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("LAMALE Hotel");
+//		primaryStage.setTitle("LAMALE Hotel");
 		primaryStage.centerOnScreen();
 		primaryStage.setResizable(false);
 		primaryStage.show();
