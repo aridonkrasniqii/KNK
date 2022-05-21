@@ -15,16 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.DateHelper;
 import repositories.UserRepository;
+import utilities.I18N;
 
 public class GuestController implements Initializable {
   private DBConnection connection;
@@ -72,6 +70,37 @@ public class GuestController implements Initializable {
   private TextField updatedAtField;
   @FXML
   private TextField searchField;
+  @FXML
+  private Label searchLbl;
+  @FXML
+  private Button createBtn;
+  @FXML
+  private Button updateBtn;
+  @FXML
+  private Button deleteBtn;
+
+
+  @FXML
+  private Label idLbl;
+  @FXML
+  private Label nameLbl;
+  @FXML
+  private Label usernameLbl;
+  @FXML
+  private Label emailLbl;
+  @FXML
+  private Label passwordLbl;
+  @FXML
+  private Label saltLbl;
+  @FXML
+  private Label isActiveLbl;
+  @FXML
+  private Label updatedAtLbl;
+  @FXML
+  private Label createLbl;
+  @FXML
+  private Label roleLbl;
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -95,6 +124,37 @@ public class GuestController implements Initializable {
     } catch (Exception ex) {
       ErrorPopupComponent.show(ex);
     }
+
+    nameField.promptTextProperty().bind(I18N.createStringBinding("nameField"));
+    usernameField.promptTextProperty().bind(I18N.createStringBinding("usernameField"));
+    emailField.promptTextProperty().bind(I18N.createStringBinding("emailField"));
+    passwordField.promptTextProperty().bind(I18N.createStringBinding("passwordField"));
+    createBtn.textProperty().bind(I18N.createStringBinding("createBtn"));
+    updateBtn.textProperty().bind(I18N.createStringBinding("updateBtn"));
+    searchLbl.textProperty().bind(I18N.createStringBinding("searchLbl"));
+    deleteBtn.textProperty().bind(I18N.createStringBinding("deleteBtn"));
+
+    idColumn.textProperty().bind(I18N.createStringBinding("idColumn"));
+    nameColumn.textProperty().bind(I18N.createStringBinding("nameColumn"));
+    usernameColumn.textProperty().bind(I18N.createStringBinding("usernameColumn"));
+    emailColumn.textProperty().bind(I18N.createStringBinding("emailColumn"));
+    passwordColumn.textProperty().bind(I18N.createStringBinding("passwordColumn"));
+    saltColumn.textProperty().bind(I18N.createStringBinding("saltColumn"));
+    roleColumn.textProperty().bind(I18N.createStringBinding("roleColumn"));
+    isActiveColumn.textProperty().bind(I18N.createStringBinding("isActiveColumn"));
+    createdAtColumn.textProperty().bind(I18N.createStringBinding("createdAtColumn"));
+    updatedAtColumn.textProperty().bind(I18N.createStringBinding("updatedAtColumn"));
+
+    idLbl.textProperty().bind(I18N.createStringBinding("idColumn"));
+    nameLbl.textProperty().bind(I18N.createStringBinding("nameColumn"));
+    usernameLbl.textProperty().bind(I18N.createStringBinding("usernameColumn"));
+    emailLbl.textProperty().bind(I18N.createStringBinding("emailColumn"));
+    passwordLbl.textProperty().bind(I18N.createStringBinding("passwordColumn"));
+    saltLbl.textProperty().bind(I18N.createStringBinding("saltColumn"));
+    roleLbl.textProperty().bind(I18N.createStringBinding("roleColumn"));
+    isActiveLbl.textProperty().bind(I18N.createStringBinding("isActiveColumn"));
+    createLbl.textProperty().bind(I18N.createStringBinding("createdAtColumn"));
+    updatedAtLbl.textProperty().bind(I18N.createStringBinding("updatedAtColumn"));
   }
 
   private void renderGuests(User model) throws Exception {

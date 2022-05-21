@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MembersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="434.0" styleClass="membersView" stylesheets="@../../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MembersController">
    <children>
       <ImageView fx:id="personImageView" fitHeight="240.0" fitWidth="246.0" layoutX="97.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="365.0" layoutY="365.0" mnemonicParsing="false" onAction="#onNextAction" prefHeight="27.0" prefWidth="54.0" text="Next" />
-      <Button layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="27.0" prefWidth="54.0" text="Back" />
+      <Button fx:id="nextBtn" layoutX="365.0" layoutY="365.0" mnemonicParsing="false" onAction="#onNextAction" prefHeight="27.0" prefWidth="54.0" text="Next" />
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="27.0" prefWidth="54.0" text="Back" />
       <GridPane alignment="CENTER_RIGHT" hgap="5.0" layoutX="62.0" layoutY="265.0" vgap="5.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="102.0" />

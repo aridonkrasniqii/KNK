@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.EventsRepository;
+import utilities.I18N;
 //import repositories.RoomRepository;
 
 public class EventsController implements Initializable {
@@ -33,6 +34,9 @@ public class EventsController implements Initializable {
     public AnchorPane eventsPane;
     @FXML
     private Button btnAddNewEvent;
+    @FXML
+    private Button btnEditEvent;
+
     @FXML
     private TableView<Events> eventsTableView;
     @FXML
@@ -61,6 +65,15 @@ public class EventsController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+
+        titleCol.textProperty().bind(I18N.createStringBinding("titleCol"));
+        organizerCol.textProperty().bind(I18N.createStringBinding("organizerCol"));
+        categoryCol.textProperty().bind(I18N.createStringBinding("categoryCol"));
+        priceCol.textProperty().bind(I18N.createStringBinding("priceCol"));
+        startDateCol.textProperty().bind(I18N.createStringBinding("startDateCol"));
+        endDateCol.textProperty().bind(I18N.createStringBinding("endDateCol"));
+        btnAddNewEvent.textProperty().bind(I18N.createStringBinding("btnAddNewEvent"));
+        btnEditEvent.textProperty().bind(I18N.createStringBinding("btnEditEvent"));
     }
 
 

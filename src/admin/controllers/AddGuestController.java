@@ -1,23 +1,30 @@
 package admin.controllers;
 
+import java.net.URL;
 import java.util.Date;
+import java.util.ResourceBundle;
+
 import components.ErrorPopupComponent;
 import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
 import repositories.UserRepository;
+import utilities.I18N;
 
-public class AddGuestController {
+public class AddGuestController implements Initializable {
 
     @FXML
     private TextField nameField;
@@ -27,8 +34,24 @@ public class AddGuestController {
     private TextField emailField;
     @FXML
     private TextField passwordField;
+    @FXML
+    private Label createGuestTitle;
+    @FXML
+    private Button createBtn;
+    @FXML
+    private Button cancelBtn;
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        createGuestTitle.textProperty().bind(I18N.createStringBinding("createGuestTitle"));
+        nameField.promptTextProperty().bind(I18N.createStringBinding("nameField"));
+        usernameField.promptTextProperty().bind(I18N.createStringBinding("usernameField"));
+        emailField.promptTextProperty().bind(I18N.createStringBinding("emailField"));
+        passwordField.promptTextProperty().bind(I18N.createStringBinding("passwordField"));
+        createBtn.textProperty().bind(I18N.createStringBinding("createBtn"));
+        cancelBtn.textProperty().bind(I18N.createStringBinding("cancelBtn"));
+    }
     @FXML
     private void onCreateAction(ActionEvent event) {
 
@@ -100,6 +123,7 @@ public class AddGuestController {
         user = UserRepository.create(user);
         return user;
     }
+
 
 
 }

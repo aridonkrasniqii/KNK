@@ -47,10 +47,43 @@ public class MainController implements Initializable {
 
 	@FXML
 	private Button enButton;
+	@FXML
+	private Button overviewBtn;
+	@FXML
+	private Button eventsBtn;
+	@FXML
+	private Button guestsBtn;
+	@FXML
+	private Button staffBtn;
+	@FXML
+	private Button roomsBtn;
+	@FXML
+	private Button paymentsBtn;
+	@FXML
+	private Button serviceBtn;
+	@FXML
+	private Button logoutBtn;
+
+	@FXML
+	private Label navTitle;
+	@FXML
+	private Label sectionTitle;
+	@FXML
+	private Label adminDashboardTitle;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		adminDashboardTitle.textProperty().bind(I18N.createStringBinding("adminDashboardTitle"));
+		overviewBtn.textProperty().bind(I18N.createStringBinding("overviewBtn"));
+		eventsBtn.textProperty().bind(I18N.createStringBinding("eventsBtn"));
+		guestsBtn.textProperty().bind(I18N.createStringBinding("guestsBtn"));
+		staffBtn.textProperty().bind(I18N.createStringBinding("staffBtn"));
+		roomsBtn.textProperty().bind(I18N.createStringBinding("roomsBtn"));
+		paymentsBtn.textProperty().bind(I18N.createStringBinding("paymentsBtn"));
+		serviceBtn.textProperty().bind(I18N.createStringBinding("serviceBtn"));
+		logoutBtn.textProperty().bind(I18N.createStringBinding("logoutBtn"));
+		navTitle.textProperty().bind(I18N.createStringBinding("navTitle"));
+		sectionTitle.textProperty().bind(I18N.createStringBinding("sectionTitle"));
 	}
 
 	public void setView(String view) {

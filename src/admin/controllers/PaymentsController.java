@@ -10,14 +10,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.view.PaymentModel;
 import repositories.PaymentsModelRepository;
+import utilities.I18N;
 
 public class PaymentsController implements Initializable{
   @FXML
@@ -40,7 +38,13 @@ public class PaymentsController implements Initializable{
   private DatePicker paymentDtPickerFilter;
   @FXML
   private Button paymentFilterBtn;
+  @FXML
+  private Button refreshBtn;
+  @FXML
+  private Label paymentsLbl;
   ObservableList<PaymentModel> paymentsModel;
+
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -51,6 +55,17 @@ public class PaymentsController implements Initializable{
     } catch (Exception ex) {
       System.out.println(ex);
     }
+
+
+    firstname.textProperty().bind(I18N.createStringBinding("nameField"));
+    lastname.textProperty().bind(I18N.createStringBinding("last_name"));
+    date.textProperty().bind(I18N.createStringBinding("data"));
+    price1.textProperty().bind(I18N.createStringBinding("priceCol"));
+    isPayed.textProperty().bind(I18N.createStringBinding("isPayed"));
+    paymentFilterBtn.textProperty().bind(I18N.createStringBinding("search"));
+    refreshBtn.textProperty().bind(I18N.createStringBinding("refreshBtn"));
+    paymentsLbl.textProperty().bind(I18N.createStringBinding("paymentsBtn"));
+
   }
 
   public void initializePayments() {

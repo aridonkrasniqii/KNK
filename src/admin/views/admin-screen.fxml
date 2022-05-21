@@ -32,7 +32,7 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <Label alignment="CENTER" text="Admin Dashboard" HBox.hgrow="ALWAYS">
+                  <Label fx:id="adminDashboardTitle" alignment="CENTER" text="Admin Dashboard" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding></Label>
@@ -71,17 +71,17 @@
          <children>
             <HBox>
                <children>
-                  <Label text="Navigation" />
+                  <Label fx:id="navTitle" text="Navigation" />
                </children>
             </HBox>
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onOverViewNavClick" text="Overview" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onEventViewNavClick" text="Events" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuestsNavClick" text="Guests" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onStaffNavClick" text="Staff" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRoomsNavClick" text="Rooms" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onPaymentsNavClick" text="Payments" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onServiceTypesNavClick" text="Service Types" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLogoutNavClick" text="Logout" />
+            <Button fx:id="overviewBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onOverViewNavClick" text="Overview" />
+            <Button fx:id="eventsBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onEventViewNavClick" text="Events" />
+            <Button fx:id="guestsBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuestsNavClick" text="Guests" />
+            <Button fx:id="staffBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onStaffNavClick" text="Staff" />
+            <Button fx:id="roomsBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRoomsNavClick" text="Rooms" />
+            <Button fx:id="paymentsBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onPaymentsNavClick" text="Payments" />
+            <Button fx:id="serviceBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onServiceTypesNavClick" text="Service Types" />
+            <Button fx:id="logoutBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLogoutNavClick" text="Logout" />
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="90.0" spacing="4.0">
                <children>
                   <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: cyan;" text="En" />
@@ -99,7 +99,7 @@
          <children>
             <HBox>
                <children>
-                  <Label text="Section " />
+                  <Label fx:id="sectionTitle" text="Section " />
                </children>
                <padding>
                   <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />

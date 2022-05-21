@@ -16,20 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.RoomRepository;
+import utilities.I18N;
 
 public class RoomController implements Initializable {
     @FXML
     public AnchorPane roomsPane;
-    @FXML
-    private Button btnAddNewRoom;
+
     @FXML
     private TableView<Rooms> roomsTableView;
     @FXML
@@ -53,6 +50,19 @@ public class RoomController implements Initializable {
     @FXML
     private Button findRooms;
 
+    @FXML
+    private Button addRoomBtn;
+    @FXML
+    private Button editRoomBtn;
+    @FXML
+    private Label roomsTitle;
+    @FXML
+    private Label roomTypeTitle;
+    @FXML
+    private Label bedNumTitle;
+    @FXML
+    private Label capacityTitle;
+
     private ObservableList roomNumberList;
     private ObservableList roomTypeSelectorList;
     private ObservableList roomBedNumberList;
@@ -70,6 +80,21 @@ public class RoomController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+
+        roomNumber.textProperty().bind(I18N.createStringBinding("roomNumberCol"));
+        floorNumber.textProperty().bind(I18N.createStringBinding("floorNumber"));
+        capacity.textProperty().bind(I18N.createStringBinding("capacityCol"));
+        bedNumber.textProperty().bind(I18N.createStringBinding("bedNumberCol"));
+        roomType.textProperty().bind(I18N.createStringBinding("roomTypeCol"));
+        price.textProperty().bind(I18N.createStringBinding("priceCol"));
+        findRooms.textProperty().bind(I18N.createStringBinding("findRooms"));
+        addRoomBtn.textProperty().bind(I18N.createStringBinding("addRoomBtn"));
+        editRoomBtn.textProperty().bind(I18N.createStringBinding("editRoomBtn"));
+        roomsTitle.textProperty().bind(I18N.createStringBinding("roomsButton"));
+        capacityTitle.textProperty().bind(I18N.createStringBinding("capacityCol"));
+        bedNumTitle.textProperty().bind(I18N.createStringBinding("bedNumberCol"));
+        roomTypeTitle.textProperty().bind(I18N.createStringBinding("roomTypeCol"));
+
     }
 
 

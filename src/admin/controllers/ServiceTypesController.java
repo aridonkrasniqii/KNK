@@ -17,12 +17,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.ServicesTypeRepository;
+import utilities.I18N;
 
 public class ServiceTypesController implements Initializable {
 
@@ -42,6 +44,12 @@ public class ServiceTypesController implements Initializable {
     private TableColumn<Service_Type, Integer> serviceQuantity;
     public ObservableList<Service_Type> serviceObservableList = null;
 
+    @FXML
+    private Button updateServiceBtn;
+    @FXML
+    private Button btnDelete1;
+    @FXML
+    private Label servicesTitle;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -52,6 +60,17 @@ public class ServiceTypesController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+
+        serviceID.textProperty().bind(I18N.createStringBinding("idColumn"));
+        serviceName.textProperty().bind(I18N.createStringBinding("serviceName"));
+        servicePrice.textProperty().bind(I18N.createStringBinding("priceCol"));
+
+        serviceQuantity.textProperty().bind(I18N.createStringBinding("quantity"));
+        addNewServiceBtn.textProperty().bind(I18N.createStringBinding("addNewServiceBtn"));
+        btnDelete1.textProperty().bind(I18N.createStringBinding("deleteBtn"));
+
+        servicesTitle.textProperty().bind(I18N.createStringBinding("servicesButton"));
+
     }
 
     public void initializeServiceTypes() {
