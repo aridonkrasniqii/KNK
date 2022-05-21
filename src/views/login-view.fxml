@@ -45,7 +45,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="forgotPw" layoutX="297.0" layoutY="389.0" styleClass="forgotPassword" stylesheets="@../style/StyleSheet.css" text="Forgot password?" textFill="#342cbf">
+            <Label fx:id="forgotPw" layoutX="270.0" layoutY="389.0" styleClass="forgotPassword" stylesheets="@../style/StyleSheet.css" text="Forgot password?" textFill="#342cbf">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>

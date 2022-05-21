@@ -65,6 +65,12 @@ public class MainViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
+		reservationsBtn.textProperty().bind(I18N.createStringBinding("reservationsBtn"));
+		paymentsBtn.textProperty().bind(I18N.createStringBinding("paymentsBtn"));
+		eventBtn.textProperty().bind(I18N.createStringBinding("eventBtn"));
+		logOutBtn.textProperty().bind(I18N.createStringBinding("logOutBtn"));
+		offersButton.textProperty().bind(I18N.createStringBinding("offersButton"));
+
 	}
 
 	private void changeRunTime(Button button) {
