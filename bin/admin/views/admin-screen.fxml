@@ -75,6 +75,7 @@
                </children>
             </HBox>
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onOverViewNavClick" text="Overview" />
+            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onEventViewNavClick" text="Events" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuestsNavClick" text="Guests" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onStaffNavClick" text="Staff" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRoomsNavClick" text="Rooms" />

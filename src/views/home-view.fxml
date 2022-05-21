@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="homeBackground" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <Button fx:id="login" layoutX="243.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeScreen" prefHeight="38.0" prefWidth="116.0" style="-fx-text-fill: black;" styleClass="homeBtn" stylesheets="@../style/StyleSheet.css" text="Go to login">
+      <Button fx:id="login" layoutX="243.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeScreen" onKeyPressed="#setOnKeyPressed" prefHeight="38.0" prefWidth="116.0" style="-fx-text-fill: black;" styleClass="homeBtn" stylesheets="@../style/StyleSheet.css" text="Go to login">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>

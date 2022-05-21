@@ -132,12 +132,12 @@ public class LoginController {
 	}
 
 	@FXML
-	void albanianLanguageOnClick(MouseEvent event) {
+	public void albanianLanguageOnClick(MouseEvent event) {
 		I18N.setLocale(Locale.GERMAN);
 	}
 
 	@FXML
-	void englishLanguageOnClick(MouseEvent event) {
+	public void englishLanguageOnClick(MouseEvent event) {
 		I18N.setLocale(Locale.ENGLISH);
 	}
 }

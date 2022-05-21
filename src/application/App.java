@@ -17,9 +17,11 @@ public class App extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("../views/home-view.fxml"));
 
 		Scene scene = new Scene(root);
+
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("LAMALE Hotel");
 		primaryStage.centerOnScreen();
+		primaryStage.setResizable(false);
 		primaryStage.show();
 
 		I18N.setLocale(Locale.ENGLISH);

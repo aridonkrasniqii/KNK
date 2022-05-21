@@ -1,7 +1,11 @@
 /controllers/
-/utilities/
-/resources/
-/views/
 /database/
-/application/
+/helpers/
+/models/
+/processor/
+/repositories/
+/utilities/
 /admin/
+/resources/
+/application/
+/views/

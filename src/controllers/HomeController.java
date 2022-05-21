@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class HomeController implements Initializable {
@@ -33,6 +35,18 @@ public class HomeController implements Initializable {
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(loginscene);
 		window.show();
+	}
+
+	@FXML
+	public void setOnKeyPressed(KeyEvent event) throws IOException {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			Parent loginParent = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
+			Scene loginscene = new Scene(loginParent);
+
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			window.setScene(loginscene);
+			window.show();
+		}
 	}
 
 	@Override
