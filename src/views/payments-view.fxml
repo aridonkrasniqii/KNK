@@ -18,8 +18,8 @@
                         <DatePicker fx:id="dateFilter" layoutX="56.0" layoutY="34.0" />
                         <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                             <children>
-                                <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="paymentsBtns" stylesheets="@../style/StyleSheet.css" text="Search" />
-                                <Button minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRefreshAction" styleClass="paymentsBtns" stylesheets="@../style/StyleSheet.css" text="Refresh" />
+                                <Button fx:id="search" minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="paymentsBtns" stylesheets="@../style/StyleSheet.css" text="Search" />
+                                <Button fx:id="refresh" minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRefreshAction" styleClass="paymentsBtns" stylesheets="@../style/StyleSheet.css" text="Refresh" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -31,9 +31,9 @@
             <center>
                 <TableView fx:id="paymentsTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(243,240,233,255);" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn fx:id="paymentIdCol" prefWidth="116.79998475313187" style="-fc-background-color: rgba(243,240,233,255);" text="Payment Id" />
-                        <TableColumn fx:id="firstNameCol" prefWidth="148.80003356933594" style="-fc-background-color: rgba(243,240,233,255);" styleClass="table-row" text="FirstName" />
-                        <TableColumn fx:id="lastNameCol" prefWidth="151.199951171875" style="-fc-background-color: rgba(243,240,233,255);" text="LastName" />
+                        <TableColumn fx:id="paymentIdCol" prefWidth="116.79998475313187" style="-fc-background-color: rgba(243,240,233,255);" text="Payment ID" />
+                        <TableColumn fx:id="firstNameCol" prefWidth="148.80003356933594" style="-fc-background-color: rgba(243,240,233,255);" styleClass="table-row" text="First Name" />
+                        <TableColumn fx:id="lastNameCol" prefWidth="151.199951171875" style="-fc-background-color: rgba(243,240,233,255);" text="Last Name" />
                         <TableColumn fx:id="dateCol" minWidth="0.0" prefWidth="111.99993896484375" style="-fc-background-color: rgba(243,240,233,255);" text="Date" />
                         <TableColumn fx:id="priceCol" minWidth="0.0" prefWidth="148.79998779296875" style="-fc-background-color: rgba(243,240,233,255);" text="Price" />
                     </columns>
@@ -45,7 +45,7 @@
             <bottom>
                 <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER_RIGHT">
                     <children>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPayPaymentAction" prefHeight="31.0" prefWidth="175.0" text="Pay and check details">
+                        <Button fx:id="payncheck" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onPayPaymentAction" prefHeight="31.0" prefWidth="175.0" text="Pay and check details">
                             <HBox.margin>
                                 <Insets right="10.0" />
                             </HBox.margin>
