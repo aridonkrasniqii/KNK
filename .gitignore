@@ -1,2 +1,5 @@
 
 bin/resources/LanguageBundle_al.properties
+out/
+*.idea/
+bin/
