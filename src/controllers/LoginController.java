@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Locale;
 
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +23,7 @@ import models.User;
 import models.UserRole;
 import processor.LoginProcessor;
 import processor.LoginValidate;
+import utilities.I18N;
 
 public class LoginController {
 
@@ -35,6 +38,15 @@ public class LoginController {
 
 	@FXML
 	private TextField passwordField;
+
+	@FXML
+	private Button alButton;
+
+	@FXML
+	private Button enButton;
+
+	@FXML
+	private Button loginBtn;
 
 	private static final String ADMIN_SCREEN = "admin-screen";
 	private static final String GUEST_SCREEN = "main-view";
@@ -84,6 +96,7 @@ public class LoginController {
 			Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			primaryStage.setScene(new Scene(parent));
 			primaryStage.setTitle("LAMALE Hotel");
+			primaryStage.centerOnScreen();
 			break;
 		case GUEST_SCREEN:
 			loader.setLocation(getClass().getResource("../views/main-view.fxml"));
@@ -116,5 +129,15 @@ public class LoginController {
 		stage.setScene(scene);
 		stage.setTitle("LAMALE Hotel");
 
+	}
+
+	@FXML
+	void albanianLanguageOnClick(MouseEvent event) {
+		I18N.setLocale(Locale.GERMAN);
+	}
+
+	@FXML
+	void englishLanguageOnClick(MouseEvent event) {
+		I18N.setLocale(Locale.ENGLISH);
 	}
 }

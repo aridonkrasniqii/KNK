@@ -8,7 +8,7 @@ import utilities.SessionManager;
 public abstract class LanguageController implements Initializable {
 
 	protected ResourceBundle getLangBundle() {
-		return ResourceBundle.getBundle("resources.LanguageBundle", SessionManager.getLocale());
+		return ResourceBundle.getBundle("resources.messages", SessionManager.getLocale());
 	}
 
 	public abstract void loadLangTexts(ResourceBundle langBundle);

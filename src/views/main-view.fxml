@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1000.0" prefWidth="1400.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
     <left>
         <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -62,11 +62,28 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="70.0">
+               <children>
+                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: rgba(171,155,129,255);" text="En">
+                     <HBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: rgba(171,155,129,255);" text="Al">
+                     <HBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             </children>
         </VBox>
     </left>
     <center>
-        <Pane fx:id="mainPane" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER" />
+        <Pane fx:id="mainPane" prefHeight="800.0" prefWidth="1400.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="1118.0" prefHeight="30.0" prefWidth="82.0" />
+         </children></Pane>
     </center>
     <bottom>
         <HBox style="-fx-background-color: rgb(156, 144, 126);" BorderPane.alignment="CENTER">

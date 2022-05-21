@@ -75,13 +75,18 @@
                </children>
             </HBox>
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onOverViewNavClick" text="Overview" />
-            <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onEventViewNavClick" text="Events" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onGuestsNavClick" text="Guests" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onStaffNavClick" text="Staff" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onRoomsNavClick" text="Rooms" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onPaymentsNavClick" text="Payments" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onServiceTypesNavClick" text="Service Types" />
             <Button maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLogoutNavClick" text="Logout" />
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="90.0" spacing="4.0">
+               <children>
+                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: cyan;" text="En" />
+                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: cyan;" text="Al" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

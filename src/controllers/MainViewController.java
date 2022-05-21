@@ -2,6 +2,7 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -13,13 +14,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import repositories.RoomRepository;
+import utilities.I18N;
 
 public class MainViewController implements Initializable {
 
@@ -49,13 +55,18 @@ public class MainViewController implements Initializable {
 	private MenuItem logoutButton;
 	@FXML
 	private Button offersButton;
-	
+	@FXML
+	private Button alButton;
+
+	@FXML
+	private Button enButton;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 //        loggedInUser.setText(SessionManager.user.getUsername() + " " + SessionManager.lastLogin);
 
 	}
+
 	private void changeRunTime(Button button) {
 		reservationsBtn.setStyle("-fx-background-color:transparent;");
 		paymentsBtn.setStyle("-fx-background-color:transparent;");
@@ -72,16 +83,17 @@ public class MainViewController implements Initializable {
 
 		ArrayList<Rooms> rooms = RoomRepository.getOffers();
 		int size = 0;
-		for(int i = 0; i < 2 ;i ++ ) {
-			for(int j = 0; j < 2 ;j ++ ) {
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
 
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(getClass().getResource("../views/room-details.fxml"));
 				Parent parent = loader.load();
 				RoomDetailsController controller = loader.getController();
 				Rooms r = rooms.get(size);
-				controller.setDate(r.getRoom_number(),r.getFloor_number(),r.getBed_number(),r.getRoom_type(),r.getPrice(),size + 1);
-				pane.add(parent, i , j);
+				controller.setDate(r.getRoom_number(), r.getFloor_number(), r.getBed_number(), r.getRoom_type(),
+						r.getPrice(), size + 1);
+				pane.add(parent, i, j);
 				size += 1;
 			}
 		}
@@ -160,7 +172,6 @@ public class MainViewController implements Initializable {
 		Parent parent = FXMLLoader.load(getClass().getResource(setPath(LOGOUT_VIEW)));
 		Stage stage = (Stage) loggedInUser.getScene().getWindow();
 
-
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Logout");
 		alert.setHeaderText("Are you sure to log out");
@@ -202,6 +213,16 @@ public class MainViewController implements Initializable {
 
 	private String setPath(String path) {
 		return "../views/" + path + ".fxml";
+	}
+
+	@FXML
+	void albanianLanguageOnClick(MouseEvent event) {
+		I18N.setLocale(Locale.GERMAN);
+	}
+
+	@FXML
+	void englishLanguageOnClick(MouseEvent event) {
+		I18N.setLocale(Locale.ENGLISH);
 	}
 
 }
