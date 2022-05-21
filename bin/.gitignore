@@ -1,3 +1,6 @@
+/admin/
+/application/
+/components/
 /controllers/
 /database/
 /helpers/
@@ -5,7 +8,3 @@
 /processor/
 /repositories/
 /utilities/
-/admin/
-/resources/
-/application/
-/views/
