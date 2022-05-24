@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
     <left>
         <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -64,12 +64,12 @@
                     </font></Button>
             <HBox alignment="CENTER" prefHeight="20.0" prefWidth="70.0">
                <children>
-                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: rgba(171,155,129,255);" text="En">
+                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="27.0" prefWidth="38.0" style="-fx-background-color: rgba(171,155,129,255);" text="EN">
                      <HBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: rgba(171,155,129,255);" text="Al">
+                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="27.0" prefWidth="38.0" style="-fx-background-color: rgba(171,155,129,255);" text="AL">
                      <HBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </HBox.margin>

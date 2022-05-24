@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="768.0" minWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MainController">
+<BorderPane minHeight="768.0" minWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.MainController">
    <top>
       <VBox spacing="10.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -84,8 +84,8 @@
             <Button fx:id="logoutBtn" maxWidth="90.0" minWidth="80.0" mnemonicParsing="false" onAction="#onLogoutNavClick" text="Logout" />
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="90.0" spacing="4.0">
                <children>
-                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: cyan;" text="En" />
-                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="15.0" prefWidth="29.0" style="-fx-background-color: cyan;" text="Al" />
+                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="27.0" prefWidth="36.0" style="-fx-background-color: rgba(171,155,129,255);" text="EN" />
+                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="27.0" prefWidth="34.0" style="-fx-background-color: rgba(171,155,129,255);" text="AL" />
                </children>
             </HBox>
          </children>
@@ -114,7 +114,7 @@
          <children>
             <HBox>
                <children>
-                  <Label fx:id="sessionLabel" text="Blla blla" />
+                  <Label fx:id="sessionLabel" text="INFO" />
                </children>
             </HBox>
          </children>
