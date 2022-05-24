@@ -27,7 +27,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import repositories.EventsRepository;
 import utilities.I18N;
-//import repositories.RoomRepository;
 
 public class EventsController implements Initializable {
     @FXML
@@ -36,7 +35,6 @@ public class EventsController implements Initializable {
     private Button btnAddNewEvent;
     @FXML
     private Button btnEditEvent;
-
     @FXML
     private TableView<Events> eventsTableView;
     @FXML
@@ -57,9 +55,6 @@ public class EventsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             initializeEvents();
-//            roomTypeFilter.setItems(roomTypeSelectorList);
-//            roomNumberFilter.setItems(roomNumberList);
-//            roomCapacityFilter.setItems(roomBedNumberList);
             ObservableList<Events> staffs = FXCollections.observableArrayList(loadEvents());
             eventsTableView.setItems(staffs);
         } catch (Exception ex) {
@@ -78,9 +73,6 @@ public class EventsController implements Initializable {
 
 
     public void initializeEvents() {
-//        roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
-//        roomBedNumberList = FXCollections.observableArrayList("1","2","3","4");
-//        roomNumberList = FXCollections.observableArrayList("1", "2" ,"3", "4", "5","6","7", "8", "9", "10");
         this.titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         this.organizerCol.setCellValueFactory(new PropertyValueFactory<>("organizer"));
         this.categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -99,7 +91,6 @@ public class EventsController implements Initializable {
     @FXML
     private void addEventAction(ActionEvent e) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("../views/eventviews/add-new-event.fxml"));
-
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(scene);

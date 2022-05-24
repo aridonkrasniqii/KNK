@@ -61,9 +61,6 @@ public class AddGuestController implements Initializable {
             String email = emailField.getText();
             String password = passwordField.getText();
 
-
-
-
             boolean emptyfields = RegisterValidate.validate(name, username, email, password);
             if (emptyfields) {
                 ErrorPopupComponent.show("Fill fields");
@@ -123,7 +120,4 @@ public class AddGuestController implements Initializable {
         user = UserRepository.create(user);
         return user;
     }
-
-
-
 }

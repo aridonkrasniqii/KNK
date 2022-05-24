@@ -51,7 +51,4 @@ public class OffersController implements Initializable {
         mainPane.getChildren().add(offersPane);
 
     }
-
-
-
 }

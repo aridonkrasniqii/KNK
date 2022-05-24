@@ -21,28 +21,18 @@ public class MembersController implements Initializable {
 
     @FXML
     private ImageView personImageView;
-
     @FXML
     private Label firstName;
-
-
     @FXML
     private Label lastName;
-
     @FXML
     private Label positionOfMember;
-
-
     ArrayList<Staff> staffs;
-
-
     private int member = 0;
-
     @FXML
     private Button nextBtn;
     @FXML
     private Button backBtn;
-
 
 
     @FXML
@@ -108,8 +98,7 @@ public class MembersController implements Initializable {
         }
     }
 
-
     private String setImagePath(int image) {
-        return "/home/teknikashi/Documents/GitHub/KNK/src/admin/images/person" + Integer.toString(image) + ".jpeg";
+        return "/Users/lorikmustafa/Documents/GitHub/KNKMASTER/src/admin/style/person" + Integer.toString(image) + ".jpeg";
     }
 }

@@ -10,13 +10,6 @@ import javafx.stage.Stage;
 
 public class AboutController {
 
-
-
-
-
-
-
-
     @FXML
     private void onFindOutAction(ActionEvent e ) throws Exception{
         FXMLLoader loader = new FXMLLoader();

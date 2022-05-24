@@ -140,19 +140,4 @@ public class ServicesTypeRepository {
         }
         return services;
     }
-
-
-    // public static List<ServiceChartModel> selectAllChart() throws Exception {
-    //   ArrayList<ServiceChartModel> list = new ArrayList<>();
-    //   Connection conn = DBConnect.getConnection();
-    //   PreparedStatement stmt = conn
-    //       .prepareStatement("SELECT service_name,COUNT(*) FROM services_type GROUP BY service_name");
-    //   ResultSet res = stmt.executeQuery();
-    //   while (res.next()) {
-    //     list.add(new ServiceChartModel(res.getString("service_name"), res.getInt("COUNT(*)")));
-    //   }
-    //   return list;
-    // }
-
-
 }
