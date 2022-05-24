@@ -1,9 +1,8 @@
 package repositories;
 
-import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Reservation;
+import models.Reservation;
 import processor.DateHelper;
 
 import java.sql.PreparedStatement;
@@ -31,7 +30,7 @@ public class ReservationRepository {
 
     public static Reservation fromResultSet(ResultSet res) throws Exception {
         int id = res.getInt("id");
-        int guest_id = res.getInt("guest_id");
+        int guest_id = res.getInt("user_id");
         int room_id = res.getInt("room_id");
         Date reservation_date = res.getDate("reservation_date");
         Date checkin_date = res.getDate("checkin_date");
@@ -45,8 +44,7 @@ public class ReservationRepository {
 
     public static Reservation create(Reservation model) throws Exception {
         InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("reservations")
-                .add("id", model.getId(), "i")
-                .add("guest_id", model.getGuest_id(), "i")
+                .add("user_id", model.getGuest_id(), "i")
                 .add("room_id", model.getRoom_id(), "i")
                 .add("reservation_date", DateHelper.toSql(model.getReservation_date()), "s")
                 .add("checkin_date", DateHelper.toSqlDate(model.getCheckInDate()), "s")
@@ -61,13 +59,13 @@ public class ReservationRepository {
         if (reservation != null) {
             return reservation;
         }
-        ErrorPopupComponent.show("Could not make reservation");
+
         return null;
     }
 
 
     public static Reservation update(Reservation model) throws Exception {
-        String query = "update reservations set guest_id = ?, room_id = ? , reservation_date = ? , checkin_date = ? ," +
+        String query = "update reservations set user_id = ?, room_id = ? , reservation_date = ? , checkin_date = ? ," +
                 " checkout_date = ?,adults = ? ,children = ?,payment_id = ? where id = ? ";
 
         PreparedStatement stmt = connection.prepareStatement(query);

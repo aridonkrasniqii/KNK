@@ -24,6 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utilities.I18N;
+import helpers.SessionManager;
+
 
 public class MainController implements Initializable {
 
@@ -94,48 +96,39 @@ public class MainController implements Initializable {
 			Pane pane = null;
 
 			switch (view) {
-			case GUESTS_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case OVERVIEW_DASHBOARD:
-				pane = loader.load();
-				System.out.println(" overview dashboard");
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case PAYMENTS_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case ROOMS_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case SERVICE_TYPES_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case STAFF_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
-			case EVENTS_DASHBOARD:
-				pane = loader.load();
-				contentPane.setAlignment(Pos.TOP_CENTER);
-				break;
+				case GUESTS_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case OVERVIEW_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case PAYMENTS_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case ROOMS_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case SERVICE_TYPES_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case STAFF_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
+				case EVENTS_DASHBOARD:
+					pane = loader.load();
+					contentPane.setAlignment(Pos.TOP_CENTER);
+					break;
 
-			default:
-				throw new Exception("ERR_VIEW_NOT_FOUND");
+				default:
+					throw new Exception("ERR_VIEW_NOT_FOUND");
 			}
-
-			// FIXME:
-			try {
-				// ChildController controller = loader.getController();
-				// controller.setParentController(this);
-			} catch (Exception ex) {
-				System.out.println("Error in setView method: " + ex);
-			}
-
+			sessionLabel.setText(SessionManager.user.getUsername().toUpperCase() + " "  + SessionManager.lastLogin);
 			contentPane.getChildren().clear();
 			contentPane.getChildren().add(pane);
 			VBox.setVgrow(pane, Priority.ALWAYS);

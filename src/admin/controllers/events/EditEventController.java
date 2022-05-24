@@ -5,7 +5,7 @@ import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
 import database.UpdateQueryBuilder;
 import models.Events;
-//import helpers.Rooms;
+//import models.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,17 +27,14 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.ResourceBundle;
-public class EditEventController implements Initializable {
+public class EditEventController {
     @FXML
     private TextField titleCol;
     @FXML
     private TextField organizerCol;
     @FXML
     private TextField categoryCol;
-//    @FXML
-//    private TextField bedNumber;
-//    @FXML
-//    private ChoiceBox roomType;
+
     @FXML
     private TextField priceCol;
     
@@ -47,15 +44,7 @@ public class EditEventController implements Initializable {
     @FXML
     private DatePicker endDateCol;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadTypes();
-    }
-    private void loadTypes() {
-//        ObservableList roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
-//        roomType.setItems(roomTypeSelectorList);
-//        roomType.setValue("None");
-    }
+
 
     @FXML
     private void updateEvent(ActionEvent e ) throws Exception{    	
@@ -69,11 +58,9 @@ public class EditEventController implements Initializable {
             Events event = new Events(1, titleStr, organizerStr, categoryStr, price, startDate, endDate);
             
             if (EventsRepository.update(event) != null) {
-                EventsRepository.create(event);
                 SuccessPopupComponent.show("Successfully edited " , "Edited");
             }
         } catch (Exception ex) {
-        	ErrorPopupComponent.show("Failed to edit");
             ErrorPopupComponent.show(ex);
         }
 
@@ -93,7 +80,7 @@ public class EditEventController implements Initializable {
         loader.setLocation(getClass().getResource("../../views/admin-screen.fxml"));
         Parent parent = loader.load();
         MainController controller = loader.getController();
-        controller.setView(MainController.ROOMS_DASHBOARD);
+        controller.setView(MainController.EVENTS_DASHBOARD);
 
         Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);

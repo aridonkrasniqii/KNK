@@ -62,11 +62,12 @@ public class AddGuestController implements Initializable {
             String password = passwordField.getText();
 
 
-            // check for empty fields
 
-            boolean fields = RegisterValidate.validate(name, username, email, password);
-            if (!fields) {
-                throw new Exception();
+
+            boolean emptyfields = RegisterValidate.validate(name, username, email, password);
+            if (emptyfields) {
+                ErrorPopupComponent.show("Fill fields");
+                return;
             }
 
 
@@ -76,7 +77,7 @@ public class AddGuestController implements Initializable {
                 return;
             }
 
-
+            System.out.println("Test 3 ");
             User registeredUser = register(name, username, email, password);
 
             if (registeredUser != null) {
@@ -89,7 +90,6 @@ public class AddGuestController implements Initializable {
 
 
         } catch (Exception ex) {
-            System.out.println(ex);
             ErrorPopupComponent.show(ex);
         }
 
@@ -103,7 +103,7 @@ public class AddGuestController implements Initializable {
         Parent parent = loader.load();
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         MainController controller = loader.getController();
-        controller.setView(MainController.OVERVIEW_DASHBOARD);
+        controller.setView(MainController.GUESTS_DASHBOARD);
         stage.setScene(new Scene(parent));
     }
 

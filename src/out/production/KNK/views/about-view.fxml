@@ -13,7 +13,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="249.0" layoutY="187.0" mnemonicParsing="false" onAction="#onFindOutAction"  style="-fx-background-color: rgba(171,155,129,255);" text="Click to find out" textFill="WHITE">
+      <Button layoutX="249.0" layoutY="187.0" mnemonicParsing="false" onAction="#onFindOutAction" onMouseClicked="#onFinderAction" style="-fx-background-color: rgba(171,155,129,255);" text="Click to find out" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>

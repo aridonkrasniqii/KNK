@@ -1,4 +1,4 @@
-package helpers;
+package models;
 
 public class Services {
   private int id;

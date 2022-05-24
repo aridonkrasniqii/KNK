@@ -1,4 +1,6 @@
-package helpers;
+package models;
+
+import helpers.Person;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

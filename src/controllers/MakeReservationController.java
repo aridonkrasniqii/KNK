@@ -2,7 +2,7 @@ package controllers;
 
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.Reservation;
+import models.Reservation;
 import helpers.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +20,6 @@ import models.Payments;
 import processor.DateHelper;
 import repositories.PaymentRepository;
 import repositories.ReservationRepository;
-
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -45,8 +44,8 @@ public class MakeReservationController implements Initializable {
     private TextField checkOutDateField;
 
 
-    private ObservableList<String> numOfAdults = FXCollections.observableArrayList("1", "2", "3");
-    private ObservableList<String> numOfChildrens = FXCollections.observableArrayList("1", "2", "3");
+    private final ObservableList<String> numOfAdults = FXCollections.observableArrayList("1", "2", "3");
+    private final ObservableList<String> numOfChildrens = FXCollections.observableArrayList("1", "2", "3");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,24 +65,52 @@ public class MakeReservationController implements Initializable {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
 
-
         checkInDateField.setText(checkInDate);
         checkOutDateField.setText(checkOutDate);
         totalField.setText(Double.toString(price));
 
     }
 
+    public void setData(int roomNumber, String roomType, double price) {
+        this.roomNumber = roomNumber;
+        this.guestId = SessionManager.user.getId();
+        this.staffId = 1; // default
+        this.totalBill = price; // calculate totalbill
+        this.paymentMethod = "cach"; // cach default
+        this.isBillPayed = 0; // default 0
+        this.roomType = roomType;
+
+        this.checkInDateField.setDisable(false);
+        this.checkInDateField.setEditable(true);
+        this.checkOutDateField.setDisable(false);
+        this.checkOutDateField.setEditable(true);
+        this.checkInDateField.setPromptText("2022-01-01");
+        this.checkOutDateField.setPromptText("2022-01-01");
+
+        totalField.setText(Double.toString(price));
+    }
 
     @FXML
     private void onReserveAction(ActionEvent e) throws Exception {
 
+        if (childrensNumberField.getValue() == null || adultsNumberField.getValue() == null) {
+            ErrorPopupComponent.show("Fill specific fields");
+            return;
+        }
+
+        if (!checkInDateField.getText().matches("\\d{4}-\\d{2}-\\d{2}") || !checkOutDateField.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
+            ErrorPopupComponent.show("Date format is not valid");
+            return;
+        }
+
         // first we create the payment object
-        Payments payments = new Payments(0, guestId, staffId, totalBill, paymentMethod, isBillPayed, null);
+        Payments payments = new Payments(1, guestId, staffId, totalBill, paymentMethod, isBillPayed, new Date());
 
 
         // than we store payment into database
         Payments createdPayment = PaymentRepository.create(payments);
-        if (createdPayment != null) {
+
+        if (createdPayment == null) {
             ErrorPopupComponent.show("Payment error occurred");
             return;
         }
@@ -93,12 +120,14 @@ public class MakeReservationController implements Initializable {
         this.paymentId = createdPayment.getId();
 
 
+        // than we store reservation into database
+
         Reservation reservation = new Reservation(0, guestId, roomNumber, new Date(),
-                DateHelper.fromSqlDate(checkInDate.toString()), DateHelper.fromSqlDate(checkInDate.toString())
+                DateHelper.fromSqlDate(checkInDateField.getText()), DateHelper.fromSqlDate(checkOutDateField.getText())
                 , adultsNum, childrenNum, paymentId);
 
 
-        if (ReservationRepository.create(reservation) != null) {
+        if (ReservationRepository.create(reservation) == null) {
             ErrorPopupComponent.show("Reservation error occurred");
             return;
         }

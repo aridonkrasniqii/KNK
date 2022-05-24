@@ -38,7 +38,6 @@ public class MenuRegisterGuestController {
             String email = emailField.getText();
             String password = passwordField.getText();
 
-
             // check for empty fields
 
             boolean fields = RegisterValidate.validate(name, username, email, password);
@@ -46,27 +45,21 @@ public class MenuRegisterGuestController {
                 throw new Exception();
             }
 
-
             boolean userExists = UserRepository.find(email, username);
             if (userExists) {
                 ErrorPopupComponent.show("User already exists");
                 return;
             }
 
-
             User registeredUser = register(name, username, email, password);
 
             if (registeredUser != null) {
                 SuccessPopupComponent.show("Successfully registered", "");
-                return;
             } else {
                 ErrorPopupComponent.show("User was not registered");
-                return;
             }
 
-
         } catch (Exception ex) {
-            System.out.println(ex);
             ErrorPopupComponent.show(ex);
         }
 

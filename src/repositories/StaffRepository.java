@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Staff;
+import models.Staff;
 import models.charts.StaffChart;
 
 public class StaffRepository {

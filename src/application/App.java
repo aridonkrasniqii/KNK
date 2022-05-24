@@ -14,19 +14,13 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("../views/home-view.fxml"));
-
+		Parent root = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
 		Scene scene = new Scene(root);
-
-		primaryStage.titleProperty().bind(I18N.createStringBinding("window.title"));
+		primaryStage.titleProperty().bind(I18N.createStringBinding("window.title")); 
 		primaryStage.setScene(scene);
-//		primaryStage.setTitle("LAMALE Hotel");
 		primaryStage.centerOnScreen();
-		primaryStage.setResizable(false);
 		primaryStage.show();
-
 		I18N.setLocale(Locale.ENGLISH);
-
 	}
 
 	public static void main(String[] args) {

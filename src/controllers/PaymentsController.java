@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import helpers.Rooms;
+import helpers.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,9 +21,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import models.view.PaymentModel;
+import models.PaymentModel;
 import repositories.PaymentsModelRepository;
-import repositories.RoomRepository;
 import utilities.I18N;
 
 public class PaymentsController implements Initializable {
@@ -101,17 +100,13 @@ public class PaymentsController implements Initializable {
 		if (selected == null)
 			return;
 
-		Rooms room = RoomRepository.findReservedRooms(selected.getPayment_id());
-		if (room == null)
-			return;
-		// send data to pay payment controllerr
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../views/pay-payment-view.fxml"));
 		Parent parent = loader.load();
 
 		PayPaymentsController controller = loader.getController();
-		controller.loadRoomData(room);
+		controller.loadPrice(selected.getPrice());
 
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));
@@ -126,16 +121,15 @@ public class PaymentsController implements Initializable {
 
 	private void initializePayments() {
 		this.paymentIdCol.setCellValueFactory(new PropertyValueFactory<>("payment_id"));
-		this.firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-		this.lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+		this.firstNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+		this.lastNameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
 		this.dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
 		this.priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 	}
 
 	public ArrayList<PaymentModel> loadGuestPayments() throws Exception {
 		PaymentsModelRepository repository = new PaymentsModelRepository();
-		// User logged in Id
-		return repository.findSpecificPayments(1);
+		return repository.findSpecificPayments(SessionManager.user.getId());
 	}
 
 }

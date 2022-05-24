@@ -1,7 +1,5 @@
 package models.charts;
 
-import helpers.Services;
-
 public class ServiceTypeChart {
 
     private int count;

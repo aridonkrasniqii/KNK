@@ -1,7 +1,6 @@
 package admin.controllers;
 
-import components.ErrorPopupComponent;
-import helpers.Staff;
+import models.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

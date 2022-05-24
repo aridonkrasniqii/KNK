@@ -3,11 +3,10 @@ package admin.controllers.services;
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.Service_Type;
+import models.Service_Type;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,10 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repositories.ServicesTypeRepository;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class EditServiceController implements Initializable {
+public class EditServiceController {
 
 
     @FXML
@@ -31,10 +27,6 @@ public class EditServiceController implements Initializable {
 
     private int id;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 
 
 

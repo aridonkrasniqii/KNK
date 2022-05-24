@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 import database.DBConnection;
 import models.Payments;
-import models.view.PaymentModel;
+import models.PaymentModel;
+import processor.DateHelper;
 
 public class PaymentsModelRepository {
 
@@ -36,23 +37,19 @@ public class PaymentsModelRepository {
     public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
         ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();
 
-        String query = "select * from paymentmodel where date like ?";
+        String query = "select * from paymentmodel where date = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setString(1, date);
-
-
+        stmt.setString(1 , date);
         ResultSet result = stmt.executeQuery();
         while (result.next()) {
             payments.add(fromResultSet(result));
         }
-        if (payments != null) return payments;
-
-        return null;
+        return payments;
     }
 
     public static PaymentModel fromResultSet(ResultSet result) throws Exception {
         int id = result.getInt("payment_id");
-        String fname = result.getString("firstname");
+        String fname = result.getString("name");
         String lname = result.getString("lastname");
         Date date = result.getDate("date");
         double price = result.getDouble("price");
@@ -79,20 +76,18 @@ public class PaymentsModelRepository {
     public static ArrayList<PaymentModel> findSpecificPayments(int userId) throws Exception {
 
         ArrayList<PaymentModel> specificPayments = new ArrayList<>();
-        String query = "select pm.payment_id as payment_id, pm.firstname as firstname, pm.lastname as lastname ,\n" +
-                "                pm.date as date,pm.price as price,pm.ispayed as ispayed from paymentmodel pm inner join payments p on pm.payment_id = p.id\n" +
-                "                where p.guest_id = ?";
+        String query = "select * from paymentmodel ,payments where payment_id = id and is_payed = ? and user_id = ?";
 
         PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1, userId);
+        stmt.setInt(1,  0);
+        stmt.setInt(2, userId);
 
         ResultSet result = stmt.executeQuery();
 
         while (result.next()) {
             specificPayments.add(fromResultSet(result));
         }
-        if (specificPayments != null) return specificPayments;
+         return specificPayments;
 
-        return null;
     }
 }

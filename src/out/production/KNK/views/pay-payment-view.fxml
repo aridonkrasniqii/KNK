@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
@@ -31,25 +30,6 @@
                     </children>
                 </HBox>
             </top>
-            <center>
-                <AnchorPane style="-fx-background-color: #1d1f2a;" BorderPane.alignment="CENTER">
-                    <children>
-                        <TableView fx:id="roomTableView" prefHeight="430.0" prefWidth="378.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="268.0" AnchorPane.topAnchor="0.0">
-                            <columns>
-                                <TableColumn fx:id="roomNumberCol" prefWidth="125.59997862577438" text="Room" />
-                                <TableColumn fx:id="roomTypeCol" prefWidth="149.6000213623047" text="Room type" />
-                                <TableColumn fx:id="roomPriceCol" prefWidth="102.39996337890625" text="Price" />
-                            </columns>
-                        </TableView>
-                        <TableView fx:id="serviceTableView" layoutX="375.0" prefHeight="367.0" prefWidth="303.0" style="-fx-background-color: rgba(243,240,233,255);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columns>
-                                <TableColumn fx:id="serviceNameCol" prefWidth="151.2000732421875" text="Service name" />
-                                <TableColumn fx:id="servicePriceCol" minWidth="0.0" prefWidth="118.39996337890625" text="Price" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </center>
             <right>
                 <AnchorPane prefHeight="367.0" prefWidth="304.0" style="-fx-background-color: rgba(243,240,233,255);" BorderPane.alignment="CENTER">
                     <children>
@@ -58,7 +38,7 @@
                                 <Font name="Bodoni MT Bold" size="22.0" />
                             </font>
                         </Label>
-                        <Label fx:id="emriMbiemri" layoutX="14.0" layoutY="28.0" prefHeight="50.0" prefWidth="272.0" text="Lorent Sinani" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
+                        <Label fx:id="userCredentials" layoutX="14.0" layoutY="28.0" prefHeight="50.0" prefWidth="272.0" text="Aridon Krasniqi" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
                             <font>
                                 <Font name="Bodoni MT Bold Italic" size="27.0" />
                             </font>
@@ -73,7 +53,7 @@
                                 <Font name="Bodoni MT Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label fx:id="personalNr" layoutX="50.0" layoutY="102.0" prefHeight="52.0" prefWidth="134.0" text="13212321" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="102.0">
+                        <Label fx:id="userId" layoutX="50.0" layoutY="102.0" prefHeight="52.0" prefWidth="134.0" text="13212321" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="102.0">
                             <font>
                                 <Font name="Monospaced Bold" size="20.0" />
                             </font>
@@ -112,15 +92,26 @@
                         </Label>
                         <RadioButton fx:id="cachButton" layoutX="528.0" layoutY="44.0" mnemonicParsing="false" text="Cash" textFill="WHITE" AnchorPane.bottomAnchor="64.80000000000001" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="44.0" />
                         <RadioButton fx:id="giftCuponButton" layoutX="528.0" layoutY="96.0" mnemonicParsing="false" text="Gift Cupon" textFill="WHITE" AnchorPane.bottomAnchor="12.799999999999997" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="311.19999999999993" AnchorPane.topAnchor="96.0" />
-                        <RadioButton fx:id="creditCardButton" layoutX="528.0" layoutY="70.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="93.0" text="Credit Card" textFill="WHITE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="70.0" />
-                        <Pane layoutX="754.0" layoutY="69.0" prefHeight="53.0" prefWidth="89.0" AnchorPane.bottomAnchor="16.599999999999994" AnchorPane.leftAnchor="754.0" AnchorPane.rightAnchor="83.60000000000002" AnchorPane.topAnchor="69.0">
-                     <children>
-                                <Button layoutY="3.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="112.0" style="-fx-background-color: rgba(243,240,233,255);" text="Pay" />
-                     </children>
-                        </Pane>
+                        <RadioButton fx:id="creditCardButton" layoutX="528.0" layoutY="70.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="149.0" text="Credit Card" textFill="WHITE" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="528.0" AnchorPane.rightAnchor="273.0" AnchorPane.topAnchor="70.0" />
+                          <Button layoutX="729.0" layoutY="44.0" mnemonicParsing="false" onAction="#onPayAction" prefHeight="47.0" prefWidth="112.0" style="-fx-background-color: rgba(243,240,233,255);" text="Pay" />
                     </children>
                 </AnchorPane>
             </bottom>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <TableView fx:id="serviceTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="serviceNameCol" prefWidth="121.0" text="Service Name" />
+                      <TableColumn fx:id="servicePriceCol" prefWidth="29.0" text="Price" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </center>
+            </BorderPane>
+         </center>
         </BorderPane>
     </children>
 </AnchorPane>

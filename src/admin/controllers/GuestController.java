@@ -197,7 +197,7 @@ public class GuestController implements Initializable {
     User user = new User(Integer.parseInt(idField.getText()), nameField.getText(),
         emailField.getText(), usernameField.getText(),
         passwordField.getText(), saltField.getText(),
-        roleField.getText() == "G" ? UserRole.Guest : UserRole.Admin,
+        roleField.getText().equals("Guest") ? UserRole.Guest : UserRole.Admin,
         Boolean.parseBoolean(isActiveField.getText()),
         DateHelper.fromSql(createdAtField.getText()),
         DateHelper.fromSql(updatedAtField.getText()));
@@ -210,8 +210,8 @@ public class GuestController implements Initializable {
     selected.setEmail(emailField.getText());
     selected.setPassword(passwordField.getText());
     selected.setSalt(saltField.getText());
-    selected.setRole(roleField.getText() == "G" ? UserRole.Guest : UserRole.Admin);
-    selected.setIsActive(isActiveField.getText()== "true" ? true : false);
+    selected.setRole(roleField.getText().equals("Guest") ? UserRole.Guest : UserRole.Admin);
+    selected.setIsActive(isActiveField.getText().equals("true") ? true : false);
     selected.setCreatedAt(DateHelper.fromSql(createdAtField.getText()));
     selected.setUpdatedAt(DateHelper.fromSql(updatedAtField.getText()));
     tableView.refresh();

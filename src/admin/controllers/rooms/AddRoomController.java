@@ -2,10 +2,9 @@ package admin.controllers.rooms;
 
 
 import admin.controllers.MainController;
-import com.sun.tools.javac.Main;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.Rooms;
+import models.Rooms;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.stage.Stage;
 import repositories.RoomRepository;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddRoomController implements Initializable {
@@ -43,9 +41,12 @@ public class AddRoomController implements Initializable {
     }
 
     private void loadTypes() {
-        roomType.getItems().add("First Class");
-        roomType.getItems().add("Second Class");
-        roomType.getItems().add("Third Class");
+        roomType.getItems().add("All");
+        roomType.getItems().add("Single");
+        roomType.getItems().add("Double");
+        roomType.getItems().add("Triple");
+        roomType.getItems().add("Quad");
+        roomType.getItems().add("Suite");
         roomType.setValue("None");
     }
 
@@ -76,7 +77,7 @@ public class AddRoomController implements Initializable {
         Parent parent = loader.load();
 
         MainController controller = loader.getController();
-        controller.setView(MainController.OVERVIEW_DASHBOARD);
+        controller.setView(MainController.ROOMS_DASHBOARD);
 
         Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);

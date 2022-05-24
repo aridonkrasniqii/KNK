@@ -20,11 +20,11 @@
          <bottom>
             <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="729.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addRoomAction" text="Add Room">
+                  <Button fx:id="addRoomBtn" mnemonicParsing="false" onAction="#addRoomAction" text="Add Room">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin></Button>
-                  <Button mnemonicParsing="false" onAction="#editRoomAction" text="Edit Room">
+                  <Button fx:id="editRoomBtn" mnemonicParsing="false" onAction="#editRoomAction" text="Edit Room">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -51,7 +51,7 @@
             </TableView>
          </center>
          <top>
-            <AnchorPane prefHeight="96.0" prefWidth="942.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="132.0" prefWidth="958.0" BorderPane.alignment="CENTER">
                <children>
                   <GridPane hgap="20.0" layoutX="49.0" layoutY="3.0" prefHeight="90.0" prefWidth="833.0" vgap="20.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="3.0">
                      <columnConstraints>
@@ -70,32 +70,35 @@
                         <ChoiceBox fx:id="roomTypeFilter" prefHeight="25.0" prefWidth="165.0" GridPane.rowIndex="2" />
                         <ChoiceBox fx:id="roomNumberFilter" prefHeight="25.0" prefWidth="165.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ChoiceBox fx:id="roomCapacityFilter" prefHeight="25.0" prefWidth="165.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Button fx:id="findRooms" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Find" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Button fx:id="findRooms" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" mnemonicParsing="false" onAction="#onFindRoomAction" prefHeight="50.0" prefWidth="150.0" text="Find" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Label text="Room Type" GridPane.rowIndex="1">
+                        <Label fx:id="roomTypeTitle" text="Room Type" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Bed Numbers" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="bedNumTitle" text="Bed Numbers" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label text="Capacity" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Label fx:id="capacityTitle" text="Capacity" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
                      </children>
                   </GridPane>
-                  <Label layoutX="10.0" layoutY="5.0" text="Rooms">
+                  <Label fx:id="roomsTitle" layoutX="10.0" layoutY="5.0" text="Rooms">
                      <font>
                         <Font size="21.0" />
-                     </font></Label>
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding></Label>
                </children>
             </AnchorPane>
          </top>

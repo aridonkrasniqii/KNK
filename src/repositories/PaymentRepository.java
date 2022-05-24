@@ -2,14 +2,12 @@ package repositories;
 
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Rooms;
 import models.Payments;
 import processor.DateHelper;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class PaymentRepository {
 
@@ -32,7 +30,7 @@ public class PaymentRepository {
     public static Payments fromResulSet(ResultSet result) throws Exception {
 
         int id = result.getInt("id");
-        int guest_id = result.getInt("guest_id");
+        int guest_id = result.getInt("user_id");
         int staff_id = result.getInt("staff_id");
         double price = result.getDouble("price");
         String payment_method = result.getString("payment_method");
@@ -44,13 +42,12 @@ public class PaymentRepository {
 
     public static Payments create(Payments model) throws Exception {
         InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("payments")
-                .add("id", model.getId(), "i")
-                .add("guest_id", model.getGuest_id(), "i")
+                .add("user_id", model.getGuest_id(), "i")
                 .add("staff_id", model.getStaff_id(), "i")
                 .add("price", (float) model.getPrice(), "f")
                 .add("payment_method", model.getPayment_method(), "s")
                 .add("is_payed", model.getIs_payed(), "i")
-                .add("pay_date", DateHelper.toSql(model.getPay_date()), "s");
+                .add("pay_date", DateHelper.toSqlDate(model.getPay_date()), "s");
 
         int lastInsertedId = connection.execute(query);
         Payments created = find(lastInsertedId);
@@ -63,7 +60,7 @@ public class PaymentRepository {
 
     public static Payments update(Payments model) throws Exception {
 
-        String query = "update payments set guest_id = ? , staff_id = ?," +
+        String query = "update payments set user_id = ? , staff_id = ?," +
                 "price = ? , payment_method = ?, is_payed = ?, pay_date = ? where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, model.getGuest_id());

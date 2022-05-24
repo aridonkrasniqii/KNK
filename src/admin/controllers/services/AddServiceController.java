@@ -3,10 +3,9 @@ package admin.controllers.services;
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.Service_Type;
+import models.Service_Type;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,11 +15,7 @@ import javafx.event.*;
 import javafx.stage.Stage;
 import repositories.ServicesTypeRepository;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class AddServiceController implements Initializable {
+public class AddServiceController {
 
 
     @FXML
@@ -30,15 +25,6 @@ public class AddServiceController implements Initializable {
 
     @FXML
     private TextField quantityField;
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
-
 
     @FXML
     private void addServiceButton(ActionEvent e ) {

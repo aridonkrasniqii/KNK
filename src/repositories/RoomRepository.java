@@ -6,10 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 //import com.mysql.cj.x.protobuf.MysqlxCrud;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Rooms;
+import models.Rooms;
 import models.charts.RoomChart;
 
 public class RoomRepository {
@@ -27,7 +26,7 @@ public class RoomRepository {
         return rooms;
     }
 
-    public static ArrayList<RoomChart> findType() throws  Exception {
+    public static ArrayList<RoomChart> findType() throws Exception {
         String query = "select count(*), room_type from rooms group by room_type";
 
         Statement stmt = connection.createStatement();
@@ -35,24 +34,21 @@ public class RoomRepository {
 
         ArrayList<RoomChart> rooms = new ArrayList<>();
 
-        while(result.next()){
+        while (result.next()) {
             rooms.add(new RoomChart(result.getInt("count(*)"), result.getString("room_type")));
         }
 
-        if(rooms != null) return rooms;
+        if (rooms != null) return rooms;
 
         return null;
     }
 
 
-    public static Rooms findAvailableRoom(int room_number,String checkIn ,String checkOut,String type) throws Exception {
-        String query = query = "select * from rooms ro where ro.room_number not in (\n" +
-                "select ro.room_number from rooms ro inner join reservations re on re.room_id = ro.room_number \n" +
-                "where (re.checkin_date between '' and '') and (re.checkout_date between '' and '') ) and ro.room_number = 1;";
+    public static Rooms findAvailableRoom(int room_number, String checkIn, String checkOut, String type) throws Exception {
+        String query = query = "select * from rooms ro where ro.room_number not in (select ro.room_number from rooms ro inner join reservations re on re.room_id = ro.room_number where (re.checkin_date between '" +checkIn+ "' and '"+checkOut+"') and (re.checkout_date between '"+checkIn+"' and '"+checkOut+"') ) and ro.room_number = "+room_number;
 
-
-        Statement stmt = connection.createStatement();
-        ResultSet result = stmt.executeQuery(query);
+        PreparedStatement stmt = connection.prepareStatement(query);
+        ResultSet result = stmt.executeQuery();
 
         if (result.next()) {
             return fromResultSet(result);
@@ -136,14 +132,14 @@ public class RoomRepository {
         if (roomType.equals("All")) {
             query = "select * from rooms r where r.room_number not in(" +
                     "select r.room_number " +
-                    "from reservations res inner join rooms r on res.room_id=r.room_number" +
-                    "where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
+                    " from reservations res inner join rooms r on res.room_id=r.room_number " +
+                    " where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
                     + "' and '" + checkOut + "'))";
         } else {
             query = "select * from rooms r where r.room_type='" + roomType + "' and r.room_number not in(\n" +
-                    "select r.room_number \n" +
-                    "from reservations res inner join rooms r on res.room_id=r.room_number\n" +
-                    "where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
+                    " select r.room_number \n" +
+                    " from reservations res inner join rooms r on res.room_id=r.room_number \n" +
+                    " where (checkin_date between '" + checkIn + "' and '" + checkOut + "') and (checkout_date between '" + checkIn
                     + "' and '" + checkOut + "'))";
         }
 
@@ -168,17 +164,17 @@ public class RoomRepository {
         query.append("select * from rooms ");
 
         if (!type.equals("All")) {
-            query.append("where room_type = '" + type + "' ");
+            query.append(" where room_type = '" + type + "' ");
             where = true;
         }
         if (!bedNumber.equals("All")) {
-            query.append(where ? "and" : "where");
-            query.append("bedNumber = " + Integer.parseInt(bedNumber) + " ");
+            query.append(where ? " and " : " where ");
+            query.append(" bed_number = " + Integer.parseInt(bedNumber) + " ");
             where = true;
         }
         if (!capacity.equals("All")) {
-            query.append(where ? "and" : "where");
-            query.append("capactiy = " + Integer.parseInt(capacity) + "");
+            query.append(where ? " and " : " where ");
+            query.append(" capacity = " + Integer.parseInt(capacity) + "");
         }
 
         PreparedStatement stmt = connection.prepareStatement(query.toString());
@@ -187,9 +183,7 @@ public class RoomRepository {
         while (result.next()) {
             rooms.add(fromResultSet(result));
         }
-        if (rooms != null) return rooms;
-        return null;
-
+        return rooms;
     }
 
     public ResultSet getAvailableRooms(String checkin, String checkout, String type) throws Exception {
@@ -216,25 +210,9 @@ public class RoomRepository {
     }
 
 
-    public static Rooms findReservedRooms(int payment_id) throws  Exception {
-        String query = "select ro.room_number as room_number , ro.floor_number as floor_number \n" +
-                ",ro.capacity as capacity ,ro.bed_number ,ro.room_type,ro.price from reservations re \n" +
-                "inner join payments pa  on pa.id = re.payment_id\n" +
-                "inner join rooms ro on ro.room_number = re.room_id where re.payment_id = ?";
 
-        PreparedStatement stmt = connection.prepareStatement(query);
-
-        stmt.setInt(1 , payment_id);
-        ResultSet result = stmt.executeQuery();
-
-        Rooms rooms = fromResultSet(result);
-        if(rooms != null) return rooms;
-
-        return null;
-    }
-
-    public static ArrayList<Rooms> getOffers() throws Exception  {
-        String query = "select * from rooms where price < 100 limit 4";
+    public static ArrayList<Rooms> getOffers() throws Exception {
+        String query = "select * from rooms where room_number not in (select room_id from reservations);";
 
         ArrayList<Rooms> rooms = new ArrayList<>();
         Statement stmt = connection.createStatement();
@@ -243,11 +221,10 @@ public class RoomRepository {
         while (res.next()) {
             rooms.add(fromResultSet(res));
         }
-        if(rooms != null) return rooms;
+        if (rooms != null) return rooms;
 
         return null;
     }
-
 
 
 }

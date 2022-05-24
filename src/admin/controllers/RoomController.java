@@ -1,12 +1,12 @@
 package admin.controllers;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import admin.controllers.rooms.EditRoomController;
-import helpers.Rooms;
+import components.ErrorPopupComponent;
+import models.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,7 +66,9 @@ public class RoomController implements Initializable {
     private ObservableList roomNumberList;
     private ObservableList roomTypeSelectorList;
     private ObservableList roomBedNumberList;
-    public ObservableList<Rooms> room = null;
+
+
+    private ObservableList<Rooms> rooms;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,8 +77,8 @@ public class RoomController implements Initializable {
             roomTypeFilter.setItems(roomTypeSelectorList);
             roomNumberFilter.setItems(roomNumberList);
             roomCapacityFilter.setItems(roomBedNumberList);
-            ObservableList<Rooms> staffs = FXCollections.observableArrayList(loadRooms());
-            roomsTableView.setItems(staffs);
+            rooms = FXCollections.observableArrayList(loadRooms());
+            roomsTableView.setItems(rooms);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -99,9 +101,9 @@ public class RoomController implements Initializable {
 
 
     public void initializeRooms() {
-        roomTypeSelectorList = FXCollections.observableArrayList("All","Single","Double","Triple","Quad","Suite");
-        roomBedNumberList = FXCollections.observableArrayList("1","2","3","4");
-        roomNumberList = FXCollections.observableArrayList("1", "2" ,"3", "4", "5","6","7", "8", "9", "10");
+        roomTypeSelectorList = FXCollections.observableArrayList("All", "Single", "Double", "Triple", "Quad", "Suite");
+        roomBedNumberList = FXCollections.observableArrayList("All", "1", "2", "3", "4", "5");
+        roomNumberList = FXCollections.observableArrayList("All", "1", "2", "3", "4", "5");
         this.roomNumber.setCellValueFactory(new PropertyValueFactory<>("room_number"));
         this.floorNumber.setCellValueFactory(new PropertyValueFactory<>("floor_number"));
         this.capacity.setCellValueFactory(new PropertyValueFactory<>("capacity"));
@@ -119,11 +121,9 @@ public class RoomController implements Initializable {
     @FXML
     private void addRoomAction(ActionEvent e) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("../views/roomviews/add-new-room.fxml"));
-
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         stage.setScene(scene);
-
     }
 
 
@@ -135,7 +135,7 @@ public class RoomController implements Initializable {
         Parent parent = loader.load();
         EditRoomController controller = loader.getController();
         Rooms selected = roomsTableView.getSelectionModel().getSelectedItem();
-        if(selected == null) {
+        if (selected == null) {
             return;
         }
 
@@ -146,5 +146,35 @@ public class RoomController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    @FXML
+    private void onFindRoomAction(ActionEvent e) throws Exception {
+
+        String type = null;
+        String capacity = null;
+        String bedNumber = null;
+        try {
+            type = roomTypeFilter.getValue().toString();;
+            capacity = roomCapacityFilter.getValue().toString();
+            bedNumber = roomNumberFilter.getValue().toString();;
+        }catch(Exception ex) {
+            ErrorPopupComponent.show("Specify fields");
+            return;
+        }
+
+        if (type == null || capacity == null || bedNumber == null) {
+            ErrorPopupComponent.show("Specify fields");
+            return;
+        }
+
+        ArrayList<Rooms> filteredRooms = RoomRepository.filterAllRooms(type, bedNumber, capacity);
+
+        if (filteredRooms == null)
+            return;
+
+        rooms = FXCollections.observableArrayList(filteredRooms);
+        roomsTableView.setItems(rooms);
+        roomsTableView.refresh();
+    }
 
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import admin.controllers.services.EditServiceController;
-import helpers.Service_Type;
+import models.Service_Type;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,10 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -42,7 +39,6 @@ public class ServiceTypesController implements Initializable {
     private TableColumn<Service_Type, Double> servicePrice;
     @FXML
     private TableColumn<Service_Type, Integer> serviceQuantity;
-    public ObservableList<Service_Type> serviceObservableList = null;
 
     @FXML
     private Button updateServiceBtn;
@@ -50,12 +46,18 @@ public class ServiceTypesController implements Initializable {
     private Button btnDelete1;
     @FXML
     private Label servicesTitle;
+
+
+    @FXML
+    private TextField searchField;
+    private ObservableList<Service_Type> service_types;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             // 5. load services types
             initializeServiceTypes();
-            ObservableList<Service_Type> service_types = FXCollections.observableArrayList(loadServicesTypes());
+            service_types = FXCollections.observableArrayList(loadServicesTypes());
             servicesTableView.setItems(service_types);
         } catch (Exception ex) {
             System.out.println(ex);
@@ -103,7 +105,7 @@ public class ServiceTypesController implements Initializable {
         loader.setLocation(getClass().getResource("../views/services/edit-services.fxml"));
         Parent parent = loader.load();
         Service_Type selected = servicesTableView.getSelectionModel().getSelectedItem();
-        if(selected == null )
+        if (selected == null)
             return;
 
         EditServiceController controller = loader.getController();
@@ -123,5 +125,18 @@ public class ServiceTypesController implements Initializable {
         servicesTableView.getItems().remove(selected);
         servicesTableView.refresh();
     }
+
+
+    @FXML
+    private void onSearchAction(ActionEvent e) throws Exception {
+        String textSearched = searchField.getText();
+        if (textSearched == null) return;
+
+        ArrayList<Service_Type> services = ServicesTypeRepository.filterServices(textSearched);
+        service_types = FXCollections.observableArrayList(services);
+        servicesTableView.setItems(service_types);
+        servicesTableView.refresh();
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package models.view;
+package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class PaymentModel {
   private int payment_id;
-  private String firstname;
-  private String lastname;
+  private String name;
+  private String username;
   private Date date;
   private double price;
   private int isPayed;
@@ -15,10 +15,10 @@ public class PaymentModel {
   public PaymentModel() {
   }
 
-  public PaymentModel(int payment_id, String firstname, String lastname, Date date, double price, int isPayed) {
+  public PaymentModel(int payment_id, String name, String username, Date date, double price, int isPayed) {
     this.payment_id = payment_id;
-    this.firstname = firstname;
-    this.lastname = lastname;
+    this.name = name;
+    this.username = username;
     this.date = date;
     this.price = price;
     this.isPayed = isPayed;
@@ -26,12 +26,12 @@ public class PaymentModel {
 
   public static PaymentModel fromResultSet(ResultSet res) throws SQLException {
     int id = res.getInt("payment_id");
-    String firstname = res.getString("firstname");
-    String lastname = res.getString("lastname");
+    String name = res.getString("name");
+    String username = res.getString("username");
     Date date = res.getDate("date");
     double price = res.getDouble("price");
     int isPayed = res.getInt("ispayed");
-    PaymentModel paymentModel = new PaymentModel(id, firstname, lastname, date, price, isPayed);
+    PaymentModel paymentModel = new PaymentModel(id, name, username, date, price, isPayed);
 
     return paymentModel;
   }
@@ -44,20 +44,20 @@ public class PaymentModel {
     this.payment_id = payment_id;
   }
 
-  public String getFirstname() {
-    return firstname;
+  public String getName() {
+    return name;
   }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getLastname() {
-    return lastname;
+  public String getUsername() {
+    return username;
   }
 
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public Date getDate() {

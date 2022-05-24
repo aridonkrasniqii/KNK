@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddEventController implements Initializable {
+public class AddEventController{
     @FXML
     private TextField titleCol;
     @FXML
@@ -39,18 +39,6 @@ public class AddEventController implements Initializable {
     @FXML
     private DatePicker endDateCol;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        loadTypes();
-
-    }
-
-    private void loadTypes() {
-//        roomType.getItems().add("First Class");
-//        roomType.getItems().add("Second Class");
-//        roomType.getItems().add("Third Class");
-//        roomType.setValue("None");
-    }
 
     @FXML
     private void addNewEvent(ActionEvent e) {
@@ -82,7 +70,7 @@ public class AddEventController implements Initializable {
         Parent parent = loader.load();
 
         MainController controller = loader.getController();
-        controller.setView(MainController.OVERVIEW_DASHBOARD);
+        controller.setView(MainController.EVENTS_DASHBOARD);
 
         Stage primaryStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);

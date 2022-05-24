@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EventController">
     <top>
         <VBox prefWidth="100.0" BorderPane.alignment="CENTER" />
     </top>
     <center>
-        <TableView fx:id="eventsTableView" fixedCellSize="0.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
+        <TableView fx:id="eventsTableView" fixedCellSize="0.0" prefHeight="680.0" prefWidth="950.0" stylesheets="@../style/StyleSheet.css" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="titleCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="168.0" resizable="false" text="Title" />
-                <TableColumn fx:id="organizerCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="199.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Organizer" />
-                <TableColumn fx:id="categoryCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="164.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Category" />
-                <TableColumn fx:id="priceCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="119.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Price" />
-                <TableColumn fx:id="startDateCol" maxWidth="1.7976931348623157E308" prefWidth="147.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Start Date" />
-                <TableColumn fx:id="endDateCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="123.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="End Date" />
+                <TableColumn fx:id="titleCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="150.0" resizable="false" text="Title" />
+                <TableColumn fx:id="organizerCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="150.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Organizer" />
+                <TableColumn fx:id="categoryCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="150.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Category" />
+                <TableColumn fx:id="priceCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="150.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Price" />
+                <TableColumn fx:id="startDateCol" maxWidth="1.7976931348623157E308" prefWidth="150.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="Start Date" />
+                <TableColumn fx:id="endDateCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="150.0" resizable="false" style="-fx-alignment: center; -fx-background-color: transparent;" text="End Date" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -3,7 +3,7 @@ package admin.controllers.staff;
 import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import components.SuccessPopupComponent;
-import helpers.Staff;
+import models.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

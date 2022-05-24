@@ -2,10 +2,11 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import components.ErrorPopupComponent;
-import helpers.Rooms;
+import models.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import processor.DateHelper;
 import repositories.RoomRepository;
 import utilities.I18N;
 
@@ -94,17 +96,35 @@ public class ReservationRoomsController implements Initializable {
 
 	@FXML
 	private void onFindAction(ActionEvent e) throws Exception {
-		String checkIn = checkInDate.getValue().toString();
-		String checkOut = checkOutDate.getValue().toString();
-		String roomType = roomTypeSelector.getValue().toString();
-		if (checkIn == null || checkOut == null || roomType == null)
+		String checkIn = null;
+		String checkOut = null;
+		String roomType = null;
+		try {
+			checkIn = checkInDate.getValue().toString();
+			checkOut = checkOutDate.getValue().toString();
+			roomType = roomTypeSelector.getValue().toString();
+		}catch(Exception ex) {
+			ErrorPopupComponent.show("All fields must be filled !");
 			return;
+		}
+
+		if (checkIn == null || checkOut == null || roomType == null) {
+			ErrorPopupComponent.show("All fields must be filled !");
+			return;
+		}
+
+		assert roomType != null;
 
 		ArrayList<Rooms> filteredRooms = RoomRepository.filterAvailableRooms(checkIn, checkOut, roomType);
+		if(filteredRooms != null ) {
+			rooms = FXCollections.observableArrayList(filteredRooms);
+			tableView.setItems(rooms);
+			tableView.refresh();
+		}else {
+			ErrorPopupComponent.show("No room available");
+		}
 
-		rooms = FXCollections.observableArrayList(filteredRooms);
-		tableView.setItems(rooms);
-		tableView.refresh();
+
 	}
 
 	@FXML
@@ -129,17 +149,22 @@ public class ReservationRoomsController implements Initializable {
 				Parent parent = loader.load();
 				Scene scene = new Scene(parent);
 
-				double price = selected.getPrice();
+				double price = availableRoom.getPrice();
 
-				// FIXME: controll if checkOut is before checkIn
+				Date chInDate = DateHelper.fromSqlDate(checkIn);
+				Date chOutDate = DateHelper.fromSqlDate(checkOut);
+				if (chOutDate.compareTo(chInDate) < 0) {
+					ErrorPopupComponent.show("CheckOut should be after checkIn ");
+					return;
+				}
 
 				MakeReservationController controller = loader.getController();
 				controller.setData(availableRoom.getRoom_number(), checkIn, checkOut, availableRoom.getRoom_type(),
-						availableRoom.getPrice());
+						price);
 
 				Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 				stage.setScene(scene);
-				return;
+
 			} else {
 				ErrorPopupComponent.show("Room is reserved");
 			}
@@ -165,17 +190,22 @@ public class ReservationRoomsController implements Initializable {
 		if (selected == null)
 			return;
 
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../views/room-details.fxml"));
-		Parent parent = loader.load();
-		RoomDetailsController controller = loader.getController();
-		controller.setDate(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(),
-				selected.getRoom_type(), selected.getPrice(), selected.getRoom_number());
+		try {
+			String checkIn = checkInDate.getValue().toString();
+			String checkOut = checkOutDate.getValue().toString();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("../views/room-details.fxml"));
+			Parent parent = loader.load();
+			RoomDetailsController controller = loader.getController();
+			controller.setReservationData(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(),
+					selected.getRoom_type(), selected.getPrice(), selected.getRoom_number()  ,checkIn, checkOut );
 
-		Stage stage = new Stage();
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(parent));
-		stage.show();
+			Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(parent));
+
+		}catch (Exception ex) {
+			ErrorPopupComponent.show("Specify fields!");
+		}
 
 	}
 

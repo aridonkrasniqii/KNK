@@ -1,15 +1,10 @@
 package admin.controllers;
 
-import helpers.Rooms;
-import helpers.Service_Type;
-import helpers.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.input.PickResult;
-import models.Events;
 import models.charts.EventChart;
 import models.charts.RoomChart;
 import models.charts.ServiceTypeChart;
@@ -19,7 +14,6 @@ import repositories.RoomRepository;
 import repositories.ServicesTypeRepository;
 import repositories.StaffRepository;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

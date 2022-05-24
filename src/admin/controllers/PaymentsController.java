@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import models.view.PaymentModel;
+import models.PaymentModel;
 import repositories.PaymentsModelRepository;
 import utilities.I18N;
 
@@ -70,8 +70,8 @@ public class PaymentsController implements Initializable{
 
   public void initializePayments() {
     this.payment_id.setCellValueFactory(new PropertyValueFactory<>("payment_id"));
-    this.firstname.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-    this.lastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+    this.firstname.setCellValueFactory(new PropertyValueFactory<>("name"));
+    this.lastname.setCellValueFactory(new PropertyValueFactory<>("username"));
     this.date.setCellValueFactory(new PropertyValueFactory<>("date"));
     this.price1.setCellValueFactory(new PropertyValueFactory<>("price"));
     this.isPayed.setCellValueFactory(new PropertyValueFactory<>("ispayed"));
@@ -90,7 +90,7 @@ public class PaymentsController implements Initializable{
     if(paymentDtPickerFilter == null)
       return;
 
-    System.out.println("Date : " + date);
+
     ArrayList<PaymentModel> payments = PaymentsModelRepository.filterPayments(date);
     paymentsModel = FXCollections.observableArrayList(payments);
     paymentsTableView.setItems(paymentsModel);
@@ -99,6 +99,7 @@ public class PaymentsController implements Initializable{
 
   @FXML
   private void onRefreshAction(ActionEvent e ) throws Exception {
+    if(loadPayments() == null ) return;
     paymentsModel = FXCollections.observableArrayList(loadPayments());
     paymentsTableView.setItems(paymentsModel);
     paymentsTableView.refresh();

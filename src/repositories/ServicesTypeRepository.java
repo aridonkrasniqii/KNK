@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
-import helpers.Service_Type;
+import models.Service_Type;
 import models.charts.ServiceTypeChart;
 
 public class ServicesTypeRepository {
@@ -32,11 +32,11 @@ public class ServicesTypeRepository {
         Statement stmt = connection.createStatement();
 
         ResultSet res = stmt.executeQuery(query);
-        while(res.next()) {
+        while (res.next()) {
             services.add(new ServiceTypeChart(res.getInt("count(*)"), res.getString("service_name")));
         }
 
-        if(services != null) return services;
+        if (services != null) return services;
 
         return null;
     }
@@ -107,23 +107,40 @@ public class ServicesTypeRepository {
         ArrayList<Service_Type> service_types = new ArrayList<Service_Type>();
 
         while (res.next()) {
-            System.out.println("Service_Type id : " + res.getInt("id"));
+            service_types.add(Service_Type.fromResultSet(res));
+        }
+        return service_types;
+    }
+    public static ArrayList<Service_Type> getAvailable() throws Exception {
+        String query = "select * from services_type where quantity > 0";
+        ResultSet res = connection.executeQuery(query);
+        ArrayList<Service_Type> service_types = new ArrayList<Service_Type>();
+
+        while (res.next()) {
             service_types.add(Service_Type.fromResultSet(res));
         }
         return service_types;
     }
 
 
-    // public static int getLastID() throws Exception {
-    //   Connection conn = DBConnect.getConnection();
-    //   PreparedStatement stmt = conn.prepareStatement("select max(id) from services_type\n");
-    //   ResultSet res = stmt.executeQuery();
+    public static ArrayList<Service_Type> filterServices(String serviceName) throws Exception {
 
-    //   if (res.next()) {
-    //     return res.getInt("max(id)");
-    //   }
-    //   return 0;
-    // }
+        String newStr = new String(serviceName);
+
+        ArrayList<Service_Type> services = new ArrayList<>();
+
+        String query = "select * from services_type where service_name like '%" + newStr + "%'";
+
+        PreparedStatement stmt = connection.prepareStatement(query);
+
+        ResultSet res = stmt.executeQuery();
+
+        while (res.next()) {
+            services.add(parseFromResult(res));
+        }
+        return services;
+    }
+
 
     // public static List<ServiceChartModel> selectAllChart() throws Exception {
     //   ArrayList<ServiceChartModel> list = new ArrayList<>();

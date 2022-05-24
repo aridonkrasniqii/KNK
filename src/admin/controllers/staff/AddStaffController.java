@@ -4,7 +4,7 @@ import admin.controllers.MainController;
 import components.ErrorPopupComponent;
 import processor.SecurityHelper;
 import components.SuccessPopupComponent;
-import helpers.Staff;
+import models.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
