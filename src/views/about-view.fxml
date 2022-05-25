@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(231,224,208,255);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.AboutController">
-   <children>
-      <Label layoutX="232.0" layoutY="73.0" text="Who are we?" textFill="WHITE">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Button layoutX="249.0" layoutY="187.0" mnemonicParsing="false" onAction="#onFindOutAction"  style="-fx-background-color: rgba(171,155,129,255);" text="Click to find out" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="MOVE" />
-         </cursor>
-      </Button>
-   </children>
-</AnchorPane>
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="350.0" prefHeight="241.0" prefWidth="429.0" spacing="15.0" style="-fx-background-color: rgba(231,224,208,255);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.AboutController">
+    <children>
+        <StackPane styleClass="about-card-img" />
+          <ImageView fitHeight="172.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@../style/LogoWhite.png" />
+              </image>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+          </ImageView>
+        <VBox alignment="CENTER" maxWidth="218.0" prefHeight="241.0" prefWidth="186.0" spacing="5.0" HBox.hgrow="ALWAYS">
+            <children>
+                <Label fx:id="appNameLabel" text="LAMALE Hotel" wrapText="true" />
+                <Label fx:id="versionLabel" text="Version: 1.0.1" wrapText="true" />
+                <Label fx:id="releasedLabel" prefHeight="17.0" prefWidth="139.0" text="Released:  May 25, 2022" wrapText="true" />
+            <Button mnemonicParsing="false" onAction="#onFindOutAction" stylesheets="@../style/StyleSheet.css" text="Who are we ? ">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            </children>
+         <HBox.margin>
+            <Insets left="40.0" />
+         </HBox.margin>
+        </VBox>
+    </children>
+</HBox>

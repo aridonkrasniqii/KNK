@@ -100,7 +100,6 @@ public class PaymentsController implements Initializable {
 		if (selected == null)
 			return;
 
-
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../views/pay-payment-view.fxml"));
 		Parent parent = loader.load();
@@ -127,6 +126,7 @@ public class PaymentsController implements Initializable {
 		this.priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 	}
 
+	@SuppressWarnings("static-access")
 	public ArrayList<PaymentModel> loadGuestPayments() throws Exception {
 		PaymentsModelRepository repository = new PaymentsModelRepository();
 		return repository.findSpecificPayments(SessionManager.user.getId());

@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import components.ErrorPopupComponent;
-import models.Rooms;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import models.Rooms;
 import processor.DateHelper;
 import repositories.RoomRepository;
 
@@ -45,6 +45,7 @@ public class RoomDetailsController implements Initializable {
 	private String checkOutDate;
 
 	private String type;
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -68,6 +69,7 @@ public class RoomDetailsController implements Initializable {
 				Parent parent = loader.load();
 				Scene scene = new Scene(parent);
 
+				@SuppressWarnings("unused")
 				double price = selected.getPrice();
 
 				Date chInDate = DateHelper.fromSqlDate(checkInDate);
@@ -76,7 +78,6 @@ public class RoomDetailsController implements Initializable {
 					ErrorPopupComponent.show("CheckOut should be after checkIn ");
 					return;
 				}
-
 
 				MakeReservationController controller = loader.getController();
 				controller.setData(availableRoom.getRoom_number(), checkInDate, checkOutDate,
@@ -96,7 +97,8 @@ public class RoomDetailsController implements Initializable {
 
 	}
 
-	public void setReservationData(int roomNr, int floorNr, int bedNr, String roomType, double price, int image , String checkIn, String checkOut){
+	public void setReservationData(int roomNr, int floorNr, int bedNr, String roomType, double price, int image,
+			String checkIn, String checkOut) {
 		this.checkInDate = checkIn;
 		this.checkOutDate = checkOut;
 		this.type = roomType;
@@ -115,7 +117,6 @@ public class RoomDetailsController implements Initializable {
 		}
 	}
 
-
 	public void setDate(int roomNr, int floorNr, int bedNr, String roomType, double price, int image) {
 		roomNum.setText(Integer.toString(roomNr));
 		roomFlr.setText(Integer.toString(floorNr));
@@ -133,9 +134,10 @@ public class RoomDetailsController implements Initializable {
 
 	}
 
-	public String setRoomImageView(int image){
+	public String setRoomImageView(int image) {
 		return "images/room-" + Integer.toString(image) + ".jpg";
 	}
+
 	private String setOfferImagePath(int image) {
 		return "images/roomOffers/offers-room" + Integer.toString(image) + ".jpeg";
 	}

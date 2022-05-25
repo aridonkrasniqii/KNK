@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import components.ErrorPopupComponent;
-import models.Rooms;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Rooms;
 import processor.DateHelper;
 import repositories.RoomRepository;
 import utilities.I18N;
@@ -38,6 +37,7 @@ public class ReservationRoomsController implements Initializable {
 	private DatePicker checkInDate;
 	@FXML
 	private DatePicker checkOutDate;
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private ChoiceBox roomTypeSelector;
 	@FXML
@@ -69,6 +69,7 @@ public class ReservationRoomsController implements Initializable {
 
 	ObservableList<String> roomTypeSelectorList;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
@@ -103,7 +104,7 @@ public class ReservationRoomsController implements Initializable {
 			checkIn = checkInDate.getValue().toString();
 			checkOut = checkOutDate.getValue().toString();
 			roomType = roomTypeSelector.getValue().toString();
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			ErrorPopupComponent.show("All fields must be filled !");
 			return;
 		}
@@ -116,14 +117,13 @@ public class ReservationRoomsController implements Initializable {
 		assert roomType != null;
 
 		ArrayList<Rooms> filteredRooms = RoomRepository.filterAvailableRooms(checkIn, checkOut, roomType);
-		if(filteredRooms != null ) {
+		if (filteredRooms != null) {
 			rooms = FXCollections.observableArrayList(filteredRooms);
 			tableView.setItems(rooms);
 			tableView.refresh();
-		}else {
+		} else {
 			ErrorPopupComponent.show("No room available");
 		}
-
 
 	}
 
@@ -197,13 +197,14 @@ public class ReservationRoomsController implements Initializable {
 			loader.setLocation(getClass().getResource("../views/room-details.fxml"));
 			Parent parent = loader.load();
 			RoomDetailsController controller = loader.getController();
-			controller.setReservationData(selected.getRoom_number(), selected.getFloor_number(), selected.getBed_number(),
-					selected.getRoom_type(), selected.getPrice(), selected.getRoom_number()  ,checkIn, checkOut );
+			controller.setReservationData(selected.getRoom_number(), selected.getFloor_number(),
+					selected.getBed_number(), selected.getRoom_type(), selected.getPrice(), selected.getRoom_number(),
+					checkIn, checkOut);
 
-			Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			stage.setScene(new Scene(parent));
 
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			ErrorPopupComponent.show("Specify fields!");
 		}
 

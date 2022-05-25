@@ -8,13 +8,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
+<BorderPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #1d1f2a;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainViewController">
     <left>
         <VBox prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
             <children>
@@ -100,18 +101,36 @@
             <menus>
                 <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
                     <items>
-                        <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#onMenuLogoutAction" text="Log out" />
+                        <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#onMenuLogoutAction" text="Log out">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                     </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="F" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
                 </Menu>
                 <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Edit">
                     <items>
-                        <MenuItem fx:id="insertGuestMenu" mnemonicParsing="false" onAction="#onMenuInsertAction" text="Insert guest" />
+                        <MenuItem fx:id="insertGuestMenu" mnemonicParsing="false" onAction="#onMenuInsertAction" text="Insert guest">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                     </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
                 </Menu>
                 <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Help">
                     <items>
-                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#onMenuAboutAction" text="About" />
+                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" onAction="#onMenuAboutAction" text="About">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                     </items>
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="H" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
                 </Menu>
             </menus>
         </MenuBar>

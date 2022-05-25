@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import helpers.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utilities.I18N;
-import helpers.SessionManager;
-
 
 public class MainController implements Initializable {
 
@@ -96,39 +95,39 @@ public class MainController implements Initializable {
 			Pane pane = null;
 
 			switch (view) {
-				case GUESTS_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case OVERVIEW_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case PAYMENTS_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case ROOMS_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case SERVICE_TYPES_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case STAFF_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
-				case EVENTS_DASHBOARD:
-					pane = loader.load();
-					contentPane.setAlignment(Pos.TOP_CENTER);
-					break;
+			case GUESTS_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case OVERVIEW_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case PAYMENTS_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case ROOMS_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case SERVICE_TYPES_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case STAFF_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
+			case EVENTS_DASHBOARD:
+				pane = loader.load();
+				contentPane.setAlignment(Pos.TOP_CENTER);
+				break;
 
-				default:
-					throw new Exception("ERR_VIEW_NOT_FOUND");
+			default:
+				throw new Exception("ERR_VIEW_NOT_FOUND");
 			}
-			sessionLabel.setText(SessionManager.user.getUsername().toUpperCase() + " "  + SessionManager.lastLogin);
+			sessionLabel.setText(SessionManager.user.getUsername().toUpperCase() + " " + SessionManager.lastLogin);
 			contentPane.getChildren().clear();
 			contentPane.getChildren().add(pane);
 			VBox.setVgrow(pane, Priority.ALWAYS);
@@ -261,6 +260,7 @@ public class MainController implements Initializable {
 		Parent parent = loader.load();
 		Stage stage = (Stage) sessionLabel.getScene().getWindow();
 		stage.setScene(new Scene(parent));
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
 		stage.show();
 	}
 
@@ -269,6 +269,7 @@ public class MainController implements Initializable {
 		Parent parent = FXMLLoader.load(getClass().getResource("../views/roomviews/add-new-room.fxml"));
 		Stage stage = (Stage) sessionLabel.getScene().getWindow();
 		stage.setScene(new Scene(parent));
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
 	}
 
 	@FXML
@@ -277,6 +278,7 @@ public class MainController implements Initializable {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(parent));
 		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
 		stage.show();
 	}
 

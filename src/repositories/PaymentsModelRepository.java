@@ -6,88 +6,86 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import database.DBConnection;
-import models.Payments;
 import models.PaymentModel;
-import processor.DateHelper;
+import models.Payments;
 
 public class PaymentsModelRepository {
 
+	private static DBConnection connection = DBConnection.getConnection();
 
-    private static DBConnection connection = DBConnection.getConnection();
+	public ArrayList<PaymentModel> findAll() throws Exception {
+		String query = "select * from paymentmodel";
+		@SuppressWarnings("static-access")
+		ResultSet res = this.connection.executeQuery(query);
+		ArrayList<PaymentModel> paymentModel = new ArrayList<>();
 
+		while (res.next()) {
+			paymentModel.add(fromResultSet(res));
+		}
+		return paymentModel;
 
-    public ArrayList<PaymentModel> findAll() throws Exception {
-        String query = "select * from paymentmodel";
-        ResultSet res = this.connection.executeQuery(query);
-        ArrayList<PaymentModel> paymentModel = new ArrayList<>();
+	}
 
-        while (res.next()) {
-            paymentModel.add(fromResultSet(res));
-        }
-        return paymentModel;
+	public static Payments create(Payments model) throws Exception {
 
-    }
+		return null;
+	}
 
+	public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
+		ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();
 
-    public static Payments create(Payments model ) throws Exception {
+		String query = "select * from paymentmodel where date = ?";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setString(1, date);
+		ResultSet result = stmt.executeQuery();
+		while (result.next()) {
+			payments.add(fromResultSet(result));
+		}
+		return payments;
+	}
 
-        return null;
-    }
+	public static PaymentModel fromResultSet(ResultSet result) throws Exception {
+		int id = result.getInt("payment_id");
+		String fname = result.getString("name");
+		String lname = result.getString("lastname");
+		Date date = result.getDate("date");
+		double price = result.getDouble("price");
+		int isPayed = result.getInt("ispayed");
 
-    public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
-        ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();
+		return new PaymentModel(id, fname, lname, date, price, isPayed);
+	}
 
-        String query = "select * from paymentmodel where date = ?";
-        PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setString(1 , date);
-        ResultSet result = stmt.executeQuery();
-        while (result.next()) {
-            payments.add(fromResultSet(result));
-        }
-        return payments;
-    }
+	@SuppressWarnings("unused")
+	public static ArrayList<PaymentModel> filterPayment(String date) throws Exception {
+		String query = "select * from paymentmodel where date = ?";
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setString(1, date);
+		ArrayList<PaymentModel> payments = new ArrayList<>();
+		ResultSet result = stmt.executeQuery();
 
-    public static PaymentModel fromResultSet(ResultSet result) throws Exception {
-        int id = result.getInt("payment_id");
-        String fname = result.getString("name");
-        String lname = result.getString("lastname");
-        Date date = result.getDate("date");
-        double price = result.getDouble("price");
-        int isPayed = result.getInt("ispayed");
+		while (result.next()) {
+			payments.add(fromResultSet(result));
+		}
+		if (payments != null)
+			return payments;
+		return null;
+	}
 
-        return new PaymentModel(id, fname, lname, date, price, isPayed);
-    }
+	public static ArrayList<PaymentModel> findSpecificPayments(int userId) throws Exception {
 
+		ArrayList<PaymentModel> specificPayments = new ArrayList<>();
+		String query = "select * from paymentmodel ,payments where payment_id = id and is_payed = ? and user_id = ?";
 
-    public static ArrayList<PaymentModel> filterPayment(String date) throws Exception {
-        String query = "select * from paymentmodel where date = ?";
-        PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setString(1 , date);
-        ArrayList<PaymentModel> payments = new ArrayList<>();
-        ResultSet result = stmt.executeQuery();
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setInt(1, 0);
+		stmt.setInt(2, userId);
 
-        while (result.next()) {
-            payments.add(fromResultSet(result));
-        }
-        if (payments != null) return payments;
-        return null;
-    }
+		ResultSet result = stmt.executeQuery();
 
-    public static ArrayList<PaymentModel> findSpecificPayments(int userId) throws Exception {
+		while (result.next()) {
+			specificPayments.add(fromResultSet(result));
+		}
+		return specificPayments;
 
-        ArrayList<PaymentModel> specificPayments = new ArrayList<>();
-        String query = "select * from paymentmodel ,payments where payment_id = id and is_payed = ? and user_id = ?";
-
-        PreparedStatement stmt = connection.prepareStatement(query);
-        stmt.setInt(1,  0);
-        stmt.setInt(2, userId);
-
-        ResultSet result = stmt.executeQuery();
-
-        while (result.next()) {
-            specificPayments.add(fromResultSet(result));
-        }
-         return specificPayments;
-
-    }
+	}
 }

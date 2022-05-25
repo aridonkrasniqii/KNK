@@ -32,6 +32,7 @@ import repositories.UserRepository;
 import utilities.I18N;
 
 public class GuestController implements Initializable {
+	@SuppressWarnings("unused")
 	private DBConnection connection;
 	@FXML
 	private TableView<User> tableView;

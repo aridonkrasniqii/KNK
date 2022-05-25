@@ -176,6 +176,7 @@ public class MainViewController implements Initializable {
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
 		stage.show();
 	}
 
@@ -184,6 +185,8 @@ public class MainViewController implements Initializable {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../views/about-view.fxml"))));
 		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.titleProperty().bind(I18N.createStringBinding("window.title"));
+		stage.centerOnScreen();
 		stage.show();
 	}
 
