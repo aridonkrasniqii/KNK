@@ -10,8 +10,8 @@ The DataBase file we have is fulfilled with random data so u can change it based
 Just remember to change the DBConnection configs so you have to write your own dbname password and so on.
 If you need help feel free to contact us.
 
-##Confidential
-This project is created from the authors below with full rights, u can take it use it but at least leave credit for us!
+## Confidential
+This project is developed from the authors below with full rights, u can take it use it but at least leave credit for us!
 
 ## Authors
 [Andi Ahmeti](https://github.com/Andi-A);
