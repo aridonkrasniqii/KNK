@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: rgba(231,224,208,255);">
          <children>
@@ -50,12 +50,12 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="loginBtn" layoutX="50.0" layoutY="423.0" mnemonicParsing="false" onAction="#onLoginAction" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: rgba(171,155,129,255);" stylesheets="@../style/StyleSheet.css" text="LOGIN">
+            <Button fx:id="loginBtn" layoutX="50.0" layoutY="423.0" mnemonicParsing="false" onAction="#onLoginAction" onKeyPressed="#setOnKeyPressed" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: rgba(171,155,129,255);" stylesheets="@../style/StyleSheet.css" text="LOGIN">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="goToRegister" layoutX="231.0" layoutY="496.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
+            <Label fx:id="goToRegister" accessibleRole="TEXT_FIELD" layoutX="231.0" layoutY="496.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
