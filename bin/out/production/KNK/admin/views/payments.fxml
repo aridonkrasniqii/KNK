@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paymentsPane" prefHeight="700.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.PaymentsController">
+<AnchorPane fx:id="paymentsPane" prefHeight="700.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.controllers.PaymentsController">
    <children>
       <BorderPane prefHeight="700.0" prefWidth="942.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -19,7 +19,7 @@
                <children>
                   <DatePicker fx:id="paymentDtPickerFilter" layoutX="153.0" layoutY="31.0" prefHeight="36.0" prefWidth="277.0" style="-fx-background-color: #343742;" />
                   <Button fx:id="paymentFilterBtn" layoutX="499.0" layoutY="32.0" mnemonicParsing="false" onAction="#searchOnPayment" prefHeight="35.0" prefWidth="93.0" text="Search" />
-                  <Label layoutX="20.0" layoutY="20.0" text="Payments">
+                  <Label fx:id="paymentsLbl" layoutX="20.0" layoutY="20.0" text="Payments">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -45,7 +45,7 @@
          <bottom>
             <HBox alignment="TOP_RIGHT" prefWidth="942.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh">
+                  <Button fx:id="refreshBtn" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onRefreshAction" text="Refresh">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
                      </HBox.margin>

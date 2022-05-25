@@ -84,7 +84,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <PasswordField fx:id="passwordField" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+                <PasswordField fx:id="passwordField" disable="true" editable="false" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8" />
                 <Button fx:id="createNewStaffMember" alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUpdateAction" prefHeight="30.0" prefWidth="90.0" text="Edit" GridPane.columnIndex="2" GridPane.rowIndex="9">
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

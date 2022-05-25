@@ -50,12 +50,12 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="loginBtn" layoutX="50.0" layoutY="423.0" mnemonicParsing="false" onAction="#onLoginAction" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: rgba(171,155,129,255);" stylesheets="@../style/StyleSheet.css" text="LOGIN">
+            <Button fx:id="loginBtn" layoutX="50.0" layoutY="423.0" mnemonicParsing="false" onAction="#onLoginAction" onKeyPressed="#setOnKeyPressed" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: rgba(171,155,129,255);" stylesheets="@../style/StyleSheet.css" text="LOGIN">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="goToRegister" layoutX="231.0" layoutY="496.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
+            <Label fx:id="goToRegister" accessibleRole="TEXT_FIELD" layoutX="231.0" layoutY="496.0" onMouseClicked="#onRegisterAction" styleClass="forgotBtn" stylesheets="@../style/StyleSheet.css" text="Sign Up" textFill="#2146ff">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
@@ -76,14 +76,14 @@
             </Label>
             <TextField fx:id="usernameField" layoutX="50.0" layoutY="299.0" prefHeight="33.0" prefWidth="351.0" promptText="Username" />
             <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="350.0" prefHeight="33.0" prefWidth="351.0" promptText="Password" />
-            <HBox layoutX="431.0" prefHeight="35.0" prefWidth="70.0">
+            <HBox layoutX="419.0" prefHeight="42.0" prefWidth="82.0">
                <children>
-                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" style="-fx-background-color: rgba(171,155,129,255);" text="En">
+                  <Button fx:id="enButton" mnemonicParsing="false" onMouseClicked="#englishLanguageOnClick" prefHeight="35.0" prefWidth="49.0" style="-fx-background-color: rgba(171,155,129,255);" text="En">
                      <HBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" style="-fx-background-color: rgba(171,155,129,255);" text="Al">
+                  <Button fx:id="alButton" mnemonicParsing="false" onMouseClicked="#albanianLanguageOnClick" prefHeight="36.0" prefWidth="49.0" style="-fx-background-color: rgba(171,155,129,255);" text="Al">
                      <HBox.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </HBox.margin>
