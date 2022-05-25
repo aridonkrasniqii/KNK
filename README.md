@@ -2,7 +2,7 @@
 Hotel Management System Application Project given from Human-Computer Interaction professor [Blend Arifaj](https://github.com/BlendArifaj)
 
 ## Language
-Project is developed in Java language - JavaFX framework.
+Project is developed in Java language - JavaFX library.
 
 ## Usage
 With this application you can manage an Hotel System easily, you have the basis of a Hotel System so all you need is to connect with the needed libraries and just run it.
