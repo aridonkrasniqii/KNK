@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import admin.controllers.MainController;
-import com.mysql.cj.x.protobuf.Mysqlx;
 import components.ErrorPopupComponent;
 import helpers.SessionManager;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -66,37 +68,11 @@ public class LoginController {
     private static final String GUEST_SCREEN = "main-view";
 
     @FXML
-    private void onLoginAction(ActionEvent e) {
-        try {
-            User user = null;
-            String email = usernameField.getText();
-            String password = passwordField.getText();
-
-            boolean emptyFields = LoginValidate.validate(email, password);
-            if (emptyFields) {
-                ErrorPopupComponent.show("Empty fields");
-                return;
-            }
-
-            user = login(email, password);
-
-            if (user == null) {
-                ErrorPopupComponent.show("Wrong username or password");
-                return;
-            }
-
-            if (user.getRole() == UserRole.Admin) {
-                loadPage(e, user, ADMIN_SCREEN);
-            } else if (user.getRole() == UserRole.Guest) {
-                loadPage(e, user, GUEST_SCREEN);
-            }
-        } catch (Exception ex) {
-            ErrorPopupComponent.show(ex);
-        }
-
+    private void onLoginAction(ActionEvent e) throws Exception {
+        onLogin(e);
     }
 
-    public void loadPage(ActionEvent e, User user, String view) throws Exception {
+    public void loadPage(Event e, User user, String view) throws Exception {
 
         FXMLLoader loader = new FXMLLoader();
         Parent parent;
@@ -142,6 +118,44 @@ public class LoginController {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.titleProperty().bind(I18N.createStringBinding("window.title"));
+
+    }
+
+    @FXML
+    public void setOnKeyPressed(KeyEvent event) throws Exception {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            onLogin(event);
+        }
+    }
+
+    public void onLogin(Event e) throws Exception {
+
+        try {
+            User user = null;
+            String email = usernameField.getText();
+            String password = passwordField.getText();
+
+            boolean emptyFields = LoginValidate.validate(email, password);
+            if (emptyFields) {
+                ErrorPopupComponent.show("Empty fields");
+                return;
+            }
+
+            user = login(email, password);
+
+            if (user == null) {
+                ErrorPopupComponent.show("Wrong username or password");
+                return;
+            }
+
+            if (user.getRole() == UserRole.Admin) {
+                loadPage(e, user, ADMIN_SCREEN);
+            } else if (user.getRole() == UserRole.Guest) {
+                loadPage(e, user, GUEST_SCREEN);
+            }
+        } catch (Exception ex) {
+            ErrorPopupComponent.show(ex);
+        }
 
     }
 

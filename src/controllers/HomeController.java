@@ -1,12 +1,12 @@
 package controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.swing.text.html.ImageView;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,29 +28,30 @@ public class HomeController implements Initializable {
 	@FXML
 	private Button login_button;
 
-	public void changeScreen(ActionEvent event) throws IOException {
+	public void changeScreen(ActionEvent event) throws Exception {
+		onLogin(event);
+	}
+
+	@FXML
+	public void setOnKeyPressed(KeyEvent event) throws Exception {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			onLogin(event);
+		}
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+
+	}
+
+	public void onLogin(Event event) throws Exception {
+
 		Parent loginParent = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
 		Scene loginscene = new Scene(loginParent);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(loginscene);
 		window.show();
-	}
-
-	@FXML
-	public void setOnKeyPressed(KeyEvent event) throws IOException {
-		if (event.getCode().equals(KeyCode.ENTER)) {
-			Parent loginParent = FXMLLoader.load(getClass().getResource("../views/login-view.fxml"));
-			Scene loginscene = new Scene(loginParent);
-
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			window.setScene(loginscene);
-			window.show();
-		}
-	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
 
 	}
 }
