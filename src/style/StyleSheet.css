@@ -255,3 +255,9 @@
     -fx-text-fill: white;
 
 }
+.dateFilter {
+    -fx-color:black;
+    -fx-background-color:white;
+    -fx-opacity:1;
+    -fx-background-insets: 0 0 0 0, 0 0 1 0;
+}

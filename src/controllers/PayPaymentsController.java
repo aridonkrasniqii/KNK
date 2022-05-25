@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 
 public class PayPaymentsController implements Initializable {
 
+    private int payment_id;
     private double priceInvoice;
     private ToggleGroup toggle;
     @FXML
@@ -121,7 +122,7 @@ public class PayPaymentsController implements Initializable {
         int is_payed = 1;
         Date date = new Date();
 
-        Payments model = new Payments(1, user_id, staff_id, price, payment_method, is_payed,date);
+        Payments model = new Payments(this.payment_id, user_id, staff_id, price, payment_method, is_payed,date);
         if(PaymentRepository.update(model) != null ) {
             SuccessPopupComponent.show("Invoice is successfully payed", "Payed :) ");
             Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
@@ -149,7 +150,10 @@ public class PayPaymentsController implements Initializable {
     }
 
 
-    public void loadPrice(Double price) throws Exception {
+
+
+    public void loadPrice(Double price , int payment_id) throws Exception {
+        this.payment_id = payment_id;
         userCredentials.setText(SessionManager.user.getName());
         userId.setText(Integer.toString(SessionManager.user.getId()));
         this.priceInvoice = price;

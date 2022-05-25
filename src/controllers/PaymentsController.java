@@ -105,7 +105,7 @@ public class PaymentsController implements Initializable {
 		Parent parent = loader.load();
 
 		PayPaymentsController controller = loader.getController();
-		controller.loadPrice(selected.getPrice());
+		controller.loadPrice(selected.getPrice(), selected.getPayment_id());
 
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));

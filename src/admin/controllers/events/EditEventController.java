@@ -35,6 +35,9 @@ public class EditEventController {
 	@FXML
 	private DatePicker endDateCol;
 
+
+	private int eventId;
+
 	@FXML
 	private void updateEvent(ActionEvent e) throws Exception {
 		try {
@@ -44,7 +47,7 @@ public class EditEventController {
 			double price = Double.parseDouble(priceCol.getText());
 			Date startDate = DateHelper.fromSqlDate(startDateCol.getValue().toString());
 			Date endDate = DateHelper.fromSqlDate(endDateCol.getValue().toString());
-			Events event = new Events(1, titleStr, organizerStr, categoryStr, price, startDate, endDate);
+			Events event = new Events(this.eventId, titleStr, organizerStr, categoryStr, price, startDate, endDate);
 
 			if (EventsRepository.update(event) != null) {
 				SuccessPopupComponent.show("Successfully edited ", "Edited");
@@ -56,6 +59,7 @@ public class EditEventController {
 	}
 
 	public void setData(Events event) {
+		this.eventId = event.getId();
 		titleCol.setText(event.getTitle());
 		organizerCol.setText(event.getOrganizer());
 		categoryCol.setText(event.getCategory());

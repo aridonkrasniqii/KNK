@@ -105,6 +105,7 @@ public class MainViewController implements Initializable {
 			break;
 		case OFFERS_VIEW:
 			loader.setLocation(getClass().getResource(setPath(OFFERS_VIEW)));
+			changeRunTime(offersButton);
 			parent = loader.load();
 			break;
 
