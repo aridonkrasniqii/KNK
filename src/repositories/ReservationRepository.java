@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class ReservationRepository {
 
-    private static DBConnection connection = DBConnection.getConnection();
+    private final static DBConnection connection = DBConnection.getConnection();
 
 
     public static Reservation find(int id) throws Exception {
@@ -21,10 +21,11 @@ public class ReservationRepository {
 
         ResultSet res = stmt.executeQuery();
 
-        if (res.next()) {
-            return fromResultSet(res);
+        if (!res.next()) {
+            return null;
         }
-        return null;
+        return fromResultSet(res);
+
     }
 
 
@@ -54,13 +55,8 @@ public class ReservationRepository {
                 .add("payment_id", model.getPayment_id(), "i");
 
         int lastInsertedId = connection.execute(query);
-        Reservation reservation = find(lastInsertedId);
+        return find(lastInsertedId);
 
-        if (reservation != null) {
-            return reservation;
-        }
-
-        return null;
     }
 
 
@@ -91,15 +87,9 @@ public class ReservationRepository {
     public static boolean remove(int id) throws  Exception{
         String query = "delete from reservations where id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
-
         stmt.setInt(1 , id);
-
         Reservation reservation = find(id);
-
-        if(reservation == null) {
-            return true;
-        }
-        return false;
+        return reservation == null;
     }
 
 }

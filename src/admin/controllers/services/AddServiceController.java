@@ -34,9 +34,10 @@ public class AddServiceController {
             double price = Double.parseDouble(priceField.getText());
             int quantity = Integer.parseInt(quantityField.getText());
             Service_Type service_type = new Service_Type(0, service, price, quantity);
-            if(service_type != null ) {
-                ServicesTypeRepository.create(service_type);
-                SuccessPopupComponent.show("Succesfully created service " , "Created");
+            if(ServicesTypeRepository.create(service_type) != null) {
+                SuccessPopupComponent.show("Successfully created service " , "Created");
+            }else {
+                ErrorPopupComponent.show("Service was not created");
             }
         }
         catch(Exception ex) {

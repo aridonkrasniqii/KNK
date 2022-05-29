@@ -11,12 +11,11 @@ import models.Payments;
 
 public class PaymentsModelRepository {
 
-	private static DBConnection connection = DBConnection.getConnection();
+	private static final DBConnection connection = DBConnection.getConnection();
 
 	public ArrayList<PaymentModel> findAll() throws Exception {
 		String query = "select * from paymentmodel";
-		@SuppressWarnings("static-access")
-		ResultSet res = this.connection.executeQuery(query);
+		ResultSet res = connection.executeQuery(query);
 		ArrayList<PaymentModel> paymentModel = new ArrayList<>();
 
 		while (res.next()) {
@@ -26,14 +25,8 @@ public class PaymentsModelRepository {
 
 	}
 
-	public static Payments create(Payments model) throws Exception {
-
-		return null;
-	}
-
 	public static ArrayList<PaymentModel> filterPayments(String date) throws Exception {
 		ArrayList<PaymentModel> payments = new ArrayList<PaymentModel>();
-
 		String query = "select * from paymentmodel where date = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setString(1, date);
@@ -66,9 +59,7 @@ public class PaymentsModelRepository {
 		while (result.next()) {
 			payments.add(fromResultSet(result));
 		}
-		if (payments != null)
-			return payments;
-		return null;
+		return payments;
 	}
 
 	public static ArrayList<PaymentModel> findSpecificPayments(int userId) throws Exception {

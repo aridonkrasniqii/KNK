@@ -28,7 +28,7 @@ public class AddRoomController implements Initializable {
 	private TextField roomCapacity;
 	@FXML
 	private TextField bedNumber;
-	@SuppressWarnings("rawtypes")
+
 	@FXML
 	private ChoiceBox roomType;
 	@FXML
@@ -40,7 +40,6 @@ public class AddRoomController implements Initializable {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	private void loadTypes() {
 		roomType.getItems().add("All");
 		roomType.getItems().add("Single");
@@ -62,9 +61,10 @@ public class AddRoomController implements Initializable {
 
 			double prc = Double.parseDouble(price.getText());
 			Rooms room = new Rooms(roomNum, floorNum, roomCpc, bedNum, roomTp, prc);
-			if (room != null) {
-				RoomRepository.create(room);
+			if (RoomRepository.create(room) != null) {
 				SuccessPopupComponent.show("Successfully created room 😃", "Created");
+			}else {
+				ErrorPopupComponent.show("Room is not created");
 			}
 		} catch (Exception ex) {
 			ErrorPopupComponent.show(ex);

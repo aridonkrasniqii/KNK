@@ -13,7 +13,7 @@ import models.charts.ServiceTypeChart;
 
 public class ServicesTypeRepository {
 
-	private static DBConnection connection = DBConnection.getConnection();
+	private final static DBConnection connection = DBConnection.getConnection();
 
 	public static Service_Type parseFromResult(ResultSet result) throws Exception {
 		int id = result.getInt("id");
@@ -24,7 +24,7 @@ public class ServicesTypeRepository {
 		return new Service_Type(id, service_name, price, quantity);
 	}
 
-	@SuppressWarnings("unused")
+
 	public static ArrayList<ServiceTypeChart> findServicesName() throws Exception {
 		String query = "select count(*) , service_name from services_type group by service_name";
 		ArrayList<ServiceTypeChart> services = new ArrayList<>();
@@ -35,10 +35,8 @@ public class ServicesTypeRepository {
 			services.add(new ServiceTypeChart(res.getInt("count(*)"), res.getString("service_name")));
 		}
 
-		if (services != null)
-			return services;
+		return services;
 
-		return null;
 	}
 
 	public static Service_Type find(int id) throws Exception {
@@ -88,13 +86,19 @@ public class ServicesTypeRepository {
 
 	}
 
+
+	// is not used
 	public static boolean remove(int id) throws Exception {
 		String query = "delete from services_type where id = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setInt(1, id);
-
-		return stmt.executeUpdate() == 1;
+		stmt.executeUpdate();
+		Service_Type service_type = find(id);
+		return service_type == null;
 	}
+
+
+
 
 	public static ArrayList<Service_Type> findAll() throws Exception {
 		String query = "select * from services_type";
@@ -120,16 +124,10 @@ public class ServicesTypeRepository {
 
 	public static ArrayList<Service_Type> filterServices(String serviceName) throws Exception {
 
-		String newStr = new String(serviceName);
-
 		ArrayList<Service_Type> services = new ArrayList<>();
-
-		String query = "select * from services_type where service_name like '%" + newStr + "%'";
-
+		String query = "select * from services_type where service_name like '%" + serviceName + "%'";
 		PreparedStatement stmt = connection.prepareStatement(query);
-
 		ResultSet res = stmt.executeQuery();
-
 		while (res.next()) {
 			services.add(parseFromResult(res));
 		}

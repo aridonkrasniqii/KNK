@@ -37,15 +37,14 @@ public class OffersController implements Initializable {
                 loader.setLocation(getClass().getResource("../views/offers-room-view.fxml"));
                 Parent parent = loader.load();
                 OffersDetailsController controller = loader.getController();
-                assert rooms != null;
                 Rooms r = rooms.get(size);
                 controller.setDate(r.getRoom_number(), r.getFloor_number(), r.getBed_number(), r.getRoom_type(),
                         r.getPrice(), size + 1);
-
                 offersPane.add(parent, i, j);
                 size += 1;
             }
         }
+
 
         mainPane.getChildren().clear();
         mainPane.getChildren().add(offersPane);

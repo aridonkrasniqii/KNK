@@ -3,8 +3,9 @@ package admin.controllers;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import com.mysql.cj.x.protobuf.Mysqlx;
 import components.ErrorPopupComponent;
-import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
+import processor.SecurityHelper;
 import repositories.UserRepository;
 import utilities.I18N;
 
@@ -41,6 +43,7 @@ public class AddGuestController implements Initializable {
     private Button cancelBtn;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createGuestTitle.textProperty().bind(I18N.createStringBinding("createGuestTitle"));
@@ -60,12 +63,13 @@ public class AddGuestController implements Initializable {
             String email = emailField.getText();
             String password = passwordField.getText();
 
+            // e kena rujt secilin input ne variable
+
             boolean emptyfields = RegisterValidate.validate(name, username, email, password);
             if (emptyfields) {
                 ErrorPopupComponent.show("Fill fields");
                 return;
             }
-
 
             boolean userExists = UserRepository.find(email, username);
             if (userExists) {
@@ -73,11 +77,10 @@ public class AddGuestController implements Initializable {
                 return;
             }
 
-            System.out.println("Test 3 ");
             User registeredUser = register(name, username, email, password);
 
             if (registeredUser != null) {
-                SuccessPopupComponent.show("Successfully registered", "");
+                SuccessPopupComponent.show("Guest is registered", "Registered");
                 return;
             } else {
                 ErrorPopupComponent.show("User was not registered");
@@ -116,7 +119,16 @@ public class AddGuestController implements Initializable {
         String hashedPassword = SecurityHelper.computeHash(password, salt);
         user.setPassword(hashedPassword);
         user.setSalt(salt);
-        user = UserRepository.create(user);
-        return user;
+        if(UserRepository.create(user) != null) {
+            return user;
+        }
+        return null;
     }
 }
+
+
+
+
+
+
+

@@ -27,7 +27,7 @@ import repositories.ReservationRepository;
 
 public class MakeReservationController implements Initializable {
 	private int roomNumber, guestId, staffId, isBillPayed, adultsNum, childrenNum, paymentId;
-	@SuppressWarnings("unused")
+
 	private String paymentMethod, roomType, checkInDate, checkOutDate;
 	private double totalBill;
 
@@ -46,7 +46,7 @@ public class MakeReservationController implements Initializable {
 	private final ObservableList<String> numOfAdults = FXCollections.observableArrayList("1", "2", "3");
 	private final ObservableList<String> numOfChildrens = FXCollections.observableArrayList("1", "2", "3");
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		adultsNumberField.setItems(numOfAdults);
@@ -74,8 +74,8 @@ public class MakeReservationController implements Initializable {
 		this.roomNumber = roomNumber;
 		this.guestId = SessionManager.user.getId();
 		this.staffId = 1; // default
-		this.totalBill = price; // calculate totalbill
-		this.paymentMethod = "cach"; // cach default
+		this.totalBill = price; // calculate total bill
+		this.paymentMethod = "cach"; // cache default
 		this.isBillPayed = 0; // default 0
 		this.roomType = roomType;
 

@@ -21,41 +21,26 @@ import models.Rooms;
 import processor.DateHelper;
 import repositories.RoomRepository;
 
-public class RoomDetailsController implements Initializable {
-
+public class RoomDetailsController  {
 	@FXML
 	private Label roomNum;
-
 	@FXML
 	private Label roomFlr;
-
 	@FXML
 	private Label bedNum;
-
 	@FXML
 	private Label priceNum;
-
 	@FXML
 	private Label roomType;
-
 	@FXML
 	private ImageView roomImageView;
-
 	private String checkInDate;
 	private String checkOutDate;
-
 	private String type;
-
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
-
-	}
 
 	@FXML
 	private void onBookAction(ActionEvent e) throws Exception {
-
 		try {
-
 			Rooms selected = RoomRepository.find(Integer.parseInt(roomNum.getText()));
 			if (selected == null)
 				return;
@@ -69,11 +54,9 @@ public class RoomDetailsController implements Initializable {
 				Parent parent = loader.load();
 				Scene scene = new Scene(parent);
 
-				@SuppressWarnings("unused")
-				double price = selected.getPrice();
-
 				Date chInDate = DateHelper.fromSqlDate(checkInDate);
 				Date chOutDate = DateHelper.fromSqlDate(checkOutDate);
+
 				if (chOutDate.compareTo(chInDate) < 0) {
 					ErrorPopupComponent.show("CheckOut should be after checkIn ");
 					return;
@@ -90,13 +73,9 @@ public class RoomDetailsController implements Initializable {
 				ErrorPopupComponent.show("Room is reserved");
 			}
 		} catch (Exception ex) {
-
 			ErrorPopupComponent.show("Specific fields must be filled go back and fill them :)");
-
 		}
-
 	}
-
 	public void setReservationData(int roomNr, int floorNr, int bedNr, String roomType, double price, int image,
 			String checkIn, String checkOut) {
 		this.checkInDate = checkIn;
@@ -116,7 +95,6 @@ public class RoomDetailsController implements Initializable {
 			ErrorPopupComponent.show(ex);
 		}
 	}
-
 	public void setDate(int roomNr, int floorNr, int bedNr, String roomType, double price, int image) {
 		roomNum.setText(Integer.toString(roomNr));
 		roomFlr.setText(Integer.toString(floorNr));
@@ -131,13 +109,10 @@ public class RoomDetailsController implements Initializable {
 		} catch (Exception ex) {
 			ErrorPopupComponent.show(ex);
 		}
-
 	}
-
 	public String setRoomImageView(int image) {
 		return "images/room-" + Integer.toString(image) + ".jpg";
 	}
-
 	private String setOfferImagePath(int image) {
 		return "images/roomOffers/offers-room" + Integer.toString(image) + ".jpeg";
 	}

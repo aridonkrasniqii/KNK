@@ -25,7 +25,7 @@ import models.Events;
 import repositories.EventsRepository;
 import utilities.I18N;
 
-@SuppressWarnings("unused")
+
 public class EventsController implements Initializable {
 	@FXML
 	public AnchorPane eventsPane;
@@ -94,20 +94,16 @@ public class EventsController implements Initializable {
 
 	@FXML
 	private void editEventAction(ActionEvent e) throws Exception {
-
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../views/eventviews/edit-event.fxml"));
 		Parent parent = loader.load();
 
 		EditEventController controller = loader.getController();
 		Events selected = eventsTableView.getSelectionModel().getSelectedItem();
-
 		if (selected == null) {
 			return;
 		}
-
 		controller.setData(selected);
-
 		Scene scene = new Scene(parent);
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		stage.setScene(scene);

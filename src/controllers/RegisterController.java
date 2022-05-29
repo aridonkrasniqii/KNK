@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import components.ErrorPopupComponent;
-import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +22,7 @@ import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
+import processor.SecurityHelper;
 import repositories.UserRepository;
 import utilities.I18N;
 
@@ -75,7 +75,7 @@ public class RegisterController implements Initializable {
 			User registeredUser = register(name, username, email, password);
 
 			if (registeredUser != null) {
-				SuccessPopupComponent.show("Successfully registered", "");
+				SuccessPopupComponent.show("User is registered " , "Registered");
 				return;
 			} else {
 				ErrorPopupComponent.show("User was not registered");
@@ -102,8 +102,10 @@ public class RegisterController implements Initializable {
 		String hashedPassword = SecurityHelper.computeHash(password, salt);
 		user.setPassword(hashedPassword);
 		user.setSalt(salt);
-		user = UserRepository.create(user);
-		return user;
+		if(UserRepository.create(user) != null) {
+			return user;
+		}
+		return null;
 	}
 
 	@FXML
@@ -112,6 +114,7 @@ public class RegisterController implements Initializable {
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
+
 
 	}
 

@@ -26,10 +26,12 @@ import repositories.EventsRepository;
 import utilities.I18N;
 
 public class EventController implements Initializable {
-	@FXML
-	public AnchorPane eventsPane;
-	@FXML
-	private Button btnAddNewEvent;
+//	@FXML
+//	public AnchorPane eventsPane;
+//	@FXML
+//	private Button btnAddNewEvent;
+
+
 	@FXML
 	private TableView<Events> eventsTableView;
 	@FXML
@@ -70,7 +72,6 @@ public class EventController implements Initializable {
 		this.priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 		this.startDateCol.setCellValueFactory(new PropertyValueFactory<>("start_date"));
 		this.endDateCol.setCellValueFactory(new PropertyValueFactory<>("end_date"));
-
 	}
 
 	public ArrayList<Events> loadEvents() throws Exception {
@@ -78,33 +79,33 @@ public class EventController implements Initializable {
 		return repository.findAll();
 	}
 
-	@FXML
-	private void addEventAction(ActionEvent e) throws Exception {
-		Parent parent = FXMLLoader.load(getClass().getResource("../views/eventviews/add-new-event.fxml"));
+//	@FXML
+//	private void addEventAction(ActionEvent e) throws Exception {
+//		Parent parent = FXMLLoader.load(getClass().getResource("../views/eventviews/add-new-event.fxml"));
+//
+//		Scene scene = new Scene(parent);
+//		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//		stage.setScene(scene);
+//
+//	}
 
-		Scene scene = new Scene(parent);
-		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-
-	}
-
-	@FXML
-	private void editEventAction(ActionEvent e) throws Exception {
-
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../views/eventviews/edit-event.fxml"));
-		Parent parent = loader.load();
-		EditEventController controller = loader.getController();
-		Events selected = eventsTableView.getSelectionModel().getSelectedItem();
-		if (selected == null) {
-			return;
-		}
-
-		controller.setData(selected);
-
-		Scene scene = new Scene(parent);
-		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-	}
+//	@FXML
+//	private void editEventAction(ActionEvent e) throws Exception {
+//
+//		FXMLLoader loader = new FXMLLoader();
+//		loader.setLocation(getClass().getResource("../views/eventviews/edit-event.fxml"));
+//		Parent parent = loader.load();
+//		EditEventController controller = loader.getController();
+//		Events selected = eventsTableView.getSelectionModel().getSelectedItem();
+//		if (selected == null) {
+//			return;
+//		}
+//
+//		controller.setData(selected);
+//
+//		Scene scene = new Scene(parent);
+//		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//		stage.setScene(scene);
+//	}
 
 }

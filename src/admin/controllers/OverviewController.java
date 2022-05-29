@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable {
 
-
     @FXML
     private PieChart serviceChart;
     @FXML
@@ -48,6 +47,7 @@ public class OverviewController implements Initializable {
             eventsChart.setData(eventsList);
             staffChart.setData(staffList);
             serviceChart.setData(servicesList);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

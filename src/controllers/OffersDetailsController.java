@@ -35,21 +35,17 @@ public class OffersDetailsController{
     @FXML
     private ImageView roomImageView;
 
-
-    int room_number;
-    double price ;
-    String room_type;
     @FXML
     private void onBookAction(ActionEvent e) throws Exception {
-         room_number = Integer.parseInt(roomNum.getText());
-         price  = Double.parseDouble(priceNum.getText());
-         room_type = roomType.getText();
+        int room_number = Integer.parseInt(roomNum.getText());
+        double price = Double.parseDouble(priceNum.getText());
+        String room_type = roomType.getText();
 
          FXMLLoader loader = new FXMLLoader();
          loader.setLocation(getClass().getResource("../views/make-reservation-view.fxml"));
          Parent parent = loader.load();
-         MakeReservationController controller = loader.getController();
-         controller.setData(room_number,room_type,price);
+             MakeReservationController controller = loader.getController();
+             controller.setData(room_number, room_type, price);
 
          Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
          stage.setScene(new Scene(parent));
@@ -77,6 +73,8 @@ public class OffersDetailsController{
     private String setImagePath(int image) {
         return "images/roomOffers/offers-room" + image + ".jpeg";
     }
+
+
 }
 
 

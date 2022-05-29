@@ -13,9 +13,9 @@
     <children>
         <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: rgba(231,224,208,255);" stylesheets="@../style/StyleSheet.css">
             <top>
-                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(231,224,208,255);" BorderPane.alignment="CENTER">
                     <children>
-                        <DatePicker fx:id="dateFilter" layoutX="75.0" layoutY="37.0" style="-fx-text-fill: black;" />
+                        <DatePicker fx:id="dateFilter" layoutX="75.0" layoutY="37.0" style="-fx-background-color: rgba(231,224,208,255);" styleClass="dateFilter" />
                         <HBox alignment="CENTER" layoutX="275.0" layoutY="-2.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                             <children>
                                 <Button fx:id="search" minHeight="27.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSearchAction" styleClass="paymentsBtns" stylesheets="@../style/StyleSheet.css" text="Search" />

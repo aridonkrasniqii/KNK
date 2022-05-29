@@ -14,7 +14,7 @@ import processor.DateHelper;
 
 public class UserRepository {
 
-	static DBConnection connection = DBConnection.getConnection();
+	private final static DBConnection connection = DBConnection.getConnection();
 
 	private static User fromResultSet(ResultSet res) throws Exception {
 		int id = res.getInt("id");
@@ -32,7 +32,6 @@ public class UserRepository {
 	}
 
 	public static ArrayList<User> getAll() throws Exception {
-		connection = DBConnection.getConnection();
 		String query = "SELECT * FROM users";
 		ResultSet res = connection.executeQuery(query);
 
@@ -57,8 +56,7 @@ public class UserRepository {
 
 	public static User find(String email) throws Exception {
 
-		PreparedStatement stmt = connection
-				.prepareStatement("SELECT * FROM users WHERE email = ? OR username = ? LIMIT 1");
+		PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE email = ? OR username = ? LIMIT 1");
 
 		stmt.setString(1, email);
 		stmt.setString(2, email);
@@ -70,16 +68,11 @@ public class UserRepository {
 	}
 
 	public static boolean find(String email, String username) throws Exception {
-
 		PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE email = ? OR username = ?");
-
 		stmt.setString(1, email);
 		stmt.setString(2, username);
 		ResultSet res = stmt.executeQuery();
-		if (res.next()) {
-			return true;
-		}
-		return false;
+		return res.next();
 	}
 
 	public static User update(User model) throws Exception {
@@ -117,14 +110,7 @@ public class UserRepository {
 				.add("updatedAt", DateHelper.toSql(model.getUpdatedAt()), "s");
 
 		int lastInsertedId = connection.execute(query);
-		User user = find(lastInsertedId);
-
-		if (user != null) {
-			return user;
-		}
-
-		ErrorPopupComponent.show("Failed to Register");
-		return null;
+		return find(lastInsertedId);
 	}
 
 	public static boolean remove(int id) throws Exception {
@@ -132,12 +118,7 @@ public class UserRepository {
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setInt(1, id);
 		stmt.executeUpdate();
-
 		User user = find(id);
-		if (user == null) {
-			return true;
-		}
-		return false;
-
+		return user == null;
 	}
 }

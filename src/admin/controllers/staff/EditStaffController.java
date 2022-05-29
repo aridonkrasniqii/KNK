@@ -104,7 +104,9 @@ public class EditStaffController implements Initializable {
 		Staff staff = new Staff(id, fname, lname, prsNumber, phoneNum, gender, birthday, pos, salary, password);
 
 		if (StaffRepository.update(staff) != null) {
-			SuccessPopupComponent.show("Successfully created", "Created");
+			SuccessPopupComponent.show("Successfully updated", "Updated");
+		}else {
+			ErrorPopupComponent.show("Staff was not edited ");
 		}
 	}
 

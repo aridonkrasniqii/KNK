@@ -66,7 +66,6 @@ public class MainViewController implements Initializable {
 		eventBtn.textProperty().bind(I18N.createStringBinding("eventBtn"));
 		logOutBtn.textProperty().bind(I18N.createStringBinding("logOutBtn"));
 		offersButton.textProperty().bind(I18N.createStringBinding("offersButton"));
-
 	}
 
 	private void changeRunTime(Button button) {

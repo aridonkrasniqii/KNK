@@ -245,12 +245,15 @@ public class GuestController implements Initializable {
 
 		FilteredList<User> filteredData = new FilteredList<>(users, b -> true);
 
+
 		searchField.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(searchModel -> {
 				if (newValue.isEmpty() || newValue.isBlank() || newValue == null)
 					return true;
 
+
 				String searchKeyword = newValue.toLowerCase();
+
 
 				if (Integer.toString(searchModel.getId()).toLowerCase().indexOf(searchKeyword) != -1) {
 					return true;
@@ -264,23 +267,7 @@ public class GuestController implements Initializable {
 					return true;
 				} else if (searchModel.getPassword().toLowerCase().indexOf(searchKeyword) != -1) {
 					return true;
-				} else if ((searchModel.getRole() == UserRole.Admin ? "A" : "G").toLowerCase()
-						.indexOf(searchKeyword) != -1) {
-					return true;
-				} else if ((searchModel.getIsActive() ? "true" : "false").toLowerCase().indexOf(searchKeyword) != -1) {
-					return true;
-				} else
-					try {
-						if ((DateHelper.toSqlDate(searchModel.getCreatedAt())).toLowerCase()
-								.indexOf(searchKeyword) != -1) {
-							return true;
-						} else {
-							return false;
-						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				}
 				return false;
 
 			});

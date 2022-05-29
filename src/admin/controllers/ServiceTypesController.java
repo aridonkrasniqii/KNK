@@ -35,6 +35,7 @@ public class ServiceTypesController implements Initializable {
 	private Button addNewServiceBtn;
 	@FXML
 	private TableView<Service_Type> servicesTableView;
+
 	@FXML
 	private TableColumn<Service_Type, Integer> serviceID;
 	@FXML

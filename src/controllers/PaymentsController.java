@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import components.ErrorPopupComponent;
 import helpers.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,7 +58,7 @@ public class PaymentsController implements Initializable {
 			paymentsModel = FXCollections.observableArrayList(loadGuestPayments());
 			paymentsTableView.setItems(paymentsModel);
 		} catch (Exception ex) {
-
+			ErrorPopupComponent.show(ex);
 		}
 		paymentIdCol.textProperty().bind(I18N.createStringBinding("paymentIdCol"));
 		firstNameCol.textProperty().bind(I18N.createStringBinding("firstNameCol"));
@@ -111,12 +112,12 @@ public class PaymentsController implements Initializable {
 		stage.setScene(new Scene(parent));
 	}
 
-	@FXML
-	private void onCancleAction(ActionEvent e) throws Exception {
-		Parent parent = FXMLLoader.load(getClass().getResource("../views/main-view.fxml"));
-		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		stage.setScene(new Scene(parent));
-	}
+//	@FXML
+//	private void onCancleAction(ActionEvent e) throws Exception {
+//		Parent parent = FXMLLoader.load(getClass().getResource("../views/main-view.fxml"));
+//		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//		stage.setScene(new Scene(parent));
+//	}
 
 	private void initializePayments() {
 		this.paymentIdCol.setCellValueFactory(new PropertyValueFactory<>("payment_id"));
@@ -126,10 +127,9 @@ public class PaymentsController implements Initializable {
 		this.priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 	}
 
-	@SuppressWarnings("static-access")
+
 	public ArrayList<PaymentModel> loadGuestPayments() throws Exception {
-		PaymentsModelRepository repository = new PaymentsModelRepository();
-		return repository.findSpecificPayments(SessionManager.user.getId());
+		return PaymentsModelRepository.findSpecificPayments(SessionManager.user.getId());
 	}
 
 }

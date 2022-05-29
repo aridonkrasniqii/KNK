@@ -128,10 +128,10 @@ public class LoginController {
         }
     }
 
-    public void onLogin(Event e) throws Exception {
+    public void onLogin(Event e)  {
 
         try {
-            User user = null;
+
             String email = usernameField.getText();
             String password = passwordField.getText();
 
@@ -141,7 +141,7 @@ public class LoginController {
                 return;
             }
 
-            user = login(email, password);
+            User user = login(email, password);
 
             if (user == null) {
                 ErrorPopupComponent.show("Wrong username or password");

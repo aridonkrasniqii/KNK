@@ -27,10 +27,7 @@ public class StaffRepository {
 			staffMembers.add(fromResultSet(result));
 		}
 
-		if (staffMembers != null)
-			return staffMembers;
-
-		return null;
+		return staffMembers;
 	}
 
 	@SuppressWarnings("unused")
@@ -45,10 +42,7 @@ public class StaffRepository {
 			staffs.add(new StaffChart(result.getInt("count(*)"), result.getString("position")));
 		}
 
-		if (staffs != null)
-			return staffs;
-
-		return null;
+		return staffs;
 	}
 
 	public static Staff fromResultSet(ResultSet res) throws Exception {
@@ -63,9 +57,8 @@ public class StaffRepository {
 		String password = res.getString("password");
 		String gender = res.getString("gender");
 
-		Staff staff = new Staff(id, first_name, last_name, personalNumber, phone_number, gender, birthdate, position,
+		return new Staff(id, first_name, last_name, personalNumber, phone_number, gender, birthdate, position,
 				salary, password);
-		return staff;
 	}
 
 	public static ArrayList<Staff> findAll() throws Exception {
@@ -100,12 +93,8 @@ public class StaffRepository {
 
 		int lastInsertedId = connection.execute(query);
 
-		Staff newStaff = find(lastInsertedId);
+		return find(lastInsertedId);
 
-		if (newStaff != null) {
-			return newStaff;
-		}
-		return null;
 	}
 
 	public static Staff update(Staff model) throws Exception {
@@ -136,8 +125,11 @@ public class StaffRepository {
 		String query = "delete from staff where id = ?";
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setInt(1, id);
+		stmt.executeUpdate();
 
-		return stmt.executeUpdate() == 1;
+		Staff staff = find(id);
+
+		return staff != null;
 	}
 
 }

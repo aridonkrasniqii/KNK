@@ -34,7 +34,7 @@ public class MainController implements Initializable {
 	public static final String ROOMS_DASHBOARD = "rooms";
 	public static final String SERVICE_TYPES_DASHBOARD = "service_types";
 	public static final String STAFF_DASHBOARD = "staff";
-	public static final String ABOUT_VIEW = "about-view";
+
 	public static final String EVENTS_DASHBOARD = "events";
 
 	private static final String VIEW_PATH = "../views";

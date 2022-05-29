@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 public class PaymentRepository {
 
 
-    private static DBConnection connection = DBConnection.getConnection();
+    private final static DBConnection connection = DBConnection.getConnection();
 
 
     public static Payments find(int id) throws Exception {

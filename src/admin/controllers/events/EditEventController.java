@@ -51,7 +51,11 @@ public class EditEventController {
 
 			if (EventsRepository.update(event) != null) {
 				SuccessPopupComponent.show("Successfully edited ", "Edited");
+
 			}
+
+
+
 		} catch (Exception ex) {
 			ErrorPopupComponent.show(ex);
 		}

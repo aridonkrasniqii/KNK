@@ -1,7 +1,6 @@
 package controllers;
 
 import components.ErrorPopupComponent;
-import components.SecurityHelper;
 import components.SuccessPopupComponent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +13,7 @@ import javafx.stage.Stage;
 import models.User;
 import models.UserRole;
 import processor.RegisterValidate;
+import processor.SecurityHelper;
 import repositories.UserRepository;
 
 import java.util.Date;
@@ -86,7 +86,11 @@ public class MenuRegisterGuestController {
         String hashedPassword = SecurityHelper.computeHash(password, salt);
         user.setPassword(hashedPassword);
         user.setSalt(salt);
-        user = UserRepository.create(user);
-        return user;
+        if(UserRepository.create(user) != null) {
+            SuccessPopupComponent.show("User is registered" , "Registered");
+            return user;
+        }
+        ErrorPopupComponent.show("User is not registered");
+        return null;
     }
 }

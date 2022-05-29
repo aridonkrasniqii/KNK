@@ -30,7 +30,7 @@ import utilities.I18N;
 
 public class ReservationRoomsController implements Initializable {
 
-	private static final String MAIN_VIEW = "main-view";
+//	private static final String MAIN_VIEW = "main-view";
 	private static final String MAKE_RESERVATION_VIEW = "make-reservation-view";
 
 	@FXML
@@ -69,7 +69,6 @@ public class ReservationRoomsController implements Initializable {
 
 	ObservableList<String> roomTypeSelectorList;
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
@@ -169,20 +168,18 @@ public class ReservationRoomsController implements Initializable {
 				ErrorPopupComponent.show("Room is reserved");
 			}
 		} catch (Exception ex) {
-			if (checkIn == null || checkOut == null || type == null) {
 				ErrorPopupComponent.show("Specific fields must be filled ");
-			}
 		}
 
 	}
 
-	@FXML
-	private void onCancleAction(ActionEvent e) throws Exception {
-		Parent parent = FXMLLoader.load(getClass().getResource(setPath(MAIN_VIEW)));
-		Scene scene = new Scene(parent);
-		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-	}
+//	@FXML
+//	private void onCancleAction(ActionEvent e) throws Exception {
+//		Parent parent = FXMLLoader.load(getClass().getResource(setPath(MAIN_VIEW)));
+//		Scene scene = new Scene(parent);
+//		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//		stage.setScene(scene);
+//	}
 
 	@FXML
 	private void onRoomDetailsAction(ActionEvent e) throws Exception {

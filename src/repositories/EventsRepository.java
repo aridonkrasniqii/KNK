@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import models.Events;
@@ -13,24 +14,23 @@ import processor.DateHelper;
 
 public class EventsRepository {
 
-	private static DBConnection connection = DBConnection.getConnection();
+	private final static DBConnection connection = DBConnection.getConnection();
 
-	@SuppressWarnings("unused")
+
+
+	// never used
 	private static boolean remove(int id) throws Exception {
 		String query = "delete from events where id = ? ";
 
 		PreparedStatement stmt = connection.prepareStatement(query);
 		stmt.setInt(1, id);
-		ResultSet res = stmt.executeQuery();
+		stmt.executeQuery();
 
-		if (res.next())
-			return true;
-
-		return false;
+		return find(id) == null;
 
 	}
 
-	@SuppressWarnings("unused")
+
 	public static ArrayList<EventChart> findOrganizer() throws Exception {
 		ArrayList<EventChart> events = new ArrayList<>();
 
@@ -42,10 +42,7 @@ public class EventsRepository {
 		while (result.next()) {
 			events.add(new EventChart(result.getInt("count(*)"), result.getString("organizer")));
 		}
-		if (events != null)
-			return events;
-
-		return null;
+		return events;
 	}
 
 	public ArrayList<Events> findAll() throws Exception {
@@ -76,7 +73,7 @@ public class EventsRepository {
 	}
 
 	public static Events update(Events model) throws Exception {
-		// fixme:
+
 		String query = "update events set title = ? , organizer = ? , category = ? , price = ? "
 				+ ", start_date = ? , end_date = ? where id = ?;";
 
@@ -118,11 +115,6 @@ public class EventsRepository {
 				.add("end_date", DateHelper.toSqlDate(model.getEnd_date()), "s");
 
 		int lastInsertedId = connection.execute(query);
-		Events event = find(lastInsertedId);
-
-		if (event != null)
-			return event;
-
-		return null;
+		return find(lastInsertedId);
 	}
 }

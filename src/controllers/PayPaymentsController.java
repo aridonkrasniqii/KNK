@@ -26,7 +26,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class PayPaymentsController implements Initializable {
-
     private int payment_id;
     private double priceInvoice;
     private ToggleGroup toggle;
@@ -47,8 +46,6 @@ public class PayPaymentsController implements Initializable {
 
     @FXML
     private RadioButton giftCuponButton;
-
-
 
     @FXML
     private TableView<Service_Type> serviceTableView;
@@ -119,10 +116,7 @@ public class PayPaymentsController implements Initializable {
             return;
         }
 
-        int is_payed = 1;
-        Date date = new Date();
-
-        Payments model = new Payments(this.payment_id, user_id, staff_id, price, payment_method, is_payed,date);
+        Payments model = new Payments(this.payment_id, user_id, staff_id, price, payment_method,1,new Date());
         if(PaymentRepository.update(model) != null ) {
             SuccessPopupComponent.show("Invoice is successfully payed", "Payed :) ");
             Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
@@ -139,12 +133,10 @@ public class PayPaymentsController implements Initializable {
 
     }
 
-
     private void initializeServices() {
         this.serviceNameCol.setCellValueFactory(new PropertyValueFactory<>("service_name"));
         this.servicePriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
-
     private ArrayList<Service_Type> loadServices() throws Exception {
         return ServicesTypeRepository.getAvailable();
     }

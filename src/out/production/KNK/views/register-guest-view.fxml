@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="445.0" styleClass="registerGuest" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuRegisterGuestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="445.0" styleClass="registerGuest" stylesheets="@../style/StyleSheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuRegisterGuestController">
     <children>
-        <Label layoutX="77.0" layoutY="90.0" styleClass="registerGuestText" stylesheets="@../style/StyleSheet.css" text="Create Guest" textFill="#545454">
+        <Label layoutX="-6.0" layoutY="20.0" styleClass="registerGuestText" stylesheets="@../style/StyleSheet.css" text="Create Guest" textFill="#545454">
             <font>
                 <Font name="Ebrima Bold" size="24.0" />
             </font>

@@ -83,9 +83,10 @@ public class AddStaffController implements Initializable {
 			String hashedPassword = SecurityHelper.computeHash(passwordField.getText(), salt);
 			Staff staff = new Staff(0, fname, lname, prsNumber, phoneNum, genderStr, birthday, pos, salary,
 					hashedPassword);
-			if (staff != null) {
-				StaffRepository.create(staff);
-				SuccessPopupComponent.show("SuccessFully created staff", "Created");
+			if (StaffRepository.create(staff) != null) {
+				SuccessPopupComponent.show("Successfully created staff", "Created");
+			}else {
+				ErrorPopupComponent.show("Staff was not created ");
 			}
 		} catch (Exception ex) {
 			ErrorPopupComponent.show(ex);

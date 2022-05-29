@@ -36,6 +36,8 @@ public class MembersController implements Initializable {
 	ArrayList<Staff> staffs;
 
 
+
+
 	private int member = 0;
 
 	@FXML
@@ -51,7 +53,7 @@ public class MembersController implements Initializable {
 		try {
 			this.member += 1;
 			if (this.member == 6) this.member = 0;
-			firstName.setText(staffs.get(member ).getFirst_name());
+			firstName.setText(staffs.get(member).getFirst_name());
 			lastName.setText(staffs.get(member ).getLast_name());
 			positionOfMember.setText(staffs.get(member ).getPosition());
 
@@ -96,6 +98,7 @@ public class MembersController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
 			loadStaff();
+
 			firstName.setText(staffs.get(0).getFirst_name());
 			lastName.setText(staffs.get(0).getLast_name());
 			positionOfMember.setText(staffs.get(0).getPosition());

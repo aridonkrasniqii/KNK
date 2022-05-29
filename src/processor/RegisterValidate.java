@@ -23,6 +23,8 @@ public class RegisterValidate {
             }
 
         }
+
+
         if (email.indexOf("@") < 0 || email.indexOf(".") < 0) {
             ErrorPopupComponent.show("Invalid email");
             return true;

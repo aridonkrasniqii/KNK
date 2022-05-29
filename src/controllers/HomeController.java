@@ -19,14 +19,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class HomeController implements Initializable {
+public class HomeController  {
 
-	@FXML
-	private ImageView building;
-	@FXML
-	private Label sunhotel;
-	@FXML
-	private Button login_button;
+//	@FXML
+//	private ImageView building;
+//	@FXML
+//	private Label sunhotel;
+//	@FXML
+//	private Button login_button;
 
 	public void changeScreen(ActionEvent event) throws Exception {
 		onLogin(event);
@@ -39,10 +39,7 @@ public class HomeController implements Initializable {
 		}
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
 
-	}
 
 	public void onLogin(Event event) throws Exception {
 
