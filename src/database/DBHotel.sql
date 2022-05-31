@@ -54,6 +54,23 @@ insert into rooms() values(10 , 3 , 5 , 5 , "Suite" , 400 );
 
 
 
+CREATE TABLE `staff` (
+  `id` integer NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `personal_number` integer DEFAULT NULL,
+  `position` varchar(20) NOT NULL,
+  `birthdate` date NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `salary` double DEFAULT NULL,
+  `passwordd` varchar(200) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `staff_chk_1` CHECK ((`salary` > 169))
+);
+
+
+
 CREATE TABLE `payments` (
   `id` integer NOT NULL AUTO_INCREMENT,
   `user_id` integer NOT NULL,
