@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
-
-import components.ErrorPopupComponent;
 import database.DBConnection;
 import database.InsertQueryBuilder;
 import models.User;
