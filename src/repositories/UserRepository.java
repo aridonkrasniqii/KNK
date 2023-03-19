@@ -99,10 +99,14 @@ public class UserRepository {
 	}
 
 	public static User create(User model) throws Exception {
-		InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("users").add("id", 0, "i")
-				.add("name", model.getName(), "s").add("username", model.getUsername(), "s")
-				.add("email", model.getEmail(), "s").add("password", model.getPassword(), "s")
-				.add("salt", model.getSalt(), "s").add("role", model.getRole() == UserRole.Guest ? "G" : "A", "s")
+		InsertQueryBuilder query = (InsertQueryBuilder) InsertQueryBuilder.create("users")
+				.add("id", 0, "i")
+				.add("name", model.getName(), "s")
+				.add("username", model.getUsername(), "s")
+				.add("email", model.getEmail(), "s")
+				.add("password", model.getPassword(), "s")
+				.add("salt", model.getSalt(), "s")
+				.add("role", model.getRole() == UserRole.Guest ? "G" : "A", "s")
 				.add("isActive", model.getIsActive() ? 1 : 0, "i")
 				.add("createdAt", DateHelper.toSql(model.getCreatedAt()), "s")
 				.add("updatedAt", DateHelper.toSql(model.getUpdatedAt()), "s");
